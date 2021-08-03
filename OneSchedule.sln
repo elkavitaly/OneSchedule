@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSchedule.Tests", "OneSchedule.Tests\OneSchedule.Tests.csproj", "{00B4A61C-9B35-43AA-8CC3-F83C26392BDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +21,11 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {84A68F32-4FA9-4445-BF92-274E7047F511}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00B4A61C-9B35-43AA-8CC3-F83C26392BDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00B4A61C-9B35-43AA-8CC3-F83C26392BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00B4A61C-9B35-43AA-8CC3-F83C26392BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00B4A61C-9B35-43AA-8CC3-F83C26392BDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
