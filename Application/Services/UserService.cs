@@ -4,11 +4,7 @@ using Application.Services.Interfaces;
 using AutoMapper;
 using Domain.Entity;
 using Domain.Interfaces;
-using MongoDB.Bson;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Services
@@ -51,7 +47,7 @@ namespace Application.Services
             user.PhoneNumber = editUser.PhoneNumber;
 
             await _repository.UpdateAsync(user.Id, user);
-            
+
             return _mapper.Map<UserDTO>(user);
         }
 
@@ -70,7 +66,7 @@ namespace Application.Services
 
         public async Task<IEnumerable<UserDTO>> GetAllAsync()
         {
-            return _mapper.Map<IEnumerable<UserDTO>>(await _repository.GetAllAsync()) ;
+            return _mapper.Map<IEnumerable<UserDTO>>(await _repository.GetAllAsync());
         }
 
 

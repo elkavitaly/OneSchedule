@@ -5,12 +5,9 @@ using AutoMapper;
 using Domain.Entity;
 using Domain.Interfaces;
 using MongoDB.Bson;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace Application.Services
 {
@@ -116,6 +113,6 @@ namespace Application.Services
 
             return _mapper.Map<IEnumerable<EventDTO>>(events);
         }
-       
+
     }
 }

@@ -1,17 +1,14 @@
 ﻿using Application.DTOs;
+using Application.Exceptions;
 using Application.Models;
 using Application.Services.Interfaces;
 using AutoMapper;
 using Domain.Entity;
 using Domain.Interfaces;
 using MongoDB.Bson;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using MongoDB.Bson.Serialization.Attributes;
-using Application.Exceptions;
 
 namespace Application.Services
 {
@@ -32,7 +29,7 @@ namespace Application.Services
             if (user is null)
                 return null;
 
-            var @event =  user.Events.FirstOrDefault(e => e.Id == model.EventId);
+            var @event = user.Events.FirstOrDefault(e => e.Id == model.EventId);
 
             if (@event is null)
                 return null;
@@ -110,58 +107,5 @@ namespace Application.Services
 
             return _mapper.Map<IEnumerable<NotificationDTO>>(@event.Notifications);
         }
-
-
-
-
-
-
-
-
-        //public async Task<PersonWithCustomerIdAndGuestIdDTO> AddAsync(PersonCreateModel personCreateModel)
-        //{
-        //    var person = _mapper.Map<Person>(personCreateModel);
-
-        //    await _repository.AddAsync(person);
-        //    await _repository.SaveAsync();
-
-        //    return _mapper.Map<PersonWithCustomerIdAndGuestIdDTO>(person);
-        //}
-
-        //public async Task<bool> DeleteAsync(IdModel model)
-        //{
-        //    var person = await _repository.GetByIdAsync(model.Id, true);
-
-        //    if (person is null)
-        //        //return false;
-        //        throw new NotFoundException(nameof(Person), model.Id);
-
-        //    _repository.Delete(person);
-        //    await _repository.SaveAsync();
-
-        //    return true;
-        //}
-
-        //public async Task<PersonDTO> EditAsync(PersonEditModel personModel)
-        //{
-        //    var person = _mapper.Map<Person>(personModel);
-
-        //    _repository.Update(person);
-        //    await _repository.SaveAsync();
-
-        //    return _mapper.Map<PersonDTO>(person);
-        //}
-
-        //public async Task<IEnumerable<PersonWithCustomerIdAndGuestIdDTO>> GetAllAsync()
-        //{
-        //    return await _repository.GetAllAsync(
-        //        new PersonWithCustomerIdAndGuestIdSpecification(), true);
-        //}
-
-        //public async Task<PersonWithCustomerIdAndGuestIdDTO> GetByIdAsync(int id)
-        //{
-        //    return await _repository.GetByIdAsync(
-        //        id, new PersonWithCustomerIdAndGuestIdSpecification(), true);
-        //}
     }
 }

@@ -2,10 +2,7 @@
 using Application.Models;
 using Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BotWebApi.Controllers
@@ -27,7 +24,7 @@ namespace BotWebApi.Controllers
             if (dto is null)
                 return NotFound();
 
-            return CreatedAtAction(nameof(GetByIdAsync), new { id = dto.Id}, dto);
+            return CreatedAtAction(nameof(GetByIdAsync), new { id = dto.Id }, dto);
         }
 
         [HttpGet("[controller]/{id}")]

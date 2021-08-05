@@ -2,10 +2,7 @@
 using Application.Models;
 using Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BotWebApi.Controllers
@@ -67,7 +64,7 @@ namespace BotWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EventDTO>>> GetAllByPeriodAsync([FromQuery]string userId, [FromQuery] PeriodModel period)
+        public async Task<ActionResult<IEnumerable<EventDTO>>> GetAllByPeriodAsync([FromQuery] string userId, [FromQuery] PeriodModel period)
         {
             return OkOrNotFound(await _service.GetAllByPeriodAsync(userId, period));
         }

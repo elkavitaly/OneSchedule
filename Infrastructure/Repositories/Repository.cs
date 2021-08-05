@@ -1,13 +1,9 @@
 ﻿using Domain.Entity;
 using Domain.Interfaces;
-using Infrastructure.Interfaces;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
@@ -44,6 +40,6 @@ namespace Infrastructure.Repositories
         public async Task DeleteAsync(string id) =>
             await _entities.DeleteOneAsync(e => e.Id == id);
 
-        
+
     }
 }
