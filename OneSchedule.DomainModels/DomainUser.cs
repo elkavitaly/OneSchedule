@@ -1,8 +1,8 @@
-﻿namespace OneSchedule.Entities.ViewModels
-{
-    using Abstraction;
+﻿using OneSchedule.DomainModels.Abstraction;
 
-    public class ViewUser : ViewModel
+namespace OneSchedule.DomainModels
+{
+    public class DomainUser : DomainModel
     {
         public string FirstName { get; set; }
 

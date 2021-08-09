@@ -1,4 +1,4 @@
-﻿namespace OneSchedule.Abstraction
+﻿namespace OneSchedule.ViewModels.Abstraction
 {
     public abstract class ViewModel
     {

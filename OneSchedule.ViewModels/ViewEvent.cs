@@ -1,9 +1,9 @@
-﻿namespace OneSchedule.Entities.ViewModels
-{
-    using Abstraction;
-    using System;
-    using System.Collections.Generic;
+﻿using OneSchedule.ViewModels.Abstraction;
+using System;
+using System.Collections.Generic;
 
+namespace OneSchedule.ViewModels
+{
     public class ViewEvent : ViewModel
     {
         public string Title { get; set; }

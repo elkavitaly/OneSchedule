@@ -1,10 +1,10 @@
-﻿namespace OneSchedule.Entities.DtoModels
-{
-    using Abstraction;
-    using System;
-    using System.Collections.Generic;
+﻿using OneSchedule.DomainModels.Abstraction;
+using System;
+using System.Collections.Generic;
 
-    public class DtoEvent : DtoModel
+namespace OneSchedule.DomainModels
+{
+    public class DomainEvent : DomainModel
     {
         public string Title { get; set; }
 
@@ -22,6 +22,6 @@
 
         public int ChatId { get; set; }
 
-        public ICollection<DtoNotification> Notifications { get; set; }
+        public ICollection<DomainNotification> Notifications { get; set; }
     }
 }

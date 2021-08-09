@@ -1,8 +1,6 @@
-﻿namespace OneSchedule.Entities
+﻿namespace OneSchedule.Settings
 {
-    using Abstraction;
-
-    public class DatabaseSettings : IDatabaseSettings
+    public class DatabaseSettings
     {
         public string ConnectionString { get; set; }
 

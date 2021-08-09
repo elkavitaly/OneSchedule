@@ -1,22 +1,22 @@
-﻿namespace OneSchedule.Entities.Profiles
-{
-    using AutoMapper;
-    using DbModels;
-    using DtoModels;
-    using ViewModels;
+﻿using AutoMapper;
+using OneSchedule.DomainModels;
+using OneSchedule.Entities;
+using OneSchedule.ViewModels;
 
+namespace OneSchedule.Settings
+{
     public class EventProfile : Profile
     {
         public EventProfile()
         {
-            CreateMap<DtoEvent, DbEvent>()
+            CreateMap<DomainEvent, EntityEvent>()
                 .ForMember(m => m.Id, option => option.Ignore())
                 .ReverseMap();
 
-            CreateMap<ViewEvent, DtoEvent>()
+            CreateMap<ViewEvent, DomainEvent>()
                 .ReverseMap();
 
-            CreateMap<ViewEvent, DbEvent>()
+            CreateMap<ViewEvent, EntityEvent>()
                 .ForMember(m => m.Id, option => option.Ignore())
                 .ReverseMap();
         }

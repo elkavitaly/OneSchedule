@@ -1,22 +1,22 @@
-﻿namespace OneSchedule.Entities.Profiles
-{
-    using AutoMapper;
-    using DbModels;
-    using DtoModels;
-    using ViewModels;
+﻿using AutoMapper;
+using OneSchedule.DomainModels;
+using OneSchedule.Entities;
+using OneSchedule.ViewModels;
 
+namespace OneSchedule.Settings
+{
     public class NotificationProfile : Profile
     {
         public NotificationProfile()
         {
-            CreateMap<DtoNotification, DbNotification>()
+            CreateMap<DomainNotification, EntityNotification>()
                 .ForMember(m => m.Id, option => option.Ignore())
                 .ReverseMap();
 
-            CreateMap<ViewNotification, DtoNotification>()
+            CreateMap<ViewNotification, DomainNotification>()
                 .ReverseMap();
 
-            CreateMap<ViewNotification, DbNotification>()
+            CreateMap<ViewNotification, EntityNotification>()
                 .ForMember(m => m.Id, option => option.Ignore())
                 .ReverseMap();
         }

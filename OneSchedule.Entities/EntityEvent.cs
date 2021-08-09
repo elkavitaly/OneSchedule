@@ -1,10 +1,10 @@
-﻿namespace OneSchedule.Entities.DbModels
-{
-    using Abstraction;
-    using System;
-    using System.Collections.Generic;
+﻿using OneSchedule.Entities.Abstraction;
+using System;
+using System.Collections.Generic;
 
-    public class DbEvent : DbModel
+namespace OneSchedule.Entities
+{
+    public class EntityEvent : EntityModel
     {
         public string Title { get; set; }
 
@@ -22,6 +22,6 @@
 
         public int ChatId { get; set; }
 
-        public ICollection<DbNotification> Notifications { get; set; }
+        public ICollection<EntityNotification> Notifications { get; set; }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface INotificationSender
     {
-        public void SendNotification(ViewModel view);
+        public void SendNotification();
     }
 }

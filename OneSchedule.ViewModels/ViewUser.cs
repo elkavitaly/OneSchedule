@@ -1,8 +1,8 @@
-﻿namespace OneSchedule.Entities.DtoModels
-{
-    using Abstraction;
+﻿using OneSchedule.ViewModels.Abstraction;
 
-    public class DtoUser : DtoModel
+namespace OneSchedule.ViewModels
+{
+    public class ViewUser : ViewModel
     {
         public string FirstName { get; set; }
 

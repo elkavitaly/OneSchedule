@@ -1,11 +1,13 @@
-﻿namespace OneSchedule.Abstraction
-{
-    using MongoDB.Driver;
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+﻿using MongoDB.Driver;
+using OneSchedule.Entities.Abstraction;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
-    public interface IRepository<T> where T: DbModel
+namespace OneSchedule.Abstraction
+{
+    public interface IRepository<T> where T : EntityModel
     {
         public Task Add(T data);
 
@@ -13,10 +15,10 @@
 
         public Task<DeleteResult> Delete(string id);
 
-        public Task<T> FindFirst(Func<T, bool> predicate);
+        public Task<T> FindFirst(Expression<Func<T, bool>> predicate);
 
-        public Task<ICollection<T>> Find(Func<T, bool> predicate);
+        public Task<List<T>> Find(Expression<Func<T, bool>> predicate);
 
-        public Task<bool> Any(Func<T,bool> predicate);
+        public Task<bool> Any(Expression<Func<T, bool>> predicate);
     }
 }

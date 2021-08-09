@@ -1,8 +1,8 @@
-﻿namespace OneSchedule.Entities.DbModels
-{
-    using Abstraction;
+﻿using OneSchedule.Entities.Abstraction;
 
-    public class DbUser : DbModel
+namespace OneSchedule.Entities
+{
+    public class EntityUser : EntityModel
     {
         public string FirstName { get; set; }
 
