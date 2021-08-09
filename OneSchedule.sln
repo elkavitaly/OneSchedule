@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSchedule", "OneSchedule\OneSchedule.csproj", "{0156A90E-D167-4B76-AA13-C32C487FEE00}"
+Project("{ef776fc8-7f74-4895-9a02-75178c65d954}") = "OneSchedule", "OneSchedule\OneSchedule.csproj", "{0156A90E-D167-4B76-AA13-C32C487FEE00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
