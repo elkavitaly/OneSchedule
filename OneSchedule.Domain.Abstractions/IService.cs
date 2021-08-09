@@ -2,21 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Abstractions
 {
     public interface IService<T>
     {
-        public void Add(T data);
+        public Task AddAsync(T data);
 
-        public void Update(T data);
+        public Task UpdateAsync(T data);
 
-        public DeleteResult Delete(string id);
+        public Task<DeleteResult> DeleteAsync(string id);
 
-        public T FindFirst(Expression<Func<T, bool>> predicate);
+        public Task<T> FindFirstAsync(Expression<Func<T, bool>> predicate);
 
-        public List<T> Find(Expression<Func<T, bool>> predicate);
+        public Task<List<T>> FindAsync(Expression<Func<T, bool>> predicate);
 
-        public bool Any(Expression<Func<T, bool>> predicate);
+        public Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
     }
 }
