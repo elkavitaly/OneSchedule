@@ -1,5 +1,4 @@
-﻿using OneSchedule.Entities.Abstraction;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace OneSchedule.Entities

@@ -1,6 +1,4 @@
-﻿using OneSchedule.Entities.Abstraction;
-
-namespace OneSchedule.Domain.Models
+﻿namespace OneSchedule.Domain.Models
 {
     public class UserDomain : BaseDomainModel
     {

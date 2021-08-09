@@ -1,6 +1,4 @@
-﻿using OneSchedule.Entities.Abstraction;
-
-namespace OneSchedule.Entities
+﻿namespace OneSchedule.Entities
 {
     public class UserEntity : BaseEntityModel
     {

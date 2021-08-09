@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OneSchedule.Entities.Abstraction\OneSchedule.Entities.Abstraction.csproj" />
+    <ProjectReference Include="..\OneSchedule.Entities\OneSchedule.Entities.csproj" />
   </ItemGroup>
 
 </Project>

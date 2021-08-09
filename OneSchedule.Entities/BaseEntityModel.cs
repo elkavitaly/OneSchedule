@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace OneSchedule.Entities.Abstraction
+namespace OneSchedule.Entities
 {
     public abstract class BaseEntityModel
     {

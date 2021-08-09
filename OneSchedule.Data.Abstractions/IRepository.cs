@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver;
-using OneSchedule.Entities.Abstraction;
+using OneSchedule.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;

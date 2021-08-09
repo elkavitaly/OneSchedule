@@ -1,6 +1,4 @@
-﻿using OneSchedule.Entities.Abstraction;
-
-namespace OneSchedule.ViewModels
+﻿namespace OneSchedule.ViewModels
 {
     public class UserView : BaseViewModel
     {
