@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace OneSchedule.ViewModels
 {
-    public class ViewEvent : ViewModel
+    public class ViewEvent : BaseViewModel
     {
         public string Title { get; set; }
 
@@ -22,6 +22,6 @@ namespace OneSchedule.ViewModels
 
         public int ChatId { get; set; }
 
-        public ICollection<ViewNotification> Notifications { get; set; }
+        public List<ViewNotification> Notifications { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Abstraction
 {
-    public interface IRepository<T> where T : EntityModel
+    public interface IRepository<T> where T : BaseEntityModel
     {
         public Task Add(T data);
 

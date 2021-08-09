@@ -3,7 +3,7 @@ using System;
 
 namespace OneSchedule.ViewModels
 {
-    public class ViewNotification : ViewModel
+    public class ViewNotification : BaseViewModel
     {
         public DateTime Date { get; set; }
     }

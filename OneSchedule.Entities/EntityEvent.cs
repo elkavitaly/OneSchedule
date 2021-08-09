@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace OneSchedule.Entities
 {
-    public class EntityEvent : EntityModel
+    public class EntityEvent : BaseEntityModel
     {
         public string Title { get; set; }
 
@@ -22,6 +22,6 @@ namespace OneSchedule.Entities
 
         public int ChatId { get; set; }
 
-        public ICollection<EntityNotification> Notifications { get; set; }
+        public List<EntityNotification> Notifications { get; set; }
     }
 }

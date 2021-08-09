@@ -1,6 +1,6 @@
 ﻿namespace OneSchedule.DomainModels.Abstraction
 {
-    public abstract class DomainModel
+    public abstract class BaseDomainModel
     {
     }
 }

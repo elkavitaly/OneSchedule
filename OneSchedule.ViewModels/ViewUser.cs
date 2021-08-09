@@ -2,7 +2,7 @@
 
 namespace OneSchedule.ViewModels
 {
-    public class ViewUser : ViewModel
+    public class ViewUser : BaseViewModel
     {
         public string FirstName { get; set; }
 

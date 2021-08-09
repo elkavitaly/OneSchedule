@@ -2,7 +2,7 @@
 
 namespace OneSchedule.DomainModels
 {
-    public class DomainUser : DomainModel
+    public class DomainUser : BaseDomainModel
     {
         public string FirstName { get; set; }
 

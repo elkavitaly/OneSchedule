@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace OneSchedule.DomainModels
 {
-    public class DomainEvent : DomainModel
+    public class DomainEvent : BaseDomainModel
     {
         public string Title { get; set; }
 
@@ -22,6 +22,6 @@ namespace OneSchedule.DomainModels
 
         public int ChatId { get; set; }
 
-        public ICollection<DomainNotification> Notifications { get; set; }
+        public List<DomainNotification> Notifications { get; set; }
     }
 }

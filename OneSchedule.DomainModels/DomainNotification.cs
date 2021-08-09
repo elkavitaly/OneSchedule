@@ -3,7 +3,7 @@ using System;
 
 namespace OneSchedule.DomainModels
 {
-    public class DomainNotification : DomainModel
+    public class DomainNotification : BaseDomainModel
     {
         public DateTime Date { get; set; }
     }

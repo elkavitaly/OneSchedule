@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace OneSchedule.Entities.Abstraction
 {
-    public abstract class EntityModel
+    public abstract class BaseEntityModel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

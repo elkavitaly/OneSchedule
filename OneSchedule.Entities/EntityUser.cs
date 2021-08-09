@@ -2,7 +2,7 @@
 
 namespace OneSchedule.Entities
 {
-    public class EntityUser : EntityModel
+    public class EntityUser : BaseEntityModel
     {
         public string FirstName { get; set; }
 
