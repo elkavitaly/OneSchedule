@@ -1,4 +1,5 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -9,12 +10,49 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule.Entities", "OneSchedule.Entities\OneSchedule.Entities.csproj", "{F6C02FDD-8496-4C08-83A1-9528113F6BFE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule.ViewModels", "OneSchedule.ViewModels\OneSchedule.ViewModels.csproj", "{008A727D-6A34-4C17-BF05-18EC739B15AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSchedule.Domain.Abstractions", "OneSchedule.Domain.Abstractions\OneSchedule.Domain.Abstractions.csproj", "{D426D310-AC53-4F0A-8F49-3127B3EA446E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule.Settings", "OneSchedule.Settings\OneSchedule.Settings.csproj", "{C2944983-0BE0-4BEA-A5B0-AC9931FE638D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule.Domain.Models", "OneSchedule.Domain.Models\OneSchedule.Domain.Models.csproj", "{86437D30-4E29-4B9E-9405-31F54895FEEB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule.Data.Abstractions", "OneSchedule.Data.Abstractions\OneSchedule.Data.Abstractions.csproj", "{BE9A649D-119D-4F30-AA7B-7F2508EC9EF2}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSchedule.Tests", "OneSchedule.Tests\OneSchedule.Tests.csproj", "{A5C9937D-1986-426C-997F-608A60C9C632}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6C02FDD-8496-4C08-83A1-9528113F6BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6C02FDD-8496-4C08-83A1-9528113F6BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6C02FDD-8496-4C08-83A1-9528113F6BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6C02FDD-8496-4C08-83A1-9528113F6BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{008A727D-6A34-4C17-BF05-18EC739B15AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{008A727D-6A34-4C17-BF05-18EC739B15AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{008A727D-6A34-4C17-BF05-18EC739B15AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{008A727D-6A34-4C17-BF05-18EC739B15AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D426D310-AC53-4F0A-8F49-3127B3EA446E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D426D310-AC53-4F0A-8F49-3127B3EA446E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D426D310-AC53-4F0A-8F49-3127B3EA446E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D426D310-AC53-4F0A-8F49-3127B3EA446E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2944983-0BE0-4BEA-A5B0-AC9931FE638D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2944983-0BE0-4BEA-A5B0-AC9931FE638D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2944983-0BE0-4BEA-A5B0-AC9931FE638D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2944983-0BE0-4BEA-A5B0-AC9931FE638D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86437D30-4E29-4B9E-9405-31F54895FEEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86437D30-4E29-4B9E-9405-31F54895FEEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86437D30-4E29-4B9E-9405-31F54895FEEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86437D30-4E29-4B9E-9405-31F54895FEEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE9A649D-119D-4F30-AA7B-7F2508EC9EF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE9A649D-119D-4F30-AA7B-7F2508EC9EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE9A649D-119D-4F30-AA7B-7F2508EC9EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE9A649D-119D-4F30-AA7B-7F2508EC9EF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
