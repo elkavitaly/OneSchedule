@@ -1,22 +1,22 @@
 ﻿using AutoMapper;
-using OneSchedule.DomainModels;
+using OneSchedule.Domain.Models;
 using OneSchedule.Entities;
 using OneSchedule.ViewModels;
 
 namespace OneSchedule.Settings
 {
-    public class UserProfile : Profile
+    public class EventProfile : Profile
     {
-        public UserProfile()
+        public EventProfile()
         {
-            CreateMap<DomainUser, EntityUser>()
+            CreateMap<EventDomain, EventEntity>()
                 .ForMember(m => m.Id, option => option.Ignore())
                 .ReverseMap();
 
-            CreateMap<ViewUser, DomainUser>()
+            CreateMap<EventView, EventDomain>()
                 .ReverseMap();
 
-            CreateMap<ViewUser, EntityUser>()
+            CreateMap<EventView, EventEntity>()
                 .ForMember(m => m.Id, option => option.Ignore())
                 .ReverseMap();
         }

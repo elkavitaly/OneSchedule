@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OneSchedule.DomainModels\OneSchedule.DomainModels.csproj" />
+    <ProjectReference Include="..\OneSchedule.Domain.Models\OneSchedule.Domain.Models.csproj" />
     <ProjectReference Include="..\OneSchedule.Entities\OneSchedule.Entities.csproj" />
     <ProjectReference Include="..\OneSchedule.ViewModels\OneSchedule.ViewModels.csproj" />
   </ItemGroup>

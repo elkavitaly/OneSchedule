@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace OneSchedule.Abstraction
+namespace OneSchedule.Data.Abstractions
 {
     public interface IRepository<T> where T : BaseEntityModel
     {

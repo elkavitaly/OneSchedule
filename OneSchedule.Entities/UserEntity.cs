@@ -1,8 +1,8 @@
-﻿using OneSchedule.ViewModels.Abstraction;
+﻿using OneSchedule.Entities.Abstraction;
 
-namespace OneSchedule.ViewModels
+namespace OneSchedule.Entities
 {
-    public class ViewUser : BaseViewModel
+    public class UserEntity : BaseEntityModel
     {
         public string FirstName { get; set; }
 

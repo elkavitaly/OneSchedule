@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace OneSchedule.Abstraction
+namespace OneSchedule.Domain.Abstractions
 {
     public interface IService<T>
     {

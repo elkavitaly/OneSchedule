@@ -1,22 +1,22 @@
 ﻿using AutoMapper;
-using OneSchedule.DomainModels;
+using OneSchedule.Domain.Models;
 using OneSchedule.Entities;
 using OneSchedule.ViewModels;
 
 namespace OneSchedule.Settings
 {
-    public class EventProfile : Profile
+    public class NotificationProfile : Profile
     {
-        public EventProfile()
+        public NotificationProfile()
         {
-            CreateMap<DomainEvent, EntityEvent>()
+            CreateMap<NotificationDomain, NotificationEntity>()
                 .ForMember(m => m.Id, option => option.Ignore())
                 .ReverseMap();
 
-            CreateMap<ViewEvent, DomainEvent>()
+            CreateMap<NotificationView, NotificationDomain>()
                 .ReverseMap();
 
-            CreateMap<ViewEvent, EntityEvent>()
+            CreateMap<NotificationView, NotificationEntity>()
                 .ForMember(m => m.Id, option => option.Ignore())
                 .ReverseMap();
         }

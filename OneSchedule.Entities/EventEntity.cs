@@ -1,10 +1,10 @@
-﻿using OneSchedule.ViewModels.Abstraction;
+﻿using OneSchedule.Entities.Abstraction;
 using System;
 using System.Collections.Generic;
 
-namespace OneSchedule.ViewModels
+namespace OneSchedule.Entities
 {
-    public class ViewEvent : BaseViewModel
+    public class EventEntity : BaseEntityModel
     {
         public string Title { get; set; }
 
@@ -22,6 +22,6 @@ namespace OneSchedule.ViewModels
 
         public int ChatId { get; set; }
 
-        public List<ViewNotification> Notifications { get; set; }
+        public List<NotificationEntity> Notifications { get; set; }
     }
 }

@@ -1,8 +1,8 @@
-﻿using OneSchedule.DomainModels.Abstraction;
+﻿using OneSchedule.Entities.Abstraction;
 
-namespace OneSchedule.DomainModels
+namespace OneSchedule.Domain.Models
 {
-    public class DomainUser : BaseDomainModel
+    public class UserDomain : BaseDomainModel
     {
         public string FirstName { get; set; }
 

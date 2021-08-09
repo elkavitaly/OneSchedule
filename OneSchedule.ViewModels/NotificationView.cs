@@ -1,9 +1,9 @@
 ﻿using OneSchedule.Entities.Abstraction;
 using System;
 
-namespace OneSchedule.Entities
+namespace OneSchedule.ViewModels
 {
-    public class EntityNotification : BaseEntityModel
+    public class NotificationView : BaseViewModel
     {
         public DateTime Date { get; set; }
     }

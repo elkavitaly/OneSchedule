@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace OneSchedule.Entities
+namespace OneSchedule.ViewModels
 {
-    public class EntityEvent : BaseEntityModel
+    public class EventView : BaseViewModel
     {
         public string Title { get; set; }
 
@@ -22,6 +22,6 @@ namespace OneSchedule.Entities
 
         public int ChatId { get; set; }
 
-        public List<EntityNotification> Notifications { get; set; }
+        public List<NotificationView> Notifications { get; set; }
     }
 }

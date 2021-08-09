@@ -1,10 +1,10 @@
-﻿using OneSchedule.DomainModels.Abstraction;
+﻿using OneSchedule.Entities.Abstraction;
 using System;
 using System.Collections.Generic;
 
-namespace OneSchedule.DomainModels
+namespace OneSchedule.Domain.Models
 {
-    public class DomainEvent : BaseDomainModel
+    public class EventDomain : BaseDomainModel
     {
         public string Title { get; set; }
 
@@ -22,6 +22,6 @@ namespace OneSchedule.DomainModels
 
         public int ChatId { get; set; }
 
-        public List<DomainNotification> Notifications { get; set; }
+        public List<NotificationDomain> Notifications { get; set; }
     }
 }

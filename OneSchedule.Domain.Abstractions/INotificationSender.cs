@@ -1,4 +1,4 @@
-﻿namespace OneSchedule.Abstraction
+﻿namespace OneSchedule.Domain.Abstractions
 {
     public interface INotificationSender
     {

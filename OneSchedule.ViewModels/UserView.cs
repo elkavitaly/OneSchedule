@@ -1,8 +1,8 @@
 ﻿using OneSchedule.Entities.Abstraction;
 
-namespace OneSchedule.Entities
+namespace OneSchedule.ViewModels
 {
-    public class EntityUser : BaseEntityModel
+    public class UserView : BaseViewModel
     {
         public string FirstName { get; set; }
 

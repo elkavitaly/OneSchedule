@@ -1,4 +1,4 @@
-﻿namespace OneSchedule.DomainModels.Abstraction
+﻿namespace OneSchedule.Entities.Abstraction
 {
     public abstract class BaseDomainModel
     {
