@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OneSchedule.Helpers\OneSchedule.Helpers.csproj" />
+    <ProjectReference Include="..\OneSchedule.Attributes\OneSchedule.Attributes.csproj" />
   </ItemGroup>
 
 </Project>

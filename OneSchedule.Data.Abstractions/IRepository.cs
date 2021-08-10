@@ -1,5 +1,4 @@
-﻿using MongoDB.Driver;
-using OneSchedule.Entities;
+﻿using OneSchedule.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -13,7 +12,7 @@ namespace OneSchedule.Data.Abstractions
 
         public Task UpdateAsync(T data);
 
-        public Task<DeleteResult> DeleteAsync(string id);
+        public Task DeleteAsync(string id);
 
         public Task<T> FindFirstAsync(Expression<Func<T, bool>> predicate);
 

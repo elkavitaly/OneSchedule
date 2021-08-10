@@ -1,27 +1,22 @@
 ﻿using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using OneSchedule.Data.Abstractions;
 using OneSchedule.Entities;
-using OneSchedule.Helpers;
-using OneSchedule.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Threading.Tasks;
+using OneSchedule.Helpers;
 
 namespace OneSchedule.Mongodb
 {
     public class MongodbRepository<T> : IRepository<T> where T : BaseEntityModel
     {
         private readonly IMongoCollection<T> _collection;
-        public MongodbRepository(DatabaseSettings settings)
+
+        public MongodbRepository(IMongoDatabase database)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
-
-            var collectionName = typeof(T).GetCustomAttribute(typeof(CollectionName))
-                is CollectionName collectionNameAttribute ? collectionNameAttribute.Name : nameof(T);
-
+            var collectionName = CollectionNameReader.GetName<T>();
             _collection = database.GetCollection<T>(collectionName);
         }
 
@@ -36,28 +31,25 @@ namespace OneSchedule.Mongodb
             await _collection.ReplaceOneAsync(filter, data);
         }
 
-        public async Task<DeleteResult> DeleteAsync(string id)
+        public async Task DeleteAsync(string id)
         {
             var filter = Builders<T>.Filter.Where(e => e.Id == id);
-            return await _collection.DeleteOneAsync(filter);
+            await _collection.DeleteOneAsync(filter);
         }
 
         public async Task<T> FindFirstAsync(Expression<Func<T, bool>> predicate)
         {
-            var collection = await _collection.FindAsync(predicate);
-            return collection.FirstOrDefault();
+           return await _collection.AsQueryable().Where(predicate).FirstAsync();
         }
 
         public async Task<List<T>> FindAsync(Expression<Func<T, bool>> predicate)
         {
-            var collection = await _collection.FindAsync(predicate);
-            return collection.ToList();
+            return await _collection.AsQueryable().Where(predicate).ToListAsync();
         }
 
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
         {
-            var collection = await _collection.FindAsync(predicate);
-            return await collection.AnyAsync();
+            return await _collection.FindAsync(predicate) != null;
         }
     }
 }

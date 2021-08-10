@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 using OneSchedule.Domain.Abstractions;
 using OneSchedule.Entities;
 using OneSchedule.Mongodb;
@@ -19,7 +20,11 @@ namespace OneSchedule.Controllers
 
         public TestController(DatabaseSettings settings, IMapper mapper)
         {
-            _service = new UserService(new MongodbRepository<UserEntity>(settings));
+            _service = new GenericService<UserEntity>
+                (new MongodbRepository<UserEntity>
+                    (new MongoClient(settings.ConnectionString)
+                    .GetDatabase(settings.DatabaseName)));
+
             _mapper = mapper;
         }
 

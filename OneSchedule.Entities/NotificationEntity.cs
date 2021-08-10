@@ -1,4 +1,4 @@
-﻿using OneSchedule.Helpers;
+﻿using OneSchedule.Attributes;
 using System;
 
 namespace OneSchedule.Entities
