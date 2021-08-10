@@ -32,7 +32,7 @@ namespace OneSchedule
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
@@ -40,6 +40,8 @@ namespace OneSchedule
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OneSchedule v1"));
             }
+
+            app.ConfigureCustomExceptionMiddleware(logger);
 
             app.UseHttpsRedirection();
 
