@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OneSchedule.Data.Abstractions\OneSchedule.Data.Abstractions.csproj" />
+    <ProjectReference Include="..\OneSchedule.Entities\OneSchedule.Entities.csproj" />
+    <ProjectReference Include="..\OneSchedule.Helpers\OneSchedule.Helpers.csproj" />
+    <ProjectReference Include="..\OneSchedule.Settings\OneSchedule.Settings.csproj" />
+  </ItemGroup>
+
+</Project>

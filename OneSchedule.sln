@@ -28,6 +28,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule", "OneSchedule\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSchedule.Services", "OneSchedule.Services\OneSchedule.Services.csproj", "{5CD21472-92D4-4382-9C5D-9CE0C109C043}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSchedule.Mongodb", "OneSchedule.Mongo\OneSchedule.Mongodb.csproj", "{85DDCD01-7131-4C14-B03A-E64BB0BE2D3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSchedule.Helpers", "OneSchedule.Helpers\OneSchedule.Helpers.csproj", "{44FBCF2E-A455-4348-A93C-5D75B5628030}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +62,14 @@ Global
 		{5CD21472-92D4-4382-9C5D-9CE0C109C043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CD21472-92D4-4382-9C5D-9CE0C109C043}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CD21472-92D4-4382-9C5D-9CE0C109C043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85DDCD01-7131-4C14-B03A-E64BB0BE2D3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85DDCD01-7131-4C14-B03A-E64BB0BE2D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85DDCD01-7131-4C14-B03A-E64BB0BE2D3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85DDCD01-7131-4C14-B03A-E64BB0BE2D3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44FBCF2E-A455-4348-A93C-5D75B5628030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44FBCF2E-A455-4348-A93C-5D75B5628030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44FBCF2E-A455-4348-A93C-5D75B5628030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44FBCF2E-A455-4348-A93C-5D75B5628030}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
