@@ -12,6 +12,7 @@ namespace OneSchedule.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
+
         public TestController()
         {
 
