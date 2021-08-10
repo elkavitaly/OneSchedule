@@ -30,9 +30,11 @@ namespace OneSchedule
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OneSchedule", Version = "v1" });
             });
+
+            services.AddScoped<ILogger, Logger<ExceptionHandlingMiddleware>>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -41,7 +43,7 @@ namespace OneSchedule
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OneSchedule v1"));
             }
 
-            app.ConfigureCustomExceptionMiddleware(logger);
+            app.UseExceptionHandlingMiddleware();
 
             app.UseHttpsRedirection();
 

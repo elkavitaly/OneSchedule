@@ -6,22 +6,20 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Abstractions
 {
-    class OneScheduleInternalException
-        : Exception
+    class BotAppInternalException : Exception
     {
-        public OneScheduleInternalException()
+        public BotAppInternalException()
         {
         }
 
-        public OneScheduleInternalException(string message)
+        public BotAppInternalException(string message)
             : base(message)
         {
         }
 
-        public OneScheduleInternalException(string message, Exception inner)
+        public BotAppInternalException(string message, Exception inner)
             : base(message, inner)
         {
         }
-
     }
 }

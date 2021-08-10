@@ -61,9 +61,7 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
-launchSettings.json
 appsettings.*.json
-TestController.cs
 
 
 # ASP.NET Scaffolding

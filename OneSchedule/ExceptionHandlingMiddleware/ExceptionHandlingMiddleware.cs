@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using OneSchedule.Domain.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,15 @@ using System.Threading.Tasks;
 
 namespace OneSchedule
 {
-    public class ExceptionMiddleware
+    public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger _logger;
-        public ExceptionMiddleware(RequestDelegate next, ILogger logger)
+         
+        public ExceptionHandlingMiddleware(RequestDelegate next)
         {
-            _logger = logger;
-            _next = next;
+           _next = next;
         }
-        public async Task InvokeAsync(HttpContext httpContext)
+        public async Task InvokeAsync(HttpContext httpContext, ILogger logger)
         {
             try
             {
@@ -25,10 +25,11 @@ namespace OneSchedule
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong: {ex}");
+                logger.LogError($"Something went wrong: {ex}");
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
+
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";
