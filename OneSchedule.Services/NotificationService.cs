@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Services
 {
-    public class NotificationService:IService<NotificationEntity>
+    public class NotificationService : IService<NotificationEntity>
     {
         private readonly IRepository<NotificationEntity> _repository;
 

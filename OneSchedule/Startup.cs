@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using OneSchedule.Settings;
 
@@ -37,7 +38,8 @@ namespace OneSchedule
             });
 
             services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
-
+            services.AddSingleton<DatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

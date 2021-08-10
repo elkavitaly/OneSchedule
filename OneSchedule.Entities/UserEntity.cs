@@ -1,5 +1,8 @@
-﻿namespace OneSchedule.Entities
+﻿using OneSchedule.Helpers;
+
+namespace OneSchedule.Entities
 {
+    [CollectionName("Events")]
     public class UserEntity : BaseEntityModel
     {
         public string FirstName { get; set; }

@@ -3,7 +3,7 @@ using System;
 
 namespace OneSchedule.Services
 {
-    public class NotificationSender:INotificationSender
+    public class NotificationSender : INotificationSender
     {
         public void SendNotification()
         {

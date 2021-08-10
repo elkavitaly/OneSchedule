@@ -1,8 +1,6 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Contracts;
 
-namespace OneSchedule.Helper
+namespace OneSchedule.Helpers
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class CollectionName: Attribute

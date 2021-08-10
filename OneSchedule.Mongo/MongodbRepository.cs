@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
 using OneSchedule.Data.Abstractions;
 using OneSchedule.Entities;
-using OneSchedule.Helper;
+using OneSchedule.Helpers;
 using OneSchedule.Settings;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Mongodb
 {
-    public class MongodbRepository<T> : IRepository<T> where T:BaseEntityModel
+    public class MongodbRepository<T> : IRepository<T> where T : BaseEntityModel
     {
         private readonly IMongoCollection<T> _collection;
         public MongodbRepository(DatabaseSettings settings)
@@ -19,7 +19,7 @@ namespace OneSchedule.Mongodb
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            var collectionName = typeof(T).GetCustomAttribute(typeof(CollectionName)) 
+            var collectionName = typeof(T).GetCustomAttribute(typeof(CollectionName))
                 is CollectionName collectionNameAttribute ? collectionNameAttribute.Name : nameof(T);
 
             _collection = database.GetCollection<T>(collectionName);

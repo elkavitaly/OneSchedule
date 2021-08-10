@@ -33,14 +33,14 @@ namespace OneSchedule.Controllers
         [HttpGet]
         public ICollection<UserView> GetAll()
         {
-            var result=_service.FindAsync(_=>true);
+            var result=_service.FindAsync(_=>true).Result;
             return _mapper.Map<ICollection<UserView>>(result);
         }
 
         [HttpGet("{name}")]
         public UserView GetByName( string name)
         {
-            var result = _service.FindFirstAsync(u => u.FirstName == name);
+            var result = _service.FindFirstAsync(u => u.FirstName == name).Result;
             return _mapper.Map<UserView>(result);
         }
 

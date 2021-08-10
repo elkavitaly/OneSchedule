@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Services
 {
-    public class UserService:IService<UserEntity>
+    public class UserService : IService<UserEntity>
     {
         private readonly IRepository<UserEntity> _repository;
 
