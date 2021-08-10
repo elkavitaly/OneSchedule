@@ -33,6 +33,7 @@ namespace OneSchedule
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
+
         {
             if (env.IsDevelopment())
             {
