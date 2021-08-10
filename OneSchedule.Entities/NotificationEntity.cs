@@ -3,7 +3,7 @@ using System;
 
 namespace OneSchedule.Entities
 {
-    [CollectionName("Events")]
+    [CollectionName("Notifications")]
     public class NotificationEntity : BaseEntityModel
     {
         public DateTime Date { get; set; }

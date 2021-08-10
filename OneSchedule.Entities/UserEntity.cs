@@ -2,7 +2,7 @@
 
 namespace OneSchedule.Entities
 {
-    [CollectionName("Events")]
+    [CollectionName("Users")]
     public class UserEntity : BaseEntityModel
     {
         public string FirstName { get; set; }
