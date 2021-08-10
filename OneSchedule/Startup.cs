@@ -30,8 +30,12 @@ namespace OneSchedule
             });
 
             services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
+            services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));
+
             services.AddSingleton(sp =>
                 sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+            services.AddSingleton(sp =>
+                sp.GetRequiredService<IOptions<TelegramSettings>>().Value);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
