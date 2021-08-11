@@ -16,7 +16,7 @@ namespace OneSchedule
         {
            _next = next;
         }
-        public async Task InvokeAsync(HttpContext httpContext, ILogger logger)
+        public async Task InvokeAsync(HttpContext httpContext, ILogger<ExceptionHandlingMiddleware> logger)
         {
             try
             {

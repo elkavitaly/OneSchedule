@@ -30,8 +30,6 @@ namespace OneSchedule
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OneSchedule", Version = "v1" });
             });
-
-            services.AddScoped<ILogger, Logger<ExceptionHandlingMiddleware>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
