@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSchedule.Helpers", "OneS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSchedule.Attributes", "OneSchedule.Attributes\OneSchedule.Attributes.csproj", "{0A9F8128-5395-4BD0-BD07-72D52E9A247E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSchedule.Updater", "OneSchedule.Updater\OneSchedule.Updater.csproj", "{CF59BB2E-C53B-4B79-A981-1ACA51B3858A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,10 @@ Global
 		{0A9F8128-5395-4BD0-BD07-72D52E9A247E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A9F8128-5395-4BD0-BD07-72D52E9A247E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A9F8128-5395-4BD0-BD07-72D52E9A247E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF59BB2E-C53B-4B79-A981-1ACA51B3858A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF59BB2E-C53B-4B79-A981-1ACA51B3858A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF59BB2E-C53B-4B79-A981-1ACA51B3858A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF59BB2E-C53B-4B79-A981-1ACA51B3858A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
