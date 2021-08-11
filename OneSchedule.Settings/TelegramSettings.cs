@@ -2,6 +2,6 @@
 {
     public class TelegramSettings
     {
-        public string BotToken { get; set; }
+        public string ApiKey { get; set; }
     }
 }

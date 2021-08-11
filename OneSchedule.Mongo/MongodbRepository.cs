@@ -39,7 +39,7 @@ namespace OneSchedule.Mongodb
 
         public async Task<T> FindFirstAsync(Expression<Func<T, bool>> predicate)
         {
-           return await _collection.AsQueryable().Where(predicate).FirstAsync();
+            return await _collection.AsQueryable().Where(predicate).FirstOrDefaultAsync();
         }
 
         public async Task<List<T>> FindAsync(Expression<Func<T, bool>> predicate)
@@ -49,7 +49,7 @@ namespace OneSchedule.Mongodb
 
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
         {
-            return await _collection.FindAsync(predicate) != null;
+            return await _collection.AsQueryable().Where(predicate).FirstOrDefaultAsync() != null;
         }
     }
 }
