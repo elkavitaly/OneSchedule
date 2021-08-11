@@ -22,6 +22,11 @@ namespace OneSchedule
             {
                 await _next(httpContext);
             }
+            catch (BotAppInternalException ex)
+            {
+                logger.LogError($"Bot applictionn internal exception: {ex}");
+                await HandleExceptionAsync(httpContext, ex);
+            }
             catch (Exception ex)
             {
                 logger.LogError($"Something went wrong: {ex}");
