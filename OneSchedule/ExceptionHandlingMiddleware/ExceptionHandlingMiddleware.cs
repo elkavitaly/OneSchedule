@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using OneSchedule.Domain.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

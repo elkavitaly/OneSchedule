@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace OneSchedule.Domain.Abstractions
+namespace OneSchedule
 {
     public class ErrorDetails
     {
