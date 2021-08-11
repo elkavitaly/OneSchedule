@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using OneSchedule.Data.Abstractions;
 using OneSchedule.Entities;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using OneSchedule.Helpers;
+using OneSchedule.Settings;
 
 namespace OneSchedule.Mongodb
 {
@@ -14,8 +16,10 @@ namespace OneSchedule.Mongodb
     {
         private readonly IMongoCollection<T> _collection;
 
-        public MongodbRepository(IMongoDatabase database)
+        public MongodbRepository(IMongoClient client, IOptions<DatabaseSettings> options)
         {
+            var optionsValue = options.Value;
+            var database = client.GetDatabase(optionsValue.DatabaseName);
             var collectionName = CollectionNameReader.GetName<T>();
             _collection = database.GetCollection<T>(collectionName);
         }

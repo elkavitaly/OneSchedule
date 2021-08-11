@@ -3,8 +3,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using MongoDB.Driver;
+using OneSchedule.Data.Abstractions;
+using OneSchedule.Domain.Abstractions;
+using OneSchedule.Domain.Models;
+using OneSchedule.Entities;
+using OneSchedule.Mongodb;
+using OneSchedule.Services;
 using OneSchedule.Settings;
 using System;
 
@@ -24,6 +30,7 @@ namespace OneSchedule
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OneSchedule", Version = "v1" });
@@ -32,10 +39,15 @@ namespace OneSchedule
             services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
             services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));
 
-            services.AddSingleton(sp =>
-                sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
-            services.AddSingleton(sp =>
-                sp.GetRequiredService<IOptions<TelegramSettings>>().Value);
+            services.AddTransient<IMongoClient, MongoClient>();
+
+            services.AddSingleton<IRepository<UserEntity>, MongodbRepository<UserEntity>>();
+            services.AddSingleton<IService<UserDomain>,UserService>();
+
+            services.AddSingleton<IRepository<EventEntity>, MongodbRepository<EventEntity>>();
+            services.AddSingleton<IService<EventDomain>, EventService>();
+
+            services.AddSingleton<IService<NotificationDomain>, NotificationService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

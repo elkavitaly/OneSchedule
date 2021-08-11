@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using OneSchedule.Domain.Abstractions;
+using OneSchedule.Domain.Models;
 using OneSchedule.Entities;
 using OneSchedule.Mongodb;
 using OneSchedule.Services;
@@ -15,23 +17,20 @@ namespace OneSchedule.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        private readonly IService<UserEntity> _service;
+
+        private readonly IService<UserDomain> _service;
         private readonly IMapper _mapper;
 
-        public TestController(DatabaseSettings settings, IMapper mapper)
+        public TestController(IService<UserDomain> service, IMapper mapper)
         {
-            _service = new GenericService<UserEntity>
-                (new MongodbRepository<UserEntity>
-                    (new MongoClient(settings.ConnectionString)
-                    .GetDatabase(settings.DatabaseName)));
-
             _mapper = mapper;
+            _service = service;
         }
 
         [HttpPost]
         public void Add([FromBody] UserView user)
         {
-            var dbUser = _mapper.Map<UserEntity>(user);
+            var dbUser = _mapper.Map<UserDomain>(user);
             _service.AddAsync(dbUser);
         }
 
@@ -55,7 +54,8 @@ namespace OneSchedule.Controllers
             var user = _service.FindFirstAsync(u => u.FirstName == name).Result;
             if (user!=null)
             {
-                _service.DeleteAsync(user.Id);
+                var entityData = _mapper.Map<UserEntity>(user);
+                _service.DeleteAsync(entityData.Id);
             }
         }
 
