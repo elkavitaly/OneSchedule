@@ -1,13 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using MongoDB.Driver;
 using OneSchedule.Domain.Abstractions;
 using OneSchedule.Domain.Models;
 using OneSchedule.Entities;
-using OneSchedule.Mongodb;
-using OneSchedule.Services;
-using OneSchedule.Settings;
 using OneSchedule.ViewModels;
 using System.Collections.Generic;
 
