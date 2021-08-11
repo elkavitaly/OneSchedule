@@ -12,10 +12,10 @@ namespace OneSchedule.Services
 {
     public class NotificationService : IService<NotificationDomain>
     {
-        private readonly IRepository<NotificationEntity> _repository;
+        private readonly IRepository<EventEntity> _repository;
         private readonly IMapper _mapper;
 
-        public NotificationService(IRepository<NotificationEntity> repository, IMapper mapper)
+        public NotificationService(IRepository<EventEntity> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -23,19 +23,17 @@ namespace OneSchedule.Services
 
         public async Task AddAsync(NotificationDomain data)
         {
-            var entityData = _mapper.Map<NotificationEntity>(data);
-            await _repository.AddAsync(entityData);
+            throw new NotImplementedException();
         }
 
         public async Task UpdateAsync(NotificationDomain data)
         {
-            var entityData = _mapper.Map<NotificationEntity>(data);
-            await _repository.UpdateAsync(entityData);
+            throw new NotImplementedException();
         }
 
         public async Task DeleteAsync(string id)
         {
-            await _repository.DeleteAsync(id);
+            throw new NotImplementedException();
         }
 
         public async Task<NotificationDomain> FindFirstAsync(Expression<Func<NotificationDomain, bool>> predicate)
