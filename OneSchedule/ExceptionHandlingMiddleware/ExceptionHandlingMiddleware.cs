@@ -1,20 +1,25 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Telegram.Bot.Types;
+using System.IO;
+using Telegram.Bot;
 
 namespace OneSchedule
 {
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
-         
+
         public ExceptionHandlingMiddleware(RequestDelegate next)
         {
-           _next = next;
+            _next = next;
         }
         public async Task InvokeAsync(HttpContext httpContext, ILogger<ExceptionHandlingMiddleware> logger)
         {
@@ -39,9 +44,21 @@ namespace OneSchedule
             var errorDetails = new ErrorDetails();
             errorDetails.StatusCode = context.Response.StatusCode;
             errorDetails.Message = $"Internal Server Error from the custom middleware. {exception.Message}";
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            await context.Response.WriteAsync(errorDetails.ToString());
+            string jsonString = string.Empty;
+
+
+            using (StreamReader stream = new StreamReader(context.Request.Body))
+            {
+                jsonString = await stream.ReadToEndAsync();
+            }
+                        
+            Update update = JsonSerializer.Deserialize<Update>(jsonString);
+                        
+            var chatId = update.Message.Chat.Id;
+
+            var bot = new TelegramBotClient("YourApiToken");
+
+            await bot.SendTextMessageAsync(chatId, errorDetails.Message);
         }
     }
 }
