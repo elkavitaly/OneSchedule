@@ -23,7 +23,19 @@ namespace OneSchedule.Domain.Models.Strategy
 
         public async Task Execute(Message message)
         {
-            await _strategy.Execute(message);
+            switch (message.Text)
+            {
+                case "1":
+                    _strategy = new CreateStrategy();
+                    await _strategy.Execute(message);
+                    break;
+                case "2":
+                    break;
+                case "3":
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
