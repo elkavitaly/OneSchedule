@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using Telegram.Bot.Types;
 using System.IO;
 using Telegram.Bot;
+using Microsoft.Extensions.Options;
+using OneSchedule.Settings;
 
 namespace OneSchedule
 {
@@ -22,7 +24,7 @@ namespace OneSchedule
             _next = next;
         }
 
-        public async Task InvokeAsync(HttpContext httpContext, ILogger<ExceptionHandlingMiddleware> logger)
+        public async Task InvokeAsync(HttpContext httpContext, ILogger<ExceptionHandlingMiddleware> logger, IOptions<TelegramSettings> options)
         {
             try
             {
@@ -31,16 +33,16 @@ namespace OneSchedule
             catch (BotAppInternalException ex)
             {
                 logger.LogError($"Bot applictionn internal exception: {ex}");
-                await HandleExceptionAsync(httpContext, ex);
+                await HandleExceptionAsync(httpContext, ex, options);
             }
             catch (Exception ex)
             {
                 logger.LogError($"Something went wrong: {ex}");
-                await HandleExceptionAsync(httpContext, ex);
+                await HandleExceptionAsync(httpContext, ex, options);
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception, IOptions<TelegramSettings> options)
         {
             var message = $"Internal Server Error from the custom middleware. {exception.Message}";
             string jsonString = string.Empty;
@@ -54,7 +56,7 @@ namespace OneSchedule
 
             var chatId = update.Message.Chat.Id;
 
-            var bot = new TelegramBotClient("1774119603:AAFCWMV12zS0SLBx4kC3A-suLJ511wP4oOo");
+            var bot = new TelegramBotClient(options.Value.ApiKey);
 
             await bot.SendTextMessageAsync(chatId, message);
         }
