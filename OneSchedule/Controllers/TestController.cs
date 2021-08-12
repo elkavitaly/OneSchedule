@@ -17,10 +17,16 @@ namespace OneSchedule.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult Post()
+        {
+            return null;
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
-            throw new AccessViolationException("Violation Exception while accessing the resource.");
+            throw new BotAppInternalException("This is bot internal app exception");
         }
     }
 }
