@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 
 namespace OneSchedule.Domain.Models.Strategy
 {

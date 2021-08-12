@@ -9,4 +9,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OneSchedule.Attributes\OneSchedule.Attributes.csproj" />
+    <ProjectReference Include="..\OneSchedule.Helpers\OneSchedule.Helpers.csproj" />
+  </ItemGroup>
+
 </Project>

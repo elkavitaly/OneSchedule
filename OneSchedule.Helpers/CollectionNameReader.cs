@@ -5,7 +5,7 @@ namespace OneSchedule.Helpers
 {
     public static class CollectionNameReader
     {
-        public static string GetName<T>()
+        public static string GetCollection<T>()
         {
             var type = typeof(T);
             return (type.GetCustomAttribute(typeof(CollectionName))

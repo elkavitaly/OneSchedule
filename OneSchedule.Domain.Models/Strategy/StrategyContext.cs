@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using OneSchedule.Helpers;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Models.Strategy
@@ -12,7 +13,7 @@ namespace OneSchedule.Domain.Models.Strategy
             _strategies = new Dictionary<string, IStrategy>();
             foreach (var strategy in strategies)
             {
-                var key = strategy.GetType().Name.Replace("Strategy", "");
+                var key = StrategyNameReader.GetStrategy(strategy.GetType());
                 _strategies.Add(key, strategy);
             }
         }
@@ -25,7 +26,7 @@ namespace OneSchedule.Domain.Models.Strategy
             }
             else
             {
-                
+
             }
         }
     }
