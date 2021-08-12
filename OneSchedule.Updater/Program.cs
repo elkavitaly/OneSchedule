@@ -54,6 +54,7 @@ namespace OneSchedule.Updater
                 }
                 Thread.Sleep(1000);
             }
+            Environment.Exit(0);
         }
     }
 }
