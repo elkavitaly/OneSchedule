@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using OneSchedule.Data.Abstractions;
 using OneSchedule.Settings;
 
-namespace OneSchedule.Mongodb   
+namespace OneSchedule.Mongodb
 {
     public static class RepositoryConfiguration
     {
@@ -14,9 +14,8 @@ namespace OneSchedule.Mongodb
             var databaseSettingsValue = databaseSettings.Get<DatabaseSettings>();
             services.Configure<DatabaseSettings>(databaseSettings);
             services.AddSingleton<IMongoClient>(new MongoClient(databaseSettingsValue.ConnectionString));
-            services.AddSingleton(typeof(IRepository<>),typeof(MongodbRepository<>));
+            services.AddSingleton(typeof(IRepository<>), typeof(MongodbRepository<>));
             return services;
         }
     }
 }
-    
