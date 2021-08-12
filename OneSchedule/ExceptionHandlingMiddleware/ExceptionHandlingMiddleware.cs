@@ -63,7 +63,7 @@ namespace OneSchedule
             }
             var bot = new TelegramBotClient("1774119603:AAFCWMV12zS0SLBx4kC3A-suLJ511wP4oOo");
 
-            await bot.SendTextMessageAsync(1001553215565, errorDetails.Message);
+            await bot.SendTextMessageAsync(-1001553215565, errorDetails.Message);
         }
     }
 }
