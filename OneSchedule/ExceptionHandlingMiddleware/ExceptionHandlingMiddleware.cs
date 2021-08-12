@@ -21,6 +21,7 @@ namespace OneSchedule
         {
             _next = next;
         }
+
         public async Task InvokeAsync(HttpContext httpContext, ILogger<ExceptionHandlingMiddleware> logger)
         {
             try
@@ -41,29 +42,21 @@ namespace OneSchedule
 
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            var errorDetails = new ErrorDetails();
-            errorDetails.StatusCode = context.Response.StatusCode;
-            errorDetails.Message = $"Internal Server Error from the custom middleware. {exception.Message}";
+            var message = $"Internal Server Error from the custom middleware. {exception.Message}";
             string jsonString = string.Empty;
-
 
             using (StreamReader stream = new StreamReader(context.Request.Body))
             {
                 jsonString = await stream.ReadToEndAsync();
             }
 
-            try
-            {
-                Update update = JsonSerializer.Deserialize<Update>(jsonString);
+            Update update = JsonSerializer.Deserialize<Update>(jsonString);
 
-                var chatId = update.Message.Chat.Id;
-            }
-            catch(Exception e)
-            { 
-            }
+            var chatId = update.Message.Chat.Id;
+
             var bot = new TelegramBotClient("1774119603:AAFCWMV12zS0SLBx4kC3A-suLJ511wP4oOo");
 
-            await bot.SendTextMessageAsync(-1001553215565, errorDetails.Message);
+            await bot.SendTextMessageAsync(chatId, message);
         }
     }
 }
