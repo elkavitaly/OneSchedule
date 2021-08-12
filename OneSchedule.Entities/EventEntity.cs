@@ -1,8 +1,10 @@
-﻿using System;
+﻿using OneSchedule.Attributes;
+using System;
 using System.Collections.Generic;
 
 namespace OneSchedule.Entities
 {
+    [CollectionName("Events")]
     public class EventEntity : BaseEntityModel
     {
         public string Title { get; set; }
