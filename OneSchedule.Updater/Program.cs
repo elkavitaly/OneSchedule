@@ -15,9 +15,11 @@ namespace OneSchedule.Updater
         {
             var configuration = new ConfigurationBuilder()
                 .AddUserSecrets<Program>()
+                .AddJsonFile("appsettings.json")
                 .Build();
 
             var apiKey = configuration["ApiKey"];
+            var uri = configuration.GetSection("RequstUri").Value;
             var bot = new TelegramBotClient(apiKey);
             var offset = 0;
 
@@ -37,8 +39,10 @@ namespace OneSchedule.Updater
                         {
                             offset = update.Id + 1;
                         }
-                        var response = await client.PostAsync(@"https://localhost:44339/api​/update",
-                            new StringContent(JsonConvert.SerializeObject(updates)));
+
+                        var serializedUpdates = JsonConvert.SerializeObject(updates);
+                        var response = await client.PostAsync(uri, new StringContent(serializedUpdates));
+                        Console.WriteLine($"sent {updates.Length} updates");
                         var content=await response.Content.ReadAsStringAsync();
                         Console.WriteLine(content);
                     }
@@ -48,7 +52,7 @@ namespace OneSchedule.Updater
                         break;
                     }
                 }
-                Thread.Sleep(111);
+                Thread.Sleep(1000);
             }
         }
     }
