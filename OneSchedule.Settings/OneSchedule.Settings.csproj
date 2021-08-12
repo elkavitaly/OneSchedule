@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OneSchedule.Domain.Models\OneSchedule.Domain.Models.csproj" />
     <ProjectReference Include="..\OneSchedule.Entities\OneSchedule.Entities.csproj" />
     <ProjectReference Include="..\OneSchedule.ViewModels\OneSchedule.ViewModels.csproj" />

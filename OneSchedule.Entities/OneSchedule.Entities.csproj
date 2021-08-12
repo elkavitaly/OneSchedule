@@ -9,4 +9,8 @@
     <PackageReference Include="MongoDB.Driver" Version="2.13.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OneSchedule.Attributes\OneSchedule.Attributes.csproj" />
+  </ItemGroup>
+
 </Project>
