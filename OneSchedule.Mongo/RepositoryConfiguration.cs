@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using OneSchedule.Data.Abstractions;
-using OneSchedule.Entities;
 using OneSchedule.Settings;
 
 namespace OneSchedule.Mongodb   
@@ -15,8 +14,7 @@ namespace OneSchedule.Mongodb
             var databaseSettingsValue = databaseSettings.Get<DatabaseSettings>();
             services.Configure<DatabaseSettings>(databaseSettings);
             services.AddSingleton<IMongoClient>(new MongoClient(databaseSettingsValue.ConnectionString));
-            services.AddSingleton<IRepository<EventEntity>, MongodbRepository<EventEntity>>();
-            services.AddSingleton<IRepository<UserEntity>, MongodbRepository<UserEntity>>();
+            services.AddSingleton(typeof(IRepository<>),typeof(MongodbRepository<>));
             return services;
         }
     }
