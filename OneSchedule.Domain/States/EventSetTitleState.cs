@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.States
 {
-    public class EventSetTitleState
+    public class EventSetTitleState : IBotState
     { 
         public void Handle() 
         {
