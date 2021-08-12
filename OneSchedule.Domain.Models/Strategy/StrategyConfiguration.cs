@@ -7,12 +7,9 @@ namespace OneSchedule.Domain.Models.Strategy
     {
         public static IServiceCollection ConfigureStrategy(this IServiceCollection services)
         {
-            services.AddSingleton(new Dictionary<string, IStrategy>()
-                {
-                    {"Create",new CreateStrategy()},
-                    {"Edit",new EditStrategy()}
-                }
-            );
+            services.AddSingleton<IStrategy, CreateStrategy>();
+            services.AddSingleton<IStrategy, EditStrategy>();
+
             services.AddSingleton<StrategyContext>();
             return services;
         }

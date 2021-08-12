@@ -7,14 +7,26 @@ namespace OneSchedule.Domain.Models.Strategy
     {
         private readonly Dictionary<string, IStrategy> _strategies;
 
-        public StrategyContext(Dictionary<string, IStrategy> strategies)
+        public StrategyContext(IEnumerable<IStrategy> strategies)
         {
-            _strategies = strategies;
+            _strategies = new Dictionary<string, IStrategy>();
+            foreach (var strategy in strategies)
+            {
+                var key = strategy.GetType().Name.Replace("Strategy", "");
+                _strategies.Add(key, strategy);
+            }
         }
 
         public async Task Execute(string command, EventDomain eventDomain)
         {
-            await _strategies[command].Execute(eventDomain);
+            if (_strategies.ContainsKey(command))
+            {
+                await _strategies[command].Execute(eventDomain);
+            }
+            else
+            {
+                
+            }
         }
     }
 }
