@@ -1,41 +1,20 @@
-﻿using System.Threading.Tasks;
-using Telegram.Bot.Types;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Models.Strategy
 {
     public class StrategyContext
     {
-        private IStrategy _strategy;
+        private readonly Dictionary<string, IStrategy> _strategies;
 
-        public StrategyContext()
+        public StrategyContext(Dictionary<string, IStrategy> strategies)
         {
+            _strategies = strategies;
         }
 
-        public StrategyContext(IStrategy strategy)
+        public async Task Execute(string command, EventDomain eventDomain)
         {
-            _strategy = strategy;
-        }
-
-        public void SetStrategy(IStrategy strategy)
-        {
-            _strategy = strategy;
-        }
-
-        public async Task Execute(Message message)
-        {
-            switch (message.Text)
-            {
-                case "1":
-                    _strategy = new CreateStrategy();
-                    await _strategy.Execute(message);
-                    break;
-                case "2":
-                    break;
-                case "3":
-                    break;
-                default:
-                    break;
-            }
+            await _strategies[command].Execute(eventDomain);
         }
     }
 }

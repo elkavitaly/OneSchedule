@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Models.Strategy
 {
-    public class CreateStrategy: IStrategy
+    public class EditStrategy : IStrategy
     {
         public Task Execute(EventDomain eventDomain)
         {
