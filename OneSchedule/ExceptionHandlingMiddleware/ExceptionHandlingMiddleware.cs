@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using Telegram.Bot.Types;
 using System.IO;
 using Telegram.Bot;
+using OneSchedule.Settings;
+using Microsoft.Extensions.Options;
 
 namespace OneSchedule
 {
@@ -18,14 +20,19 @@ namespace OneSchedule
         private readonly RequestDelegate _next;
         private string _apiKey;
         private ILogger<ExceptionHandlingMiddleware> _logger;
+        private ITelegramBotClient _bot;
 
         public ExceptionHandlingMiddleware(RequestDelegate next, IOptions<TelegramSettings> options,
-                                            ILogger<ExceptionHandlingMiddleware> logger)
+                                            ILogger<ExceptionHandlingMiddleware> logger,
+                                            ITelegramBotClient bot
+                                            )
         {
             _next = next;
             _apiKey = options.Value.ApiKey;
             _logger = logger;
+            _bot = bot;
         }
+
 
         public async Task InvokeAsync(HttpContext httpContext)
         {
@@ -54,14 +61,16 @@ namespace OneSchedule
             {
                 jsonString = await stream.ReadToEndAsync();
             }
+            SendExceptionToChat(jsonString, message);
+        }
 
+        private async void SendExceptionToChat(string jsonString, string message)
+        {
             Update update = JsonSerializer.Deserialize<Update>(jsonString);
 
             var chatId = update.Message.Chat.Id;
 
-            var bot = new TelegramBotClient(_apiKey);
-
-            await bot.SendTextMessageAsync(chatId, message);
+            await _bot.SendTextMessageAsync(-1001553215565, message);
         }
     }
 }
