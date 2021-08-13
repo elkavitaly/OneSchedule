@@ -1,16 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using OneSchedule.Mongodb;
+using OneSchedule.Services;
+using OneSchedule.Settings;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OneSchedule
 {
@@ -25,11 +22,19 @@ namespace OneSchedule
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OneSchedule", Version = "v1" });
             });
+
+            services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));
+
+            services.ConfigureRepository(Configuration);
+            services.ConfigureService();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
