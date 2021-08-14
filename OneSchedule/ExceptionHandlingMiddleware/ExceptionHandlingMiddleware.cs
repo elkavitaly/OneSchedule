@@ -70,7 +70,7 @@ namespace OneSchedule
 
             var chatId = update.Message.Chat.Id;
 
-            await _bot.SendTextMessageAsync(-1001553215565, message);
+            await _bot.SendTextMessageAsync(chatId, message);
         }
     }
 }
