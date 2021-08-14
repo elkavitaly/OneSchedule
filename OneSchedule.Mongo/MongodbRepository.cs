@@ -16,10 +16,8 @@ namespace OneSchedule.Mongodb
     {
         private readonly IMongoCollection<T> _collection;
 
-        public MongodbRepository(IMongoClient client, IOptions<DatabaseSettings> options)
+        public MongodbRepository(IMongoDatabase database, IDatabaseSettings databaseSettings)
         {
-            var optionsValue = options.Value;
-            var database = client.GetDatabase(optionsValue.DatabaseName);
             var collectionName = CollectionNameReader.GetName<T>();
             _collection = database.GetCollection<T>(collectionName);
         }

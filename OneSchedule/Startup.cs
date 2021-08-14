@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using OneSchedule.Data.Abstractions;
 using OneSchedule.Mongodb;
 using OneSchedule.Services;
 using OneSchedule.Settings;
@@ -31,9 +33,10 @@ namespace OneSchedule
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OneSchedule", Version = "v1" });
             });
 
-            services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));
+            services.AddScheduleDatabaseSettings(Configuration);
+            services.AddMongoClientAndDatabase();
+            services.AddRepositories();
 
-            services.ConfigureRepository(Configuration);
             services.ConfigureService();
         }
 
@@ -52,7 +55,8 @@ namespace OneSchedule
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                //endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

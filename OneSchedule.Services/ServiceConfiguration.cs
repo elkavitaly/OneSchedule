@@ -8,9 +8,9 @@ namespace OneSchedule.Services
     {
         public static IServiceCollection ConfigureService(this IServiceCollection services)
         {
-            services.AddSingleton<IService<UserDomain>, UserService>();
-            services.AddSingleton<IService<EventDomain>, EventService>();
-            services.AddSingleton<IService<NotificationDomain>, NotificationService>();
+            services.AddScoped<IService<UserDomain>, UserService>();
+            services.AddScoped<IService<EventDomain>, EventService>();
+            services.AddScoped<IService<NotificationDomain>, NotificationService>();
             return services;
         }
     }

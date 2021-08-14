@@ -1,6 +1,8 @@
-﻿namespace OneSchedule.Settings
+﻿using OneSchedule.Data.Abstractions;
+
+namespace OneSchedule.Settings
 {
-    public class DatabaseSettings
+    public class DatabaseSettings : IDatabaseSettings
     {
         public string ConnectionString { get; set; }
 
