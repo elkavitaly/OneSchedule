@@ -1,5 +1,6 @@
 ﻿
 using OneSchedule.Domain.Abstractions;
+using OneSchedule.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace OneSchedule.Domain
 
         public void Handle() 
         {
+            EventDomain eventDomain = new EventDomain();
+            eventDomain.Title = _context.update.Message.Text;
             var newState = new EventSetDateTimeState();
             _context.SetState(newState);        
         }

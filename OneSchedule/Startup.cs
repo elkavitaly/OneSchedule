@@ -35,6 +35,7 @@ namespace OneSchedule
 
             services.ConfigureRepository(Configuration);
             services.ConfigureService();
+            services.ConfigureExceptionHandlingMiddleware(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

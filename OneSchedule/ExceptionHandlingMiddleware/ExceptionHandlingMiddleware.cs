@@ -18,15 +18,19 @@ namespace OneSchedule
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
-        private IOptions<TelegramSettings> _options;
+        private ILogger<ExceptionHandlingMiddleware> _logger;
+        private ITelegramBotClient _bot;
 
-        public ExceptionHandlingMiddleware(RequestDelegate next, IOptions<TelegramSettings> options)
+        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger,
+                                            ITelegramBotClient bot
+                                            )
         {
             _next = next;
-            _options = options;
+            _logger = logger;
+            _bot = bot;
         }
 
-        public async Task InvokeAsync(HttpContext httpContext, ILogger<ExceptionHandlingMiddleware> logger)
+        public async Task InvokeAsync(HttpContext httpContext)
         {
             try
             {
@@ -34,12 +38,12 @@ namespace OneSchedule
             }
             catch (BotAppInternalException ex)
             {
-                logger.LogError($"Bot application internal exception: {ex}");
+                _logger.LogError($"Bot application internal exception: {ex}");
                 await HandleExceptionAsync(httpContext, ex);
             }
             catch (Exception ex)
             {
-                logger.LogError($"Something went wrong: {ex}");
+                _logger.LogError($"Something went wrong: {ex}");
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
@@ -63,9 +67,7 @@ namespace OneSchedule
 
             var chatId = update.Message.Chat.Id;
 
-            var bot = new TelegramBotClient(_options.Value.ApiKey);
-
-            await bot.SendTextMessageAsync(chatId, message);
+            await _bot.SendTextMessageAsync(chatId, message);
         }
     }
 }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Telegram.Bot" Version="16.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OneSchedule.Domain.Abstractions\OneSchedule.Domain.Abstractions.csproj" />
   </ItemGroup>
 
