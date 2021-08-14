@@ -18,17 +18,14 @@ namespace OneSchedule
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
-        private string _apiKey;
         private ILogger<ExceptionHandlingMiddleware> _logger;
         private ITelegramBotClient _bot;
 
-        public ExceptionHandlingMiddleware(RequestDelegate next, IOptions<TelegramSettings> options,
-                                            ILogger<ExceptionHandlingMiddleware> logger,
+        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger,
                                             ITelegramBotClient bot
                                             )
         {
             _next = next;
-            _apiKey = options.Value.ApiKey;
             _logger = logger;
             _bot = bot;
         }
