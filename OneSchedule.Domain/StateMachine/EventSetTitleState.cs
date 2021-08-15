@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.StateMachine
 {
-    class EventSetTitleState : StateMachineState, IStateMachineState
+    public class EventSetTitleState : StateMachineState, IStateMachineState
     {
-
+        
     }
 }
