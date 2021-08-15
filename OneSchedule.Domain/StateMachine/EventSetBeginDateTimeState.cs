@@ -12,21 +12,22 @@ using Microsoft.Extensions.Logging;
 
 namespace OneSchedule.Domain
 {
-    public class EventSetDateTimeState : IBotState
+    public class EventSetBeginDateTimeState : IBotState
     {
         private Context _context;
-        private EventDomain eventDomain;
-        private ITelegramBotClient _bot;
-
-        public EventSetDateTimeState(ITelegramBotClient bot)
-        {
-            
-            _bot = bot;
-        }
-
+       
         public void Handle()
         {
+            EventDomain eventDomain = _context.eventDomain;
+            eventDomain.StartDate = DateTime.Parse(_context.update.Message.Text);
             
+            _context.eventDomain = eventDomain;
+            var nextStateRequestMessage = "Enter event end Date and time";
+
+            _context.Bot.SendTextMessageAsync(eventDomain.ChatId, nextStateRequestMessage);
+
+            var newState = new EventSetEndDateTimeState();
+            _context.SetState(newState);
         }
 
         public void SetContext(IContext context)

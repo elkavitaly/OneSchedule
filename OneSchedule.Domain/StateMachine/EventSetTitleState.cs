@@ -14,11 +14,9 @@ namespace OneSchedule.Domain
     public class EventSetTitleState : IBotState
     {
         private Context _context;
-        private ITelegramBotClient _bot;
 
-        public EventSetTitleState(ITelegramBotClient bot)
+        public EventSetTitleState()
         {
-            _bot=bot;
         }
 
         public void Handle() 
@@ -28,11 +26,13 @@ namespace OneSchedule.Domain
             eventDomain.OwnerId = _context.update.Message.From.Id.ToString();
             eventDomain.ChatId = (int)_context.update.Message.Chat.Id;
             _context.eventDomain = eventDomain;
-            var nextStateRequestMessage = "Enter event Date and time";
+            var nextStateRequestMessage = "Enter event begin Date and time";
 
-            _bot.SendTextMessageAsync(eventDomain.ChatId,nextStateRequestMessage);
+            _context.Bot.SendTextMessageAsync(eventDomain.ChatId,nextStateRequestMessage);
+            
+            ///GetUpdate...
 
-            var newState = new EventSetDateTimeState(_bot);
+            var newState = new EventSetBeginDateTimeState();
             _context.SetState(newState);        
         }
 
