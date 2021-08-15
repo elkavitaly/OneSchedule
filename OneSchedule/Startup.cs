@@ -10,6 +10,7 @@ using OneSchedule.Services;
 using OneSchedule.Settings;
 using System;
 using OneSchedule.Domain;
+using OneSchedule.Domain.StateMachine;
 
 namespace OneSchedule
 {
@@ -38,6 +39,7 @@ namespace OneSchedule
             services.ConfigureRepository(Configuration);
             services.ConfigureService();
             services.ConfigureExceptionHandlingMiddleware(Configuration);
+            services.ConfigureStateMachine();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
