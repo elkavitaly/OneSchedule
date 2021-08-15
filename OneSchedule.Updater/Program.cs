@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Linq;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
 
@@ -18,43 +18,64 @@ namespace OneSchedule.Updater
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            var apiKey = configuration["ApiKey"];
-            var uri = configuration.GetSection("RequstUri").Value;
-            var bot = new TelegramBotClient(apiKey);
+            var programSettings = new ProgramSettings(configuration["ApiKey"],
+                configuration.GetSection("RequstUri").Value);
+
+            var bot = new TelegramBotClient(programSettings.ApiKey);
             var offset = 0;
 
             var client = new HttpClient();
 
-            await bot.SetWebhookAsync("");
+            await bot.SetWebhookAsync(string.Empty);
 
             while (true)
             {
-                var updates = await bot.GetUpdatesAsync(offset);
-                
-                if (updates.Any())
+                await Task.Delay(1000);
+
+                try
                 {
+                    var updates = await bot.GetUpdatesAsync(offset);
+
+                    if (!updates.Any())
+                    {
+                        continue;
+                    }
+
+                    foreach (var update in updates)
+                    {
+                        offset = update.Id + 1;
+                    }
+
                     try
                     {
-                        foreach (var update in updates) 
-                        {
-                            offset = update.Id + 1;
-                        }
+                        var response = await RedirectUpdatesToApi(updates, client, programSettings);
 
-                        var serializedUpdates = JsonConvert.SerializeObject(updates);
-                        var response = await client.PostAsync(uri, new StringContent(serializedUpdates));
                         Console.WriteLine($"sent {updates.Length} updates");
-                        var content=await response.Content.ReadAsStringAsync();
+                        var content = await response.Content.ReadAsStringAsync();
                         Console.WriteLine(content);
                     }
+
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                         break;
                     }
                 }
-                Thread.Sleep(1000);
+
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
+
             Environment.Exit(0);
+        }
+
+        private static Task<HttpResponseMessage> RedirectUpdatesToApi(IEnumerable updates, HttpClient client, ProgramSettings programSettings)
+        {
+            var serializedUpdates = JsonConvert.SerializeObject(updates);
+            return client.PostAsync(programSettings.Uri,
+                new StringContent(serializedUpdates));
         }
     }
 }
