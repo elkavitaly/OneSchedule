@@ -35,13 +35,14 @@ namespace OneSchedule
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OneSchedule", Version = "v1" });
             });
 
+            services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));
+            services.AddSingleton(options => options.GetService<IOptions<TelegramSettings>>().Value);
+
             services.AddScheduleDatabaseSettings(Configuration);
             services.AddMongoClientAndDatabase();
             services.AddRepositories();
 
             services.ConfigureService();
-
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -20,11 +20,6 @@ namespace OneSchedule.Mongodb
         {
             var collectionName = CollectionNameReader.GetName<T>();
             _collection = database.GetCollection<T>(collectionName);
-            //if(_collection is null)
-            //{
-            //    database.CreateCollection(collectionName);
-            //    _collection = database.GetCollection<T>(collectionName);
-            //}
         }
 
         public async Task AddAsync(T data)
