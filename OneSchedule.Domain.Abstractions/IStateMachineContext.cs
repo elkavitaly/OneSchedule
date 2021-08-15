@@ -7,8 +7,8 @@ using Telegram.Bot;
 
 namespace OneSchedule.Domain.Abstractions
 {
-    public interface IContext
+    public interface IStateMachineContext
     {
-       public void SetState(IBotState state);
+       public void SetState(IStateMachineState state);
     }
 }

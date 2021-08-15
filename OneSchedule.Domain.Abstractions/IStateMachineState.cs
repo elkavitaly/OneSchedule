@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Abstractions
 {
-    public interface IBotState
+    public interface IStateMachineState
     {
         public void Handle();
-        public void SetContext(IContext context);
+        public void SetContext(IStateMachineContext context);
     }
 }

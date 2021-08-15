@@ -10,21 +10,20 @@ using Telegram.Bot.Types;
 
 namespace OneSchedule.Domain
 {
-    public class Context : IContext
+    public class StateMachineContext : IStateMachineContext
     {
-        private IBotState _state;
+        private IStateMachineState _state;
         public ITelegramBotClient Bot;
         public Update update;
 
-        public EventDomain eventDomain;
-        public Context(IBotState initialState, ITelegramBotClient bot)
+        public StateMachineContext(IStateMachineState initialState, ITelegramBotClient bot)
         {
             _state = initialState;
             _state.SetContext(this);
             Bot = bot;
         }
 
-        public void SetState(IBotState state)
+        public void SetState(IStateMachineState state)
         {
             _state = state;
             _state.SetContext(this);

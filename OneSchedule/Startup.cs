@@ -38,8 +38,6 @@ namespace OneSchedule
             services.ConfigureRepository(Configuration);
             services.ConfigureService();
             services.ConfigureExceptionHandlingMiddleware(Configuration);
-
-            services.AddTransient<IBotState, EventSetBeginDateTimeState>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
