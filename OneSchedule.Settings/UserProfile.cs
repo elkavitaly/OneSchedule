@@ -19,6 +19,7 @@ namespace OneSchedule.Settings
             CreateMap<UserView, UserEntity>()
                 .ForMember(m => m.Id, option => option.Ignore())
                 .ReverseMap();
+
         }
     }
 }

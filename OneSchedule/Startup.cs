@@ -5,7 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using MongoDB.Driver;
 using OneSchedule.Data.Abstractions;
+using OneSchedule.Entities;
 using OneSchedule.Mongodb;
 using OneSchedule.Services;
 using OneSchedule.Settings;
@@ -24,7 +26,7 @@ namespace OneSchedule
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper(typeof(DatabaseSettings).Assembly);
 
             services.AddControllers();
 
@@ -38,6 +40,8 @@ namespace OneSchedule
             services.AddRepositories();
 
             services.ConfigureService();
+
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -55,7 +59,6 @@ namespace OneSchedule
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapControllers();
                 endpoints.MapDefaultControllerRoute();
             });
         }

@@ -8,9 +8,7 @@ using System.Collections.Generic;
 
 namespace OneSchedule.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TestController : ControllerBase
+    public class TestController : BaseController
     {
 
         private readonly IService<UserDomain> _service;
@@ -23,10 +21,13 @@ namespace OneSchedule.Controllers
         }
 
         [HttpPost]
-        public void Add([FromBody] UserView user)
+        public ActionResult Add([FromBody] UserView user)
         {
             var dbUser = _mapper.Map<UserDomain>(user);
+
             _service.AddAsync(dbUser);
+
+            return Ok();
         }
 
         [HttpGet]

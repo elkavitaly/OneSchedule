@@ -7,9 +7,7 @@ using Telegram.Bot.Types;
 
 namespace OneSchedule.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UpdateController : ControllerBase
+    public class UpdateController : BaseController
     {
 
         private readonly IService<UserDomain> _service;

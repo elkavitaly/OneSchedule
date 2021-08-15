@@ -19,7 +19,10 @@ namespace OneSchedule.Mongodb
         public static void AddMongoClientAndDatabase(this IServiceCollection services)
         {
             services.AddSingleton<IMongoClient>(options =>
-                new MongoClient(options.GetService<IDatabaseSettings>().ConnectionString));
+            {
+                var something = options.GetService<IDatabaseSettings>();
+                return new MongoClient(options.GetService<IDatabaseSettings>().ConnectionString);
+            });
 
             services.AddScoped(options => options.GetService<IMongoClient>().StartSession());
 

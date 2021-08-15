@@ -24,6 +24,7 @@ namespace OneSchedule.Services
         public async Task AddAsync(UserDomain data)
         {
             var entityData = _mapper.Map<UserEntity>(data);
+
             await _repository.AddAsync(entityData);
         }
 
@@ -45,7 +46,7 @@ namespace OneSchedule.Services
 
         public async Task<List<UserDomain>> FindAsync(Expression<Func<UserDomain, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<List<UserDomain>>( await _repository.FindAsync(p => true));
         }
 
         public async Task<bool> AnyAsync(Expression<Func<UserDomain, bool>> predicate)
