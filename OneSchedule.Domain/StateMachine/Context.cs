@@ -16,8 +16,7 @@ namespace OneSchedule.Domain
 
         public Update update;
 
-        public EventDomain DomainEvent;
-
+        public EventDomain eventDomain;
         public Context(IBotState initialState)
         {
             _state = initialState;

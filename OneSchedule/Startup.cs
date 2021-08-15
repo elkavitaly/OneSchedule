@@ -4,10 +4,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using OneSchedule.Domain.Abstractions;
 using OneSchedule.Mongodb;
 using OneSchedule.Services;
 using OneSchedule.Settings;
 using System;
+using OneSchedule.Domain;
 
 namespace OneSchedule
 {
@@ -36,6 +38,8 @@ namespace OneSchedule
             services.ConfigureRepository(Configuration);
             services.ConfigureService();
             services.ConfigureExceptionHandlingMiddleware(Configuration);
+
+            services.AddTransient<IBotState, EventSetDateTimeState>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

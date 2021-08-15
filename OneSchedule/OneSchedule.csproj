@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OneSchedule.Domain.Abstractions\OneSchedule.Domain.Abstractions.csproj" />
+    <ProjectReference Include="..\OneSchedule.Domain\OneSchedule.Domain.csproj" />
     <ProjectReference Include="..\OneSchedule.Mongo\OneSchedule.Mongodb.csproj" />
     <ProjectReference Include="..\OneSchedule.Services\OneSchedule.Services.csproj" />
     <ProjectReference Include="..\OneSchedule.Settings\OneSchedule.Settings.csproj" />
