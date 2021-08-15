@@ -48,11 +48,7 @@ namespace OneSchedule.Updater
 
                     try
                     {
-                        var response = await RedirectUpdatesToApi(updates, client, programSettings);
-
-                        Console.WriteLine($"sent {updates.Length} updates");
-                        var content = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine(content);
+                        await RedirectUpdatesToApi(updates, client, programSettings);
                     }
 
                     catch (Exception e)
