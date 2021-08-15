@@ -28,8 +28,9 @@ namespace OneSchedule.Domain
             eventDomain.OwnerId = _context.update.Message.From.Id.ToString();
             eventDomain.ChatId = (int)_context.update.Message.Chat.Id;
             _context.eventDomain = eventDomain;
+            var nextStateRequestMessage = "Enter event Date and time";
 
-            
+            _bot.SendTextMessageAsync(eventDomain.ChatId,nextStateRequestMessage);
 
             var newState = new EventSetDateTimeState(_bot);
             _context.SetState(newState);        
