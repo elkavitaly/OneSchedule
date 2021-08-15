@@ -1,4 +1,5 @@
 ﻿using OneSchedule.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace OneSchedule.Domain.Models.Strategy
             }
             else
             {
-
+                throw new NotImplementedException();
             }
         }
     }
