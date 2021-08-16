@@ -4,7 +4,7 @@ namespace OneSchedule.Domain.Models.Strategies
 {
     public interface IStrategyContext
     {
-        Task Execute(string command, EventDomain eventDomain);
+        Task Execute(DtoDomain dto);
     }
 }
     

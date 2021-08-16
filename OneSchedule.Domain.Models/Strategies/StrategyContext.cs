@@ -15,11 +15,12 @@ namespace OneSchedule.Domain.Models.Strategies
             _strategies = strategies.ToDictionary(s => StrategyNameReader.GetStrategy(s.GetType()));
         }
 
-        public async Task Execute(string command, EventDomain eventDomain)
+        public async Task Execute(DtoDomain dto)
         {
-            if (_strategies.ContainsKey(command))
+            var strategy = _strategies.FirstOrDefault(s => dto.MessageText.Contains(s.Key));
+            if (!strategy.Equals(default(KeyValuePair<string, IStrategy>)))
             {
-                await _strategies[command].Execute(eventDomain);
+                await strategy.Value.Execute(dto);
             }
             else
             {
