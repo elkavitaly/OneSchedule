@@ -26,6 +26,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule.Tests", "OneSch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule", "OneSchedule\OneSchedule.csproj", "{4F3B9868-B0B3-4F3E-BEE7-D7FC31C102DB}"
 EndProject
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSchedule.Domain", "OneSchedule.Domain\OneSchedule.Domain.csproj", "{D28FEC5D-599C-416D-BC4C-B3C9C7A20496}"
+
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule.Services", "OneSchedule.Services\OneSchedule.Services.csproj", "{5CD21472-92D4-4382-9C5D-9CE0C109C043}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule.Mongodb", "OneSchedule.Mongo\OneSchedule.Mongodb.csproj", "{85DDCD01-7131-4C14-B03A-E64BB0BE2D3F}"
@@ -33,6 +36,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule.Helpers", "OneSchedule.Helpers\OneSchedule.Helpers.csproj", "{35673859-F35B-4559-96AF-61DC7A9FF37F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule.Attributes", "OneSchedule.Attributes\OneSchedule.Attributes.csproj", "{0A9F8128-5395-4BD0-BD07-72D52E9A247E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneSchedule.Updater", "OneSchedule.Updater\OneSchedule.Updater.csproj", "{CF59BB2E-C53B-4B79-A981-1ACA51B3858A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +71,10 @@ Global
 		{4F3B9868-B0B3-4F3E-BEE7-D7FC31C102DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F3B9868-B0B3-4F3E-BEE7-D7FC31C102DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F3B9868-B0B3-4F3E-BEE7-D7FC31C102DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D28FEC5D-599C-416D-BC4C-B3C9C7A20496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D28FEC5D-599C-416D-BC4C-B3C9C7A20496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D28FEC5D-599C-416D-BC4C-B3C9C7A20496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D28FEC5D-599C-416D-BC4C-B3C9C7A20496}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5CD21472-92D4-4382-9C5D-9CE0C109C043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5CD21472-92D4-4382-9C5D-9CE0C109C043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CD21472-92D4-4382-9C5D-9CE0C109C043}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -82,6 +91,10 @@ Global
 		{0A9F8128-5395-4BD0-BD07-72D52E9A247E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A9F8128-5395-4BD0-BD07-72D52E9A247E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A9F8128-5395-4BD0-BD07-72D52E9A247E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF59BB2E-C53B-4B79-A981-1ACA51B3858A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF59BB2E-C53B-4B79-A981-1ACA51B3858A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF59BB2E-C53B-4B79-A981-1ACA51B3858A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF59BB2E-C53B-4B79-A981-1ACA51B3858A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

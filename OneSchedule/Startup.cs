@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using OneSchedule.Domain.Models.Strategies;
 using OneSchedule.Mongodb;
@@ -37,6 +38,8 @@ namespace OneSchedule
             services.ConfigureRepository(Configuration);
             services.ConfigureService();
             services.ConfigureStrategy();
+            services.ConfigureExceptionHandlingMiddleware(Configuration);
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -47,6 +50,8 @@ namespace OneSchedule
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OneSchedule v1"));
             }
+
+            app.UseExceptionHandlingMiddleware();
 
             app.UseHttpsRedirection();
 
