@@ -18,4 +18,8 @@
     <ProjectReference Include="..\OneSchedule.Settings\OneSchedule.Settings.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OneSchedule.Domain.Abstractions\OneSchedule.Domain.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>
