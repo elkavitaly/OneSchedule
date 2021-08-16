@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OneSchedule.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace OneSchedule.Domain.Abstractions
 {
     public interface IStateContext
     {
-       public void SetState(IState state);
+        public EventEntity EventEntity { get; set; }
+
+        public void SetState(string state);
     }
 }

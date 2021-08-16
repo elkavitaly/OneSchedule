@@ -13,36 +13,26 @@ namespace OneSchedule.Domain
     [StateName("SetTitle")]
     public class EventSetTitleState : IState
     {
+        private const string SetBeginDateTime = "SetBeginDateTime";
         private readonly IRepository<ContextEntity> _contextRepository;
-        private StateContext _context;
-
-        private Dictionary<string, IState> _states;
-        private readonly string _nextState = "SetBeginDateTime";
+        private readonly Dictionary<string, IState> _states;
 
         public EventSetTitleState(IEnumerable<IState> states, IRepository<ContextEntity> contextRepository)
         {
-            _states = states.ToDictionary(s => StateNameReader.GetStateName(s.GetType()));
             _contextRepository = contextRepository;
         }
 
-        public async Task HandleAsync(DtoDomain dtoDomain)
+        public async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-            var contextEntity = await GetContextEntity(dtoDomain);
-            contextEntity.Event.Title = dtoDomain.MessageText;
-            contextEntity.NextState = _nextState;
-            _context.SetState(_states[_nextState]);
+            stateContext.EventEntity.Title = dtoDomain.MessageText;
+            stateContext.SetState(SetBeginDateTime);
+     
             await _contextRepository.UpdateAsync(contextEntity);
         }
 
         public void SetContext(IStateContext context)
         {
             _context = (StateContext)context;
-        }
-
-        private async Task<ContextEntity> GetContextEntity(DtoDomain dtoDomain)
-        {
-            return await _contextRepository.FindFirstAsync(c => c.Event.ChatId == dtoDomain.ChatId
-                && c.Event.OwnerId == dtoDomain.UserId);
         }
     }
 }

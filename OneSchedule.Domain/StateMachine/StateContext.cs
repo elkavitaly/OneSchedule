@@ -15,10 +15,14 @@ namespace OneSchedule.Domain
     {
         private IState _state;
         private readonly ITelegramBotClient _bot;
-        //private readonly IRepository<EventEntity> _eventRepository;
+        //private readonly IRepository<EventEntity> _eventRepository
+        private readonly IRepository<ContextEntity> _contextRepository;
         private readonly Dictionary<string, IState> _states;
+        private const string SetTitle = "SetTitle";
 
-        public StateContext(IState state)
+        public EventEntity EventEntity { get; set; }
+
+        public StateContext(string state)
         {
             SetState(state);
         }
@@ -30,15 +34,35 @@ namespace OneSchedule.Domain
             SetState(initialState);
         }
 
-        public void SetState(IState state)
+        public void SetState(string state)
         {
             _state = state;
-            _state.SetContext(this);
         }
 
         public async Task HandleAsync(DtoDomain dtoDomain)
         {
-            await _state.HandleAsync(dtoDomain);
+            var contextEntity = await GetContextEntity(dtoDomain);
+            if (contextEntity == null)
+            {
+                contextEntity = new ContextEntity()
+                {
+                    Event = new EventEntity() { ChatId = dtoDomain.ChatId, OwnerId = dtoDomain.UserId },
+                    NextState = SetTitle
+                };
+
+                await _contextRepository.AddAsync(contextEntity);
+            }
+            else
+            {
+                SetState(_states[contextEntity.NextState]);
+                await _state.HandleAsync(this, dtoDomain);
+            }
+        }
+
+        private async Task<ContextEntity> GetContextEntity(DtoDomain dtoDomain)
+        {
+            return await _contextRepository.FindFirstAsync(c => c.Event.ChatId == dtoDomain.ChatId
+                && c.Event.OwnerId == dtoDomain.UserId);
         }
     }
 }
