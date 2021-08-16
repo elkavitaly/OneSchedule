@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Telegram.Bot;
+
 
 namespace OneSchedule.Domain.Abstractions
 {
-    public interface IStateMachineContext
+    public interface IState
     {
-       public void SetState(IStateMachineState state);
+        public void Handle();
+
+        public void SetContext(IStateMachineContext context);
     }
 }

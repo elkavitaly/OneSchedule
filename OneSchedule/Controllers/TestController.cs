@@ -16,10 +16,10 @@ namespace OneSchedule.Controllers
     public class TestController : ControllerBase
     {
         private IStateMachineContext _context;
-        private IStateMachineState _state;
+        private IState _state;
         private IServiceProvider _serviceProvider;
 
-        public TestController(IStateMachineContext stateMachineContext, IStateMachineState stateMachineState,
+        public TestController(IStateMachineContext stateMachineContext, IState stateMachineState,
                                 IServiceProvider serviceProvider)
         {
             _context = stateMachineContext;
@@ -36,12 +36,7 @@ namespace OneSchedule.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            StateMachineContext context = (StateMachineContext)_context;
-
-            context.Bot.SendTextMessageAsync(-1001553215565, "test state machine context bot injection");
-
-            return null;
-            throw new BotAppInternalException("This is bot internal app exception");
+           throw new BotAppInternalException("This is bot internal app exception");
         }
     }
 }

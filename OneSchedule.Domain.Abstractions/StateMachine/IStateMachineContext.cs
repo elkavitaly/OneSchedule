@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace OneSchedule.Domain.Abstractions
 {
-    public interface IStateMachineState
+    public interface IStateMachineContext
     {
-        public void Handle();
-        public void SetContext(IStateMachineContext context);
+       public void SetState(IState state);
     }
 }

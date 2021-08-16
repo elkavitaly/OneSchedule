@@ -12,8 +12,8 @@ namespace OneSchedule.Domain.StateMachine
     {
         public static IServiceCollection ConfigureStateMachine(this IServiceCollection services)
         {
-            services.AddSingleton<IStateMachineContext, StateMachineContext>();
-            services.AddTransient<IStateMachineState, StateMachineState>();
+            services.AddSingleton<IStateMachineContext, EventContext>();
+            services.AddTransient<IState, EventSetTitleState>();
             return services;
         }
     }
