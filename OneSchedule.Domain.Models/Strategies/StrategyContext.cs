@@ -1,22 +1,18 @@
 ﻿using OneSchedule.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
-namespace OneSchedule.Domain.Models.Strategy
+namespace OneSchedule.Domain.Models.Strategies
 {
-    public class StrategyContext
+    public class StrategyContext:IStrategyContext
     {
         private readonly Dictionary<string, IStrategy> _strategies;
 
         public StrategyContext(IEnumerable<IStrategy> strategies)
         {
-            _strategies = new Dictionary<string, IStrategy>();
-            foreach (var strategy in strategies)
-            {
-                var key = StrategyNameReader.GetStrategy(strategy.GetType());
-                _strategies.Add(key, strategy);
-            }
+            _strategies = strategies.ToDictionary(s => StrategyNameReader.GetStrategy(s.GetType()));
         }
 
         public async Task Execute(string command, EventDomain eventDomain)

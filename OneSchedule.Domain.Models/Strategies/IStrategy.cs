@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace OneSchedule.Domain.Models.Strategy
+namespace OneSchedule.Domain.Models.Strategies
 {
     public interface IStrategy
     {

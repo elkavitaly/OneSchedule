@@ -2,9 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using OneSchedule.Domain.Abstractions;
 using OneSchedule.Domain.Models;
-using OneSchedule.Domain.Models.Strategy;
+using OneSchedule.Domain.Models.Strategies;
 using System;
-using System.Threading.Tasks;
 using Telegram.Bot.Types;
 
 namespace OneSchedule.Controllers
@@ -13,15 +12,10 @@ namespace OneSchedule.Controllers
     [ApiController]
     public class UpdateController : ControllerBase
     {
-
-        private readonly IService<UserDomain> _service;
-        private readonly IMapper _mapper;
         private readonly StrategyContext _context;
 
         public UpdateController(IService<UserDomain> service, IMapper mapper, StrategyContext context)
         {
-            _mapper = mapper;
-            _service = service;
             _context = context;
         }
 
@@ -38,14 +32,6 @@ namespace OneSchedule.Controllers
                 Console.WriteLine(update.Message.MessageId);
                 Console.WriteLine("____________");
             }
-        }
-
-        [HttpGet]
-        public async Task<string> Get()
-        {
-            Console.WriteLine("test");
-            await _context.Execute("Create", new EventDomain());
-            return "true test data!!";
         }
     }
 }

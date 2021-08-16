@@ -2,10 +2,10 @@
 using System;
 using System.Threading.Tasks;
 
-namespace OneSchedule.Domain.Models.Strategy
+namespace OneSchedule.Domain.Models.Strategies
 {
-    [StrategyName("create")]
-    public class CreateStrategy: IStrategy
+    [StrategyName("edit")]
+    public class EditStrategy : IStrategy
     {
         public Task Execute(EventDomain eventDomain)
         {

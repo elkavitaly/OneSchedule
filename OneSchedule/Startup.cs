@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using OneSchedule.Domain.Models.Strategy;
+using OneSchedule.Domain.Models.Strategies;
 using OneSchedule.Mongodb;
 using OneSchedule.Services;
 using OneSchedule.Settings;

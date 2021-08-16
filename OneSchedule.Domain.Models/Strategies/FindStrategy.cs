@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace OneSchedule.Domain.Models.Strategy
+namespace OneSchedule.Domain.Models.Strategies
 {
     [StrategyName("find")]
     public class FindStrategy : IStrategy

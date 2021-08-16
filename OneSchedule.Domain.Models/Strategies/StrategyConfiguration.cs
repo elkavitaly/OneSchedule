@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace OneSchedule.Domain.Models.Strategy
+namespace OneSchedule.Domain.Models.Strategies
 {
     public static class StrategyConfiguration
     {
@@ -11,7 +11,7 @@ namespace OneSchedule.Domain.Models.Strategy
             services.AddSingleton<IStrategy, FindStrategy>();
             services.AddSingleton<IStrategy, RemoveStrategy>();
 
-            services.AddSingleton<StrategyContext>();
+            services.AddSingleton<IStrategyContext,StrategyContext>();
             return services;
         }
     }
