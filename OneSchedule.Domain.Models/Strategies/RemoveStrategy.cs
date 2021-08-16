@@ -7,7 +7,7 @@ namespace OneSchedule.Domain.Models.Strategies
     [StrategyName("remove")]
     public class RemoveStrategy : IStrategy
     {
-        public Task Execute(DtoDomain dto)
+        public Task ExecuteAsync(DtoDomain dto)
         {
             throw new NotImplementedException();
         }

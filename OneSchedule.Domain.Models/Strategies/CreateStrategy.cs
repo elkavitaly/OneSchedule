@@ -7,7 +7,7 @@ namespace OneSchedule.Domain.Models.Strategies
     [StrategyName("create")]
     public class CreateStrategy : IStrategy
     {
-        public Task Execute(DtoDomain dto)
+        public Task ExecuteAsync(DtoDomain dto)
         {
             throw new NotImplementedException();
         }

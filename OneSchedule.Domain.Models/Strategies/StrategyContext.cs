@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Models.Strategies
 {
-    public class StrategyContext:IStrategyContext
+    public class StrategyContext : IStrategyContext
     {
         private readonly Dictionary<string, IStrategy> _strategies;
 
@@ -15,12 +15,12 @@ namespace OneSchedule.Domain.Models.Strategies
             _strategies = strategies.ToDictionary(s => StrategyNameReader.GetStrategy(s.GetType()));
         }
 
-        public async Task Execute(DtoDomain dto)
+        public async Task ExecuteAsync(DtoDomain dto)
         {
             var strategy = _strategies.FirstOrDefault(s => dto.MessageText.Contains(s.Key));
             if (!strategy.Equals(default(KeyValuePair<string, IStrategy>)))
             {
-                await strategy.Value.Execute(dto);
+                await strategy.Value.ExecuteAsync(dto);
             }
             else
             {

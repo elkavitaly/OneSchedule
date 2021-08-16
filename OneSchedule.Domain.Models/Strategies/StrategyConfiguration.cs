@@ -10,8 +10,7 @@ namespace OneSchedule.Domain.Models.Strategies
             services.AddSingleton<IStrategy, EditStrategy>();
             services.AddSingleton<IStrategy, FindStrategy>();
             services.AddSingleton<IStrategy, RemoveStrategy>();
-
-            services.AddSingleton<IStrategyContext,StrategyContext>();
+            services.AddSingleton<IStrategyContext, StrategyContext>();
             return services;
         }
     }
