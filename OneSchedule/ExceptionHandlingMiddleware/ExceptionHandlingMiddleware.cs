@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Telegram.Bot.Types;
 using System.IO;
 using Telegram.Bot;
+using OneSchedule.Settings;
 using Microsoft.Extensions.Options;
 using OneSchedule.Settings;
 
@@ -18,12 +19,9 @@ namespace OneSchedule
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
-        private ILogger<ExceptionHandlingMiddleware> _logger;
-        private ITelegramBotClient _bot;
+        private readonly ILogger<ExceptionHandlingMiddleware> _logger;
+        private readonly ITelegramBotClient _bot;
 
-        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger,
-                                            ITelegramBotClient bot
-                                            )
         {
             _next = next;
             _logger = logger;

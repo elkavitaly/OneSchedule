@@ -20,7 +20,7 @@ namespace OneSchedule.Mongodb
         {
             var optionsValue = options.Value;
             var database = client.GetDatabase(optionsValue.DatabaseName);
-            var collectionName = CollectionNameReader.GetName<T>();
+            var collectionName = CollectionNameReader.GetCollectionName<T>();
             _collection = database.GetCollection<T>(collectionName);
         }
 

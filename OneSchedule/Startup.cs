@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using OneSchedule.Domain.Models.Strategies;
 using OneSchedule.Domain.Abstractions;
 using OneSchedule.Mongodb;
 using OneSchedule.Services;
@@ -40,6 +42,7 @@ namespace OneSchedule
             services.ConfigureService();
             services.ConfigureExceptionHandlingMiddleware(Configuration);
             services.ConfigureStateMachine();
+            services.ConfigureStrategy();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

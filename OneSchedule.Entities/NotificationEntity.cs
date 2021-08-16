@@ -1,5 +1,4 @@
-﻿using OneSchedule.Attributes;
-using System;
+﻿using System;
 
 namespace OneSchedule.Entities
 {
