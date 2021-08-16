@@ -71,7 +71,7 @@ namespace OneSchedule.Updater
         private static Task<HttpResponseMessage> RedirectUpdatesToApi(IEnumerable updates, HttpClient client, ProgramSettings programSettings)
         {
             var serializedUpdates = JsonConvert.SerializeObject(updates);
-            var response=client.PostAsync(programSettings.Uri,
+            var response = client.PostAsync(programSettings.Uri,
                 new StringContent(serializedUpdates));
             return response;
         }
