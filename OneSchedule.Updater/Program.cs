@@ -20,7 +20,8 @@ namespace OneSchedule.Updater
 
             var programSettings = new ProgramSettings()
             {
-                ApiKey = configuration["ApiKey"], Uri = configuration.GetSection("RequstUri").Value
+                ApiKey = configuration["ApiKey"],
+                Uri = configuration.GetSection("RequstUri").Value
             };
 
             var bot = new TelegramBotClient(programSettings.ApiKey);
