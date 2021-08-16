@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OneSchedule.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace OneSchedule.Domain.Abstractions
 {
     public interface IState
     {
-        public void Handle(string value);
+        public void Handle(DtoDomain dtoDomain);
 
         public void SetContext(IStateMachineContext context);
     }

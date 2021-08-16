@@ -1,12 +1,5 @@
 ﻿using OneSchedule.Domain.Abstractions;
 using OneSchedule.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telegram.Bot;
-using OneSchedule;
 
 namespace OneSchedule.Domain
 {
@@ -14,10 +7,10 @@ namespace OneSchedule.Domain
     {
         private EventContext _context;
 
-        public void Handle(string value)
+        public void Handle(DtoDomain dtoDomain)
         {
             _context.EventDomain = new EventDomain();
-            _context.EventDomain.Title = value;
+            _context.EventDomain.Title = dtoDomain.MessageText;
         }
 
         public void SetContext(IStateMachineContext context)

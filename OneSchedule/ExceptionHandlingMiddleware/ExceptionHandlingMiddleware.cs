@@ -1,18 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Text.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Telegram.Bot.Types;
 using System.IO;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Telegram.Bot;
-using OneSchedule.Settings;
-using Microsoft.Extensions.Options;
-using OneSchedule.Settings;
+using Telegram.Bot.Types;
 
 namespace OneSchedule
 {
@@ -21,7 +14,8 @@ namespace OneSchedule
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionHandlingMiddleware> _logger;
         private readonly ITelegramBotClient _bot;
-
+        public ExceptionHandlingMiddleware(RequestDelegate next, 
+                                            ILogger<ExceptionHandlingMiddleware> logger, ITelegramBotClient bot)
         {
             _next = next;
             _logger = logger;
