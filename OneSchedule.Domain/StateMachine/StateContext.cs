@@ -11,19 +11,19 @@ using Telegram.Bot;
 
 namespace OneSchedule.Domain
 {
-    public class EventContext : IStateMachineContext
+    public class StateContext : IStateContext
     {
         private IState _state;
         private readonly ITelegramBotClient _bot;
         //private readonly IRepository<EventEntity> _eventRepository;
         private readonly Dictionary<string, IState> _states;
 
-        public EventContext(IState state)
+        public StateContext(IState state)
         {
             SetState(state);
         }
 
-        public EventContext(IEnumerable<IState> states)
+        public StateContext(IEnumerable<IState> states)
         {
             _states = states.ToDictionary(s => StateNameReader.GetStateName(s.GetType()));
             var initialState = _states["Initial"];

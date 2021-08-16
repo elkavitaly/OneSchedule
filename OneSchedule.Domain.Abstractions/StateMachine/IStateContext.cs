@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Abstractions
 {
-    public interface IStateMachineContext
+    public interface IStateContext
     {
        public void SetState(IState state);
     }

@@ -14,7 +14,7 @@ namespace OneSchedule.Domain
     public class EventSetTitleState : IState
     {
         private readonly IRepository<ContextEntity> _contextRepository;
-        private EventContext _context;
+        private StateContext _context;
 
         private Dictionary<string, IState> _states;
         private readonly string _nextState = "SetBeginDateTime";
@@ -34,9 +34,9 @@ namespace OneSchedule.Domain
             await _contextRepository.UpdateAsync(contextEntity);
         }
 
-        public void SetContext(IStateMachineContext context)
+        public void SetContext(IStateContext context)
         {
-            _context = (EventContext)context;
+            _context = (StateContext)context;
         }
 
         private async Task<ContextEntity> GetContextEntity(DtoDomain dtoDomain)

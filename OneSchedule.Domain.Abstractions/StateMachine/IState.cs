@@ -12,6 +12,6 @@ namespace OneSchedule.Domain.Abstractions
     {
         public Task HandleAsync(DtoDomain dtoDomain);
 
-        public void SetContext(IStateMachineContext context);
+        public void SetContext(IStateContext context);
     }
 }
