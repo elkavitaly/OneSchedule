@@ -18,18 +18,15 @@ namespace OneSchedule
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
-        private ILogger<ExceptionHandlingMiddleware> _logger;
-        private ITelegramBotClient _bot;
+        private readonly ILogger<ExceptionHandlingMiddleware> _logger;
+        private readonly ITelegramBotClient _bot;
 
-        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger,
-                                            ITelegramBotClient bot
-                                            )
+        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger, ITelegramBotClient bot)
         {
             _next = next;
             _logger = logger;
             _bot = bot;
         }
-
 
         public async Task InvokeAsync(HttpContext httpContext)
         {
@@ -58,6 +55,7 @@ namespace OneSchedule
             {
                 jsonString = await stream.ReadToEndAsync();
             }
+
             SendExceptionToChat(jsonString, message);
         }
 
