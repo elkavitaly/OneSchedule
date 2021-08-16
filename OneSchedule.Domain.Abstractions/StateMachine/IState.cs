@@ -9,7 +9,7 @@ namespace OneSchedule.Domain.Abstractions
 {
     public interface IState
     {
-        public void Handle();
+        public void Handle(string value);
 
         public void SetContext(IStateMachineContext context);
     }

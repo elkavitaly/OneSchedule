@@ -15,6 +15,7 @@ namespace OneSchedule.Domain
         private IState _state;
         private readonly ITelegramBotClient _bot;
         private Update _update;
+        public EventDomain EventDomain;
 
         public EventContext(IState initialState, ITelegramBotClient bot)
         {

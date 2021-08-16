@@ -14,13 +14,10 @@ namespace OneSchedule.Domain
     {
         private EventContext _context;
 
-        public EventSetTitleState()
+        public void Handle(string value)
         {
-        }
-
-        public void Handle()
-        {
-
+            _context.EventDomain = new EventDomain();
+            _context.EventDomain.Title = value;
         }
 
         public void SetContext(IStateMachineContext context)
