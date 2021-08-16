@@ -5,12 +5,8 @@ namespace OneSchedule.Entities
     [CollectionName("Entities")]
     public class ContextEntity : BaseEntityModel
     {
-        public string ChatId { get; set; }
+        public EventEntity Event { get; set; }
 
-        public string UserId { get; set; }
-
-        public string EventId { get; set; }
-
-        public string LastState { get; set; }
+        public string NextState { get; set; }
     }
 }

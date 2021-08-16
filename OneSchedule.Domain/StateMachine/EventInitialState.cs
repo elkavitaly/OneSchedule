@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain
 {
-    [StateName("SetTitle")]
-    public class EventSetTitleState : IState
+    [StateName("EventInitial")]
+    public class EventInitialState : IState
     {
         private readonly IRepository<ContextEntity> _contextRepository;
         private EventContext _context;
 
         private Dictionary<string, IState> _states;
-        private readonly string _nextState = "SetBeginDateTime";
+        private readonly string _nextState = "SetTitle";
 
-        public EventSetTitleState(IEnumerable<IState> states, IRepository<ContextEntity> contextRepository)
+        public EventInitialState(IEnumerable<IState> states, IRepository<ContextEntity> contextRepository)
         {
             _states = states.ToDictionary(s => StateNameReader.GetStateName(s.GetType()));
             _contextRepository = contextRepository;
@@ -28,10 +28,24 @@ namespace OneSchedule.Domain
         public async Task HandleAsync(DtoDomain dtoDomain)
         {
             var contextEntity = await GetContextEntity(dtoDomain);
-            contextEntity.Event.Title = dtoDomain.MessageText;
-            contextEntity.NextState = _nextState;
-            _context.SetState(_states[_nextState]);
-            await _contextRepository.UpdateAsync(contextEntity);
+            if (contextEntity == null)
+            {
+                contextEntity = new ContextEntity()
+                {
+                    Event = new EventEntity() { ChatId = dtoDomain.ChatId, OwnerId = dtoDomain.UserId },
+                    NextState = _nextState
+                };
+
+                await _contextRepository.AddAsync(contextEntity);
+
+                _context.SetState(_states[_nextState]);
+            }
+            else
+            {
+                _context.SetState(_states[contextEntity.NextState]);
+            }
+
+            await _context.HandleAsync(dtoDomain);
         }
 
         public void SetContext(IStateMachineContext context)

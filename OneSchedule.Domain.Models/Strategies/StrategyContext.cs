@@ -12,7 +12,7 @@ namespace OneSchedule.Domain.Models.Strategies
 
         public StrategyContext(IEnumerable<IStrategy> strategies)
         {
-            _strategies = strategies.ToDictionary(s => StrategyNameReader.GetStrategy(s.GetType()));
+            _strategies = strategies.ToDictionary(s => StrategyNameReader.GetStrategyName(s.GetType()));
         }
 
         public async Task ExecuteAsync(DtoDomain dto)

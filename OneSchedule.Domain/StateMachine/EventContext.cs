@@ -1,12 +1,13 @@
-﻿using OneSchedule.Domain.Abstractions;
+﻿using AutoMapper;
+using OneSchedule.Data.Abstractions;
+using OneSchedule.Domain.Abstractions;
 using OneSchedule.Domain.Models;
-using System;
+using OneSchedule.Entities;
+using OneSchedule.Helpers;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Telegram.Bot;
-using Telegram.Bot.Types;
 
 namespace OneSchedule.Domain
 {
@@ -14,28 +15,30 @@ namespace OneSchedule.Domain
     {
         private IState _state;
         private readonly ITelegramBotClient _bot;
-        private Update _update;
-        public EventDomain EventDomain;
+        //private readonly IRepository<EventEntity> _eventRepository;
+        private readonly Dictionary<string, IState> _states;
 
-        public EventContext(IState initialState, ITelegramBotClient bot)
+        public EventContext(IState state)
         {
-            _state = initialState;
-            _state.SetContext(this);
-            _bot = bot;
+            SetState(state);
         }
 
-        public Update Update
+        public EventContext(IEnumerable<IState> states)
         {
-            get 
-            {
-                return _update;
-            }
+            _states = states.ToDictionary(s => StateNameReader.GetStateName(s.GetType()));
+            var initialState = _states["Initial"];
+            SetState(initialState);
         }
 
         public void SetState(IState state)
         {
             _state = state;
             _state.SetContext(this);
+        }
+
+        public async Task HandleAsync(DtoDomain dtoDomain)
+        {
+            await _state.HandleAsync(dtoDomain);
         }
     }
 }
