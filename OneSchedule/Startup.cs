@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using OneSchedule.Domain.Models.Strategies;
 using OneSchedule.Mongodb;
 using OneSchedule.Services;
 using OneSchedule.Settings;
@@ -36,7 +37,9 @@ namespace OneSchedule
 
             services.ConfigureRepository(Configuration);
             services.ConfigureService();
+            services.ConfigureStrategy();
             services.ConfigureExceptionHandlingMiddleware(Configuration);
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
