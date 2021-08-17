@@ -10,7 +10,7 @@ namespace OneSchedule.Domain.StateMachine.AskState
     [StateName("AskMainMenu")]
     public class AskMainMenuState : BaseAskState
     {
-        public AskMainMenuState(ITelegramBotClient bot):base(bot)
+        public AskMainMenuState(ITelegramBotClient bot) : base(bot)
         {
             NextState = "GetMainMenu";
             BotMessage = "Select option:";

@@ -10,7 +10,7 @@ namespace OneSchedule.Domain.StateMachine.AskState
     [StateName("AskEventMenu")]
     public class AskEventMenuState : BaseAskState
     {
-        public AskEventMenuState(ITelegramBotClient bot):base(bot)
+        public AskEventMenuState(ITelegramBotClient bot) : base(bot)
         {
             NextState = "GetEventMenu";
             BotMessage = "Select option:";
@@ -26,7 +26,7 @@ namespace OneSchedule.Domain.StateMachine.AskState
             {
                 // Add delete button 
             }
-            
+
             stateContext.SetState(NextState);
             throw new NotImplementedException();
         }
