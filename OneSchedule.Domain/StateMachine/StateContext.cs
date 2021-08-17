@@ -14,7 +14,6 @@ namespace OneSchedule.Domain
     public class StateContext : IStateContext
     {
         private IState _state;
-        private readonly ITelegramBotClient _bot;
         //private readonly IRepository<EventEntity> _eventRepository
         private readonly IRepository<ContextEntity> _contextRepository;
         private readonly Dictionary<string, IState> _states;
@@ -55,7 +54,7 @@ namespace OneSchedule.Domain
             {
                 SetState(contextEntity.NextState);
                 EventEntity = contextEntity.Event;
-                _state.Handle(this, dtoDomain);
+                await _state.HandleAsync(this, dtoDomain);
 
                 await _contextRepository.UpdateAsync(contextEntity);
             }

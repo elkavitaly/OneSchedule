@@ -12,7 +12,7 @@ namespace OneSchedule.Domain.StateMachine
     {
         public static IServiceCollection ConfigureStateMachine(this IServiceCollection services)
         {
-            services.AddSingleton<IState, EventSetTitleState>();
+            services.AddSingleton<IState, SetTitleState>();
             
             return services;
         }

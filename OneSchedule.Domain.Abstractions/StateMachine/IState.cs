@@ -10,6 +10,6 @@ namespace OneSchedule.Domain.Abstractions
 {
     public interface IState
     {
-        public void Handle(IStateContext stateContext, DtoDomain dtoDomain);
+        public Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain);
     }
 }
