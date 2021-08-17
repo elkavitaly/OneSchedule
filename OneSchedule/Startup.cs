@@ -3,15 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using OneSchedule.Domain.Models.Strategies;
-using OneSchedule.Domain.Abstractions;
 using OneSchedule.Mongodb;
 using OneSchedule.Services;
 using OneSchedule.Settings;
 using System;
-using OneSchedule.Domain;
 using OneSchedule.Domain.StateMachine;
 
 namespace OneSchedule
