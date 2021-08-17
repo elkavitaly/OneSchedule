@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using OneSchedule.Helpers;
 using OneSchedule.Settings;
 
-namespace OneSchedule.Mongodb
+namespace OneSchedule.Data
 {
     public class MongodbRepository<T> : IRepository<T> where T : BaseEntityModel
     {

@@ -12,7 +12,6 @@
   <ItemGroup>
     <ProjectReference Include="..\OneSchedule.Domain.Models\OneSchedule.Domain.Models.csproj" />
     <ProjectReference Include="..\OneSchedule.Entities\OneSchedule.Entities.csproj" />
-    <ProjectReference Include="..\OneSchedule.ViewModels\OneSchedule.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

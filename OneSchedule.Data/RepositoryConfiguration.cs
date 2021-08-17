@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using OneSchedule.Data.Abstractions;
 using OneSchedule.Settings;
 
-namespace OneSchedule.Mongodb
+namespace OneSchedule.Data
 {
     public static class RepositoryConfiguration
     {
