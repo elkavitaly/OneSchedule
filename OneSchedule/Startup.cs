@@ -9,6 +9,7 @@ using OneSchedule.Services;
 using OneSchedule.Settings;
 using System;
 using OneSchedule.Domain.StateMachine;
+using OneSchedule.ExceptionHandlingMiddleware;
 
 namespace OneSchedule
 {

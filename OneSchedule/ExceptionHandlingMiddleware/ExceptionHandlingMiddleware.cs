@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using OneSchedule.CustomExceptions;
 using System;
 using System.IO;
 using System.Text.Json;
@@ -7,15 +8,15 @@ using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace OneSchedule
+namespace OneSchedule.ExceptionHandlingMiddleware
 {
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionHandlingMiddleware> _logger;
         private readonly ITelegramBotClient _bot;
-        public ExceptionHandlingMiddleware(RequestDelegate next, 
-                                            ILogger<ExceptionHandlingMiddleware> logger, ITelegramBotClient bot)
+        public ExceptionHandlingMiddleware(RequestDelegate next,
+            ILogger<ExceptionHandlingMiddleware> logger, ITelegramBotClient bot)
         {
             _next = next;
             _logger = logger;
@@ -43,9 +44,9 @@ namespace OneSchedule
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             var message = $"Internal Server Error from the custom middleware. {exception.Message}";
-            string jsonString = string.Empty;
+            string jsonString;
 
-            using (StreamReader stream = new StreamReader(context.Request.Body))
+            using (var stream = new StreamReader(context.Request.Body))
             {
                 jsonString = await stream.ReadToEndAsync();
             }
@@ -55,11 +56,14 @@ namespace OneSchedule
 
         private async void SendExceptionToChat(string jsonString, string message)
         {
-            Update update = JsonSerializer.Deserialize<Update>(jsonString);
+            var update = JsonSerializer.Deserialize<Update>(jsonString);
 
-            var chatId = update.Message.Chat.Id;
+            if (update != null)
+            {
+                var chatId = update.Message.Chat.Id;
 
-            await _bot.SendTextMessageAsync(chatId, message);
+                await _bot.SendTextMessageAsync(chatId, message);
+            }
         }
     }
 }

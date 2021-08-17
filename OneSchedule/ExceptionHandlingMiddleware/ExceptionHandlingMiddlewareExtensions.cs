@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 
-namespace OneSchedule
+namespace OneSchedule.ExceptionHandlingMiddleware
 {
     public static class ExceptionHandlingMiddlewareExtensions
     {
