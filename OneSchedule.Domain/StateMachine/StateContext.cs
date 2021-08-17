@@ -55,8 +55,9 @@ namespace OneSchedule.Domain
             {
                 SetState(contextEntity.NextState);
                 EventEntity = contextEntity.Event;
-
                 _state.Handle(this, dtoDomain);
+
+                await _contextRepository.UpdateAsync(contextEntity);
             }
         }
 
