@@ -12,7 +12,7 @@ namespace OneSchedule.Domain.Strategies
     [StrategyName("create")]
     public class CreateStrategy : IStrategy
     {
-        private const string MenuStateContext = "Create";
+        private const string StateContext = "Create";
         private readonly Dictionary<string, IStateContext> _stateContexts;
 
         public CreateStrategy(IEnumerable<IStateContext> contexts)
@@ -22,7 +22,7 @@ namespace OneSchedule.Domain.Strategies
 
         public async Task ExecuteAsync(DtoDomain dto)
         {
-            await _stateContexts[MenuStateContext].HandleAsync(dto);
+            await _stateContexts[StateContext].HandleAsync(dto);
         }
     }
 }

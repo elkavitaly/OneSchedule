@@ -1,7 +1,10 @@
 ﻿using OneSchedule.Attributes;
+using OneSchedule.Domain.Abstractions.StateMachine;
 using OneSchedule.Domain.Abstractions.Strategies;
 using OneSchedule.Domain.Models;
-using System;
+using OneSchedule.Helpers;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Strategies
@@ -9,9 +12,17 @@ namespace OneSchedule.Domain.Strategies
     [StrategyName("find")]
     public class FindStrategy : IStrategy
     {
-        public Task ExecuteAsync(DtoDomain dto)
+        private const string StateContext = "Find";
+        private readonly Dictionary<string, IStateContext> _stateContexts;
+
+        public FindStrategy(IEnumerable<IStateContext> contexts)
         {
-            throw new NotImplementedException();
+            _stateContexts = contexts.ToDictionary(c => StateContextNameReader.GetStateContextName(c.GetType()));
+        }
+
+        public async Task ExecuteAsync(DtoDomain dto)
+        {
+            await _stateContexts[StateContext].HandleAsync(dto);
         }
     }
 }

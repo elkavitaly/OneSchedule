@@ -12,17 +12,17 @@ namespace OneSchedule.Domain.Strategies
     [StrategyName("menu")]
     public class MenuStrategy : IStrategy
     {
-        private const string MenuStateContext = "Menu";
-        private readonly Dictionary<string,IStateContext> _stateContexts;
+        private const string StateContext = "Menu";
+        private readonly Dictionary<string, IStateContext> _stateContexts;
 
         public MenuStrategy(IEnumerable<IStateContext> contexts)
         {
-            _stateContexts = contexts.ToDictionary(c=>StateContextNameReader.GetStateContextName(c.GetType()));
+            _stateContexts = contexts.ToDictionary(c => StateContextNameReader.GetStateContextName(c.GetType()));
         }
 
         public async Task ExecuteAsync(DtoDomain dto)
         {
-           await _stateContexts[MenuStateContext].HandleAsync(dto);
+            await _stateContexts[StateContext].HandleAsync(dto);
         }
     }
 }
