@@ -27,16 +27,15 @@ namespace OneSchedule.Domain
             SetState(state);
         }
 
-        public StateContext(IEnumerable<IState> states)
+        public StateContext(IEnumerable<IState> states, IRepository<ContextEntity> contextRepository)
         {
             _states = states.ToDictionary(s => StateNameReader.GetStateName(s.GetType()));
-            var initialState = _states["Initial"];
-            SetState(initialState);
+            _contextRepository = contextRepository;
         }
 
         public void SetState(string state)
         {
-            _state = state;
+            _state = _states[state];
         }
 
         public async Task HandleAsync(DtoDomain dtoDomain)
@@ -54,8 +53,10 @@ namespace OneSchedule.Domain
             }
             else
             {
-                SetState(_states[contextEntity.NextState]);
-                await _state.HandleAsync(this, dtoDomain);
+                SetState(contextEntity.NextState);
+                EventEntity = contextEntity.Event;
+
+                _state.Handle(this, dtoDomain);
             }
         }
 
