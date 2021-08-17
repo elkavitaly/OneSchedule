@@ -14,7 +14,6 @@ namespace OneSchedule.Domain
     public class StateContext : IStateContext
     {
         private IState _state;
-        //private readonly IRepository<EventEntity> _eventRepository
         private readonly IRepository<ContextEntity> _contextRepository;
         private readonly Dictionary<string, IState> _states;
         private const string SetTitle = "SetTitle";
