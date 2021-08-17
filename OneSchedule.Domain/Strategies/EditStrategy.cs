@@ -1,11 +1,13 @@
 ﻿using OneSchedule.Attributes;
+using OneSchedule.Domain.Abstractions.Strategies;
+using OneSchedule.Domain.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace OneSchedule.Domain.Models.Strategies
+namespace OneSchedule.Domain.Strategies
 {
-    [StrategyName("remove")]
-    public class RemoveStrategy : IStrategy
+    [StrategyName("edit")]
+    public class EditStrategy : IStrategy
     {
         public Task ExecuteAsync(DtoDomain dto)
         {

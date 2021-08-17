@@ -1,16 +1,17 @@
-﻿using OneSchedule.Entities;
+﻿using OneSchedule.Domain.Models;
+using OneSchedule.Entities;
 using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Abstractions.StateMachine
 {
     public interface IStateContext
     {
-        public EventEntity EventEntity { get; set; }
-
+        public ContextEntity ContextEntity { get; set; }
+        
         public bool IsContextCompleted { get; }
 
-        public void SetState(string state);
+        public Task HandleAsync(DtoDomain dtoDomain);
 
-        public Task DeleteContextAsync(string id);
+        public void SetState(string state);
     }
 }

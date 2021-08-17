@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using OneSchedule.CustomExceptions;
+using OneSchedule.Exceptions.CustomExceptions;
 using System;
 using System.IO;
 using System.Text.Json;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace OneSchedule.ExceptionHandlingMiddleware
+namespace OneSchedule.Exceptions.ExceptionHandlingMiddleware
 {
     public class ExceptionHandlingMiddleware
     {

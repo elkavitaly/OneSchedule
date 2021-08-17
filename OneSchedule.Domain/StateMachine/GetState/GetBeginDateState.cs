@@ -13,7 +13,7 @@ namespace OneSchedule.Domain.StateMachine.GetState
 
         public Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-            stateContext.EventEntity.StartDate = DateTime.Parse(dtoDomain.MessageText);
+            stateContext.ContextEntity.Event.StartDate = DateTime.Parse(dtoDomain.MessageText);
             stateContext.SetState(NextState);
             return Task.CompletedTask;
         }

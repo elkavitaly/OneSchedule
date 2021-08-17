@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OneSchedule.CustomExceptions
+namespace OneSchedule.Exceptions.CustomExceptions
 {
     public class BotAppInternalException : Exception
     {

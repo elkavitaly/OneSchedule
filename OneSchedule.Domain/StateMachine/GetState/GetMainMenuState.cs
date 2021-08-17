@@ -13,13 +13,7 @@ namespace OneSchedule.Domain.StateMachine.GetState
 
         public Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-            if (dtoDomain.MessageText != Create)
-            {
-                stateContext.EventEntity.Id = dtoDomain.MessageText;
-            }
-
             stateContext.SetState(NextState);
-
             return Task.CompletedTask;
         }
     }

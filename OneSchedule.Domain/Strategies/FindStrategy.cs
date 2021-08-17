@@ -1,8 +1,10 @@
 ﻿using OneSchedule.Attributes;
+using OneSchedule.Domain.Abstractions.Strategies;
+using OneSchedule.Domain.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace OneSchedule.Domain.Models.Strategies
+namespace OneSchedule.Domain.Strategies
 {
     [StrategyName("find")]
     public class FindStrategy : IStrategy

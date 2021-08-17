@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OneSchedule.Settings;
 using Telegram.Bot;
 
-namespace OneSchedule.ExceptionHandlingMiddleware
+namespace OneSchedule.Exceptions.ExceptionHandlingMiddleware
 {
     public static class ExceptionHandlingMiddlewareConfiguration
     {

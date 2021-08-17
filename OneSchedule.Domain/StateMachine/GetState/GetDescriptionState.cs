@@ -12,7 +12,7 @@ namespace OneSchedule.Domain.StateMachine.GetState
 
         public Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-            stateContext.EventEntity.Description = dtoDomain.MessageText;
+            stateContext.ContextEntity.Event.Description = dtoDomain.MessageText;
             stateContext.SetState(NextState);
             return Task.CompletedTask;
         }

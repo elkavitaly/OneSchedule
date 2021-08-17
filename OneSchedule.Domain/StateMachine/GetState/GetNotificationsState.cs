@@ -20,7 +20,7 @@ namespace OneSchedule.Domain.StateMachine.GetState
                 .Select(d => new NotificationEntity() { Date = DateTime.Parse(d) })
                 .ToList();
 
-            stateContext.EventEntity.Notifications = notifications;
+            stateContext.ContextEntity.Event.Notifications = notifications;
             stateContext.SetState(NextState);
             return Task.CompletedTask;
         }

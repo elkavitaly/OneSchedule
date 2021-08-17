@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using OneSchedule.Domain.Abstractions.Strategies;
 
-namespace OneSchedule.Domain.Models.Strategies
+namespace OneSchedule.Domain.Strategies
 {
     public static class StrategyConfiguration
     {

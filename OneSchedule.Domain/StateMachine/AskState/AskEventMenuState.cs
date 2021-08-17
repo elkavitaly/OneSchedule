@@ -22,7 +22,7 @@ namespace OneSchedule.Domain.StateMachine.AskState
 
             // show menu buttons
 
-            if (string.IsNullOrWhiteSpace(stateContext.EventEntity.Id))
+            if (string.IsNullOrWhiteSpace(stateContext.ContextEntity.Event.Id))
             {
                 // Add delete button 
             }

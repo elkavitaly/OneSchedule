@@ -30,7 +30,8 @@ namespace OneSchedule.Domain.StateMachine
             services.AddSingleton<IState, AskEventMenuState>();
             services.AddSingleton<IState, GetEventMenuState>();
 
-            services.AddSingleton<IStateContext, StateContext>();
+            services.AddSingleton<IStateContext, CreateStateContext>();
+            services.AddSingleton<IStateContext, MenuStateContext>();
             return services;
         }
     }

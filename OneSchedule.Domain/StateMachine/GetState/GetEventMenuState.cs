@@ -13,10 +13,12 @@ namespace OneSchedule.Domain.StateMachine.GetState
     {
         private const string Menu = "AskEventMenu";
         private readonly IRepository<EventEntity> _eventRepository;
+        private readonly IRepository<ContextEntity> _contextRepository;
         private readonly ITelegramBotClient _bot;
 
-        public GetEventMenuState(IRepository<EventEntity> eventRepository, ITelegramBotClient bot)
+        public GetEventMenuState(IRepository<EventEntity> eventRepository, IRepository<ContextEntity> contextRepository, ITelegramBotClient bot)
         {
+            _contextRepository = contextRepository;
             _eventRepository = eventRepository;
             _bot = bot;
         }
@@ -34,38 +36,38 @@ namespace OneSchedule.Domain.StateMachine.GetState
                 }
 
                 var currentEvent = await _eventRepository.FindFirstAsync(e =>
-                    e.Id == stateContext.EventEntity.Id);
+                    e.Id == stateContext.ContextEntity.Event.Id);
 
                 if (currentEvent == null)
                 {
-                    await _eventRepository.AddAsync(stateContext.EventEntity);
+                    await _eventRepository.AddAsync(stateContext.ContextEntity.Event);
                 }
                 else
                 {
-                    await _eventRepository.UpdateAsync(stateContext.EventEntity);
+                    await _eventRepository.UpdateAsync(stateContext.ContextEntity.Event);
                 }
 
-                var contextId = dtoDomain.MessageText.Split()[1];
-                await stateContext.DeleteContextAsync(contextId);
-                stateContext.SetState(Menu);
+                await BackToMenu(stateContext);
             }
             else if (dtoDomain.MessageText.Contains("Back"))
             {
-                var contextId = dtoDomain.MessageText.Split()[1];
-                await stateContext.DeleteContextAsync(contextId);
-                stateContext.SetState(Menu);
+                await BackToMenu(stateContext);
             }
             else if (dtoDomain.MessageText.Contains("Delete"))
             {
-                await _eventRepository.DeleteAsync(stateContext.EventEntity.Id);
-                var contextId = dtoDomain.MessageText.Split()[1];
-                await stateContext.DeleteContextAsync(contextId);
-                stateContext.SetState(Menu);
+                await _eventRepository.DeleteAsync(stateContext.ContextEntity.Event.Id);
+                await BackToMenu(stateContext);
             }
             else
             {
                 stateContext.SetState(dtoDomain.MessageText);
             }
+        }
+
+        private async Task BackToMenu(IStateContext stateContext)
+        {
+            await _contextRepository.DeleteAsync(stateContext.ContextEntity.Id);
+            stateContext.SetState(Menu);
         }
     }
 }
