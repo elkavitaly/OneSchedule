@@ -60,6 +60,13 @@ namespace OneSchedule.Domain.StateMachine.GetState
                 await stateContext.DeleteContextAsync(contextId);
                 stateContext.SetState("AskMainMenu");
             }
+            else if (dtoDomain.MessageText.Contains("Delete"))
+            {
+                await _eventRepository.DeleteAsync(stateContext.EventEntity.Id);
+                var contextId = dtoDomain.MessageText.Split()[1];
+                await stateContext.DeleteContextAsync(contextId);
+                stateContext.SetState("AskMainMenu");
+            }
             else
             {
                 stateContext.SetState(dtoDomain.MessageText);

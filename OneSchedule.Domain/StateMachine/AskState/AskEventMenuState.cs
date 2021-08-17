@@ -22,7 +22,14 @@ namespace OneSchedule.Domain.StateMachine.AskState
         public async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
             await _bot.SendTextMessageAsync(dtoDomain.ChatId, BotMessage);
+
             // show menu buttons
+
+            if (string.IsNullOrWhiteSpace(stateContext.EventEntity.Id))
+            {
+                // Add delete button 
+            }
+            
             stateContext.SetState(NextState);
             throw new NotImplementedException();
         }
