@@ -19,7 +19,7 @@ namespace OneSchedule.Domain.StateMachine.AskState
         public override async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
             await base.HandleAsync(stateContext, dtoDomain);
-            //show events buttons
+            //show events buttons  (20 max)
 
             //show menu button
             throw new NotImplementedException();
