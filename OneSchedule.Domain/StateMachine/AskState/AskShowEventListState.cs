@@ -7,26 +7,21 @@ using Telegram.Bot;
 
 namespace OneSchedule.Domain.StateMachine.AskState
 {
-    [StateName("AskEventMenu")]
-    public class AskEventMenuState : BaseAskState
+    [StateName("AskShowEventList")]
+    public class GetShowEventListState : BaseAskState
     {
-        public AskEventMenuState(ITelegramBotClient bot) : base(bot)
+        public GetShowEventListState(ITelegramBotClient bot) : base(bot)
         {
-            NextState = "GetEventMenu";
+            NextState = "GetShowEventList";
             BotMessage = "Select option:";
         }
 
         public override async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
             await base.HandleAsync(stateContext, dtoDomain);
+            //show events buttons
 
-            // show menu buttons
-
-            if (string.IsNullOrWhiteSpace(stateContext.ContextEntity.Event.Id))
-            {
-                // Add delete button 
-            }
-
+            //show menu button
             throw new NotImplementedException();
         }
     }

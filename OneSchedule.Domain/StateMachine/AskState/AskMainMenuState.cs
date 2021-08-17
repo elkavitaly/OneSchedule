@@ -18,9 +18,8 @@ namespace OneSchedule.Domain.StateMachine.AskState
 
         public override async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-            await Bot.SendTextMessageAsync(dtoDomain.ChatId, BotMessage);
+            await base.HandleAsync(stateContext, dtoDomain);
             // show menu buttons
-            stateContext.SetState(NextState);
             throw new NotImplementedException();
         }
     }

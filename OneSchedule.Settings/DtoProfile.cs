@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using OneSchedule.Domain.Models;
-using OneSchedule.Entities;
 using Telegram.Bot.Types;
 
 namespace OneSchedule.Settings

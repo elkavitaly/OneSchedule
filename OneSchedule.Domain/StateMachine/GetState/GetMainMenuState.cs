@@ -8,12 +8,9 @@ namespace OneSchedule.Domain.StateMachine.GetState
     [StateName("GetMainMenu")]
     public class GetMainMenuState : IState
     {
-        private const string NextState = "AskEventMenu";
-        private const string Create = "Create";
-
         public Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-            stateContext.SetState(NextState);
+            stateContext.SetState(dtoDomain.MessageText);
             return Task.CompletedTask;
         }
     }
