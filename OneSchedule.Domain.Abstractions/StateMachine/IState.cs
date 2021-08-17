@@ -1,7 +1,6 @@
 ﻿using OneSchedule.Domain.Models;
 using System.Threading.Tasks;
 
-
 namespace OneSchedule.Domain.Abstractions.StateMachine
 {
     public interface IState

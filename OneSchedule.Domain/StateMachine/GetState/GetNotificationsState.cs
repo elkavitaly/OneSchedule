@@ -16,8 +16,9 @@ namespace OneSchedule.Domain.StateMachine.GetState
         public Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
             var dates = dtoDomain.MessageText.Split(" ");
-            var notifications = dates.Select(d=>
-                new NotificationEntity(){Date = DateTime.Parse(d)}).ToList();
+            var notifications = dates
+                .Select(d => new NotificationEntity() { Date = DateTime.Parse(d) })
+                .ToList();
 
             stateContext.EventEntity.Notifications = notifications;
             stateContext.SetState(NextState);

@@ -9,11 +9,11 @@ namespace OneSchedule.Domain.StateMachine.GetState
     public class GetMainMenuState : IState
     {
         private const string NextState = "AskEventMenu";
+        private const string Create = "Create";
 
         public Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-
-            if (dtoDomain.MessageText != "Create")
+            if (dtoDomain.MessageText != Create)
             {
                 stateContext.EventEntity.Id = dtoDomain.MessageText;
             }

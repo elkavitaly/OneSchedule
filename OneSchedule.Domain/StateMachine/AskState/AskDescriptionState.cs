@@ -7,21 +7,12 @@ using Telegram.Bot;
 namespace OneSchedule.Domain.StateMachine.AskState
 {
     [StateName("AskDescription")]
-    public class AskDescriptionState : IState
+    public class AskDescriptionState : BaseAskState
     {
-        private const string SetNotifications = "GetDescription";
-        private const string BotMessage = "Enter event description";
-        private readonly ITelegramBotClient _bot;
-
-        public AskDescriptionState(ITelegramBotClient bot)
+        public AskDescriptionState(ITelegramBotClient bot):base(bot)
         {
-            _bot = bot;
-        }
-
-        public async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
-        {
-            await _bot.SendTextMessageAsync(dtoDomain.ChatId, BotMessage);
-            stateContext.SetState(SetNotifications);
+            NextState = "GetDescription";
+            BotMessage = "Enter event description";
         }
     }
 }

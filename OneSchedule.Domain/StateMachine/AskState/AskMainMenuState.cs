@@ -8,20 +8,17 @@ using Telegram.Bot;
 namespace OneSchedule.Domain.StateMachine.AskState
 {
     [StateName("AskMainMenu")]
-    public class AskMainMenuState : IState
+    public class AskMainMenuState : BaseAskState
     {
-        private const string NextState = "GetMainMenu";
-        private const string BotMessage = "Select option:";
-        private readonly ITelegramBotClient _bot;
-
-        public AskMainMenuState(ITelegramBotClient bot)
+        public AskMainMenuState(ITelegramBotClient bot):base(bot)
         {
-            _bot = bot;
+            NextState = "GetMainMenu";
+            BotMessage = "Select option:";
         }
 
-        public async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
+        public override async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-            await _bot.SendTextMessageAsync(dtoDomain.ChatId, BotMessage);
+            await Bot.SendTextMessageAsync(dtoDomain.ChatId, BotMessage);
             // show menu buttons
             stateContext.SetState(NextState);
             throw new NotImplementedException();

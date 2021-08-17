@@ -7,21 +7,12 @@ using Telegram.Bot;
 namespace OneSchedule.Domain.StateMachine.AskState
 {
     [StateName("AskBeginDate")]
-    public class AskBeginDateState : IState
+    public class AskBeginDateState : BaseAskState
     {
-        private const string NextState = "GetBeginDate";
-        private const string BotMessage = "Enter event start date and time:";
-        private readonly ITelegramBotClient _bot;
-
-        public AskBeginDateState(ITelegramBotClient bot)
+        public AskBeginDateState(ITelegramBotClient bot):base(bot)
         {
-            _bot = bot;
-        }
-
-        public async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
-        {
-            await _bot.SendTextMessageAsync(dtoDomain.ChatId, BotMessage);
-            stateContext.SetState(NextState);
+            NextState = "GetBeginDate";
+            BotMessage = "Enter event start date and time:";
         }
     }
 }
