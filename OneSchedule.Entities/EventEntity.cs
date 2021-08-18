@@ -21,7 +21,7 @@ namespace OneSchedule.Entities
 
         public string OwnerId { get; set; }
 
-        public int ChatId { get; set; }
+        public string ChatId { get; set; }
 
         public List<NotificationEntity> Notifications { get; set; }
     }

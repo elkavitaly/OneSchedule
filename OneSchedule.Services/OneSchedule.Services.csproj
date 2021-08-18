@@ -8,7 +8,6 @@
     <ProjectReference Include="..\OneSchedule.Data.Abstractions\OneSchedule.Data.Abstractions.csproj" />
     <ProjectReference Include="..\OneSchedule.Domain.Abstractions\OneSchedule.Domain.Abstractions.csproj" />
     <ProjectReference Include="..\OneSchedule.Domain.Models\OneSchedule.Domain.Models.csproj" />
-    <ProjectReference Include="..\OneSchedule.Mongo\OneSchedule.Mongodb.csproj" />
   </ItemGroup>
 
 </Project>

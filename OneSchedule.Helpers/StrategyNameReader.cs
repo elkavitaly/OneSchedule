@@ -6,7 +6,7 @@ namespace OneSchedule.Helpers
 {
     public static class StrategyNameReader
     {
-        public static string GetStrategy(Type type)
+        public static string GetStrategyName(Type type)
         {
             return (type.GetCustomAttribute(typeof(StrategyName))
                 as StrategyName)?.Name ?? $"{type.Name}s";

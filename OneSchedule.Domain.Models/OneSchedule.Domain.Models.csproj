@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OneSchedule.Attributes\OneSchedule.Attributes.csproj" />
+    <ProjectReference Include="..\OneSchedule.Data.Abstractions\OneSchedule.Data.Abstractions.csproj" />
     <ProjectReference Include="..\OneSchedule.Helpers\OneSchedule.Helpers.csproj" />
   </ItemGroup>
 
