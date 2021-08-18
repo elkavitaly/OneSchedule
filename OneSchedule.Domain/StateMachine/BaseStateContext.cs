@@ -60,7 +60,7 @@ namespace OneSchedule.Domain.StateMachine
             }
 
             ContextEntity = contextEntity;
-            SetState(contextEntity.NextState);
+            SetState(NextState);
             await State.HandleAsync(this, dtoDomain);
             await ContextRepository.UpdateAsync(contextEntity);
         }

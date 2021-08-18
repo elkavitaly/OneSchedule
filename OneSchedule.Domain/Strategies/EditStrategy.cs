@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Strategies
 {
-    [StrategyName("Edit")]
+    [StrategyName("/edit")]
     public class EditStrategy : IStrategy
     {
         public Task ExecuteAsync(DtoDomain dto)

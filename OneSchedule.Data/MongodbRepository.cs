@@ -43,15 +43,6 @@ namespace OneSchedule.Data
 
         public async Task<T> FindFirstAsync(Expression<Func<T, bool>> predicate)
         {
-            try
-            {
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
             return await _collection.AsQueryable().Where(predicate).FirstOrDefaultAsync();
         }
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Strategies
 {
-    [StrategyName("Create")]
+    [StrategyName("/create")]
     public class CreateStrategy : IStrategy
     {
         private const string StateContext = "Create";
