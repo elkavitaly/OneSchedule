@@ -9,7 +9,7 @@ namespace OneSchedule.Settings
         public DtoProfile()
         {
             CreateMap<Update, DtoDomain>()
-                .ForMember(dest => dest.MessageText,
+                .ForMember(dest => dest.MessageText,    
                     opt => opt
                         .MapFrom(src => src.Message.Text))
                 .ForMember(dest => dest.UserId,
