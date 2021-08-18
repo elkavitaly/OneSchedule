@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Strategies
 {
-    [StrategyName("menu")]
+    [StrategyName("/menu")]
     public class MenuStrategy : IStrategy
     {
         private const string StateContext = "Menu";

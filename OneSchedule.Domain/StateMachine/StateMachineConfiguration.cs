@@ -34,11 +34,12 @@ namespace OneSchedule.Domain.StateMachine
             services.AddSingleton<IState, GetEventListState>();  
             
             services.AddSingleton<IState, AskShowEventListState>();
-            services.AddSingleton<IState, GetEventListState>();
+            services.AddSingleton<IState, GetShowEventListState>();
 
             services.AddSingleton<IStateContext, CreateStateContext>();
             services.AddSingleton<IStateContext, MenuStateContext>();
             services.AddSingleton<IStateContext, FindStateContext>();
+
             return services;
         }
     }

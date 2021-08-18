@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.StateMachine.GetState
 {
-    [StateName("AskDescription")]
+    [StateName("GetDescription")]
     public class GetDescriptionState : IState
     {
         private const string NextState = "AskEventMenu";

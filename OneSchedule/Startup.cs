@@ -35,12 +35,12 @@ namespace OneSchedule
             });
 
             services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));
-
-            services.ConfigureStrategy();
-            services.ConfigureStateMachine();
-            services.ConfigureRepository(Configuration);
-            services.ConfigureService();
             services.ConfigureExceptionHandlingMiddleware(Configuration);
+            services.ConfigureRepository(Configuration);
+            services.ConfigureStateMachine();
+            services.ConfigureStrategy();
+            services.ConfigureService();
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

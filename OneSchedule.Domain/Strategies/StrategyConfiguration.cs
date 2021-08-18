@@ -12,7 +12,8 @@ namespace OneSchedule.Domain.Strategies
             services.AddSingleton<IStrategy, FindStrategy>();
             services.AddSingleton<IStrategy, RemoveStrategy>();
             services.AddSingleton<IStrategy, MenuStrategy>();
-            services.AddTransient<IStrategyContext, StrategyContext>();
+
+            services.AddSingleton<IStrategyContext, StrategyContext>();
             return services;
         }
     }

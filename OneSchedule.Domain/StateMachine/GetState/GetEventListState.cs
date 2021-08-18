@@ -1,16 +1,28 @@
 ﻿using OneSchedule.Attributes;
-using OneSchedule.Domain.StateMachine.AskState;
-using Telegram.Bot;
+using OneSchedule.Domain.Abstractions.StateMachine;
+using OneSchedule.Domain.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.StateMachine.GetState
 {
     [StateName("GetEventList")]
-    public class GetEventListState : BaseAskState
+    public class GetEventListState : IState
     {
-        public GetEventListState(ITelegramBotClient bot) : base(bot)
+        private const string NextState = "AskShowEventList";
+
+        public Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-            NextState = "GetBeginDate";
-            BotMessage = "Enter interval ([min events start date] - [max events start date]):";
+            if (stateContext is FindStateContext findState)
+            {
+                var dates = dtoDomain.MessageText.Split("-").Select(DateTime.Parse).ToList();
+                findState.MinStartDate = dates[0];
+                findState.MaxStartDate = dates[1];
+            }
+
+            stateContext.SetState(NextState);
+            return Task.CompletedTask;
         }
     }
 }

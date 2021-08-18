@@ -44,7 +44,7 @@ namespace OneSchedule.Exceptions.ExceptionHandlingMiddleware
 
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            var message = $"Internal Server Error from the custom middleware. {exception.Message}";
+            var message = $"Internal Server Error from the custom middleware. {exception.Message}. Inner: {exception.InnerException?.Message}";
             string jsonString;
 
             using (var stream = new StreamReader(context.Request.Body))
