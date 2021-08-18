@@ -12,17 +12,13 @@ namespace OneSchedule.Settings
                 .ForMember(dest => dest.MessageText,
                     opt => opt
                         .MapFrom(src => src.Message.Text))
-
                 .ForMember(dest => dest.UserId,
                     opt => opt
                         .MapFrom(src => src.Message.From.Id))
-
                 .ForMember(dest => dest.ChatId,
                     opt => opt
                         .MapFrom(src => src.Message.Chat.Id))
-
                 .ForAllOtherMembers(m => m.Ignore());
-
         }
     }
 }

@@ -13,10 +13,12 @@ namespace OneSchedule.Domain.StateMachine.GetState
         private const string Menu = "AskMainMenu";
         private const string EventMenu = "AskEventMenu";
         private readonly IRepository<ContextEntity> _contextRepository;
+
         public GetShowEventListState(IRepository<ContextEntity> contextRepository)
         {
             _contextRepository = contextRepository;
         }
+
         public Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
             if (dtoDomain.MessageText == Menu)

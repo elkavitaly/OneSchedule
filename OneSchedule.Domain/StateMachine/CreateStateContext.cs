@@ -15,10 +15,12 @@ namespace OneSchedule.Domain.StateMachine
     public class CreateStateContext : IStateContext
     {
         private const string NextState = "AskEventMenu";
-        private IState _state;
         private readonly IRepository<ContextEntity> _contextRepository;
         private readonly Dictionary<string, IState> _states;
+        private IState _state;
+        
         public ContextEntity ContextEntity { get; set; }
+
         public bool IsContextCompleted => ContextEntity.Event.StartDate != default(DateTime)
                                           && string.IsNullOrWhiteSpace(ContextEntity.Event.Title)
                                           && ContextEntity.Event.Notifications is
