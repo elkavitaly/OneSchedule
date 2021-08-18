@@ -25,7 +25,7 @@ namespace OneSchedule.Domain.Strategies
             Console.WriteLine("____________");
 
             var strategy = _strategies
-                .FirstOrDefault(s => dto.MessageText.Contains(s.Key));
+                .FirstOrDefault(s => dto.MessageText != null && dto.MessageText.Contains(s.Key));
 
             if (!strategy.Equals(default(KeyValuePair<string, IStrategy>)))
             {

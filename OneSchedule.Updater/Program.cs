@@ -49,7 +49,7 @@ namespace OneSchedule.Updater
                     foreach (var update in updates)
                     {
                         offset = update.Id + 1;
-                        Console.WriteLine($"send:  {update.Message.Text}");
+                        Console.WriteLine($"send:  {update.Message?.Text}");
                     }
 
                     try
