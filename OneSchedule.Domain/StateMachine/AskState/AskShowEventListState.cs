@@ -8,9 +8,9 @@ using Telegram.Bot;
 namespace OneSchedule.Domain.StateMachine.AskState
 {
     [StateName("AskShowEventList")]
-    public class GetShowEventListState : BaseAskState
+    public class AskShowEventListState : BaseAskState
     {
-        public GetShowEventListState(ITelegramBotClient bot) : base(bot)
+        public AskShowEventListState(ITelegramBotClient bot) : base(bot)
         {
             NextState = "GetShowEventList";
             BotMessage = "Select option:";

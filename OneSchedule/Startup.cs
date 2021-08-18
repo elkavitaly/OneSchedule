@@ -5,11 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using OneSchedule.Data;
+using OneSchedule.Domain.StateMachine;
+using OneSchedule.Domain.Strategies;
+using OneSchedule.Exceptions.ExceptionHandlingMiddleware;
 using OneSchedule.Services;
 using OneSchedule.Settings;
 using System;
-using OneSchedule.Domain.StateMachine;
-using OneSchedule.Exceptions.ExceptionHandlingMiddleware;
 
 namespace OneSchedule
 {
@@ -35,10 +36,11 @@ namespace OneSchedule
 
             services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));
 
+            services.ConfigureStrategy();
+            services.ConfigureStateMachine();
             services.ConfigureRepository(Configuration);
             services.ConfigureService();
             services.ConfigureExceptionHandlingMiddleware(Configuration);
-            services.ConfigureStateMachine();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

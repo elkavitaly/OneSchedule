@@ -2,6 +2,7 @@
 using OneSchedule.Domain.Models;
 using OneSchedule.Exceptions.CustomExceptions;
 using OneSchedule.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +20,10 @@ namespace OneSchedule.Domain.Strategies
 
         public async Task ExecuteAsync(DtoDomain dto)
         {
+            Console.WriteLine("____________");
+            Console.WriteLine(dto.MessageText);
+            Console.WriteLine("____________");
+
             var strategy = _strategies
                 .FirstOrDefault(s => dto.MessageText.Contains(s.Key));
 

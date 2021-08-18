@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using OneSchedule.Domain.Abstractions.Strategies;
+using OneSchedule.Domain.Abstractions;
 using OneSchedule.Domain.Models;
+using OneSchedule.Domain.Strategies;
 using System.Threading.Tasks;
 using Telegram.Bot.Types;
 
@@ -11,10 +12,11 @@ namespace OneSchedule.Controllers
     [ApiController]
     public class UpdateController : ControllerBase
     {
-        private readonly IStrategyContext _context;
+        private readonly StrategyContext _context;
         private readonly IMapper _mapper;
 
-        public UpdateController(IMapper mapper, IStrategyContext context)
+
+        public UpdateController(IService<UserDomain> service, IMapper mapper, StrategyContext context)
         {
             _context = context;
             _mapper = mapper;

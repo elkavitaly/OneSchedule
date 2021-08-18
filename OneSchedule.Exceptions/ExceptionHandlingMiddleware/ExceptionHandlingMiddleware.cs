@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using OneSchedule.Exceptions.CustomExceptions;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -55,11 +57,12 @@ namespace OneSchedule.Exceptions.ExceptionHandlingMiddleware
 
         private async void SendExceptionToChat(string jsonString, string message)
         {
-            var update = Newtonsoft.Json.JsonConvert.DeserializeObject<Update>(jsonString);
+            var updates = JsonConvert.DeserializeObject<List<Update>>(jsonString,
+                new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Ignore });
 
-            if (update != null)
+            if (updates != null)
             {
-                var chatId = update.Message.Chat.Id;
+                var chatId = updates.FindLast(u => true)?.Message.Chat.Id;
 
                 await _bot.SendTextMessageAsync(chatId, message);
             }

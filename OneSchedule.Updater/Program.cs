@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Telegram.Bot;
 
@@ -66,15 +65,13 @@ namespace OneSchedule.Updater
                     Console.WriteLine(e);
                 }
             }
-
-            Environment.Exit(0);
         }
 
         private static Task<HttpResponseMessage> RedirectUpdatesToApi(IEnumerable updates, HttpClient client, ProgramSettings programSettings)
         {
             var serializedUpdates = JsonConvert.SerializeObject(updates);
-            var content = new StringContent(serializedUpdates, Encoding.UTF8, "application/json");
-            var response = client.PostAsync(programSettings.Uri, content);
+            var response = client.PostAsync(programSettings.Uri,
+                new StringContent(serializedUpdates));
             return response;
         }
     }
