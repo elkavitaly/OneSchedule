@@ -1,15 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using MongoDB.Bson.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using OneSchedule.Exceptions.CustomExceptions;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using JsonReader = Newtonsoft.Json.JsonReader;
 
 namespace OneSchedule.Exceptions.ExceptionHandlingMiddleware
 {
@@ -59,7 +55,7 @@ namespace OneSchedule.Exceptions.ExceptionHandlingMiddleware
 
         private async void SendExceptionToChat(string jsonString, string message)
         {
-            var update=Newtonsoft.Json.JsonConvert.DeserializeObject<Update>(jsonString);
+            var update = Newtonsoft.Json.JsonConvert.DeserializeObject<Update>(jsonString);
 
             if (update != null)
             {
