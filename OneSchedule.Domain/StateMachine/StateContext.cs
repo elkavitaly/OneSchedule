@@ -75,7 +75,8 @@ namespace OneSchedule.Domain.StateMachine
 
             ContextEntity = contextEntity;
             var currentStrategy = _strategies
-                .FirstOrDefault(s => dtoDomain.MessageText.Contains(s.Key));
+                .FirstOrDefault(s => dtoDomain.MessageText!=null
+                                     &&dtoDomain.MessageText.Contains(s.Key));
 
             if (currentStrategy.Equals(default(KeyValuePair<string, IStrategy>)))
             {
