@@ -1,18 +1,15 @@
 ﻿using OneSchedule.Attributes;
-using OneSchedule.Data.Abstractions;
 using OneSchedule.Domain.Abstractions.StateMachine;
 using OneSchedule.Domain.Abstractions.Strategies;
 using OneSchedule.Domain.Models;
-using OneSchedule.Entities;
 using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Strategies
 {
-    [StrategyName("[create]")]
-    public class CreateStrategy : IStrategy
+    [StrategyName("[get]")]
+    public class GetStrategy : IStrategy
     {
-        private const string State = "AskEventMenu";
-
+        private const string State= "AskEventList";
         public async Task ExecuteAsync(IStateContext context, DtoDomain dto)
         {
             context.SetState(State);

@@ -8,7 +8,7 @@ namespace OneSchedule.Entities
     {
         public EventEntity Event { get; set; }
 
-        public string NextState { get; set; }
+        public string LastState { get; set; }
 
         public DateTime MinStartDate { get; set; }
 

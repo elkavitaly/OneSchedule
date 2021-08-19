@@ -11,8 +11,6 @@ namespace OneSchedule.Domain.StateMachine.AskState
 
         protected string BotMessage { get; set; }
 
-        protected string NextState { get; set; }
-
         protected BaseAskState(ITelegramBotClient bot)
         {
             Bot = bot;
@@ -21,7 +19,6 @@ namespace OneSchedule.Domain.StateMachine.AskState
         public virtual async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
             await Bot.SendTextMessageAsync(dtoDomain.ChatId, BotMessage);
-            stateContext.SetState(NextState);
         }
     }
 }

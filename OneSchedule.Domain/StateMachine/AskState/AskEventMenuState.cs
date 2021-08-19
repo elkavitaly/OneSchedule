@@ -1,9 +1,6 @@
 ﻿using OneSchedule.Attributes;
-using OneSchedule.Data.Abstractions;
 using OneSchedule.Domain.Abstractions.StateMachine;
 using OneSchedule.Domain.Models;
-using OneSchedule.Entities;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -14,36 +11,60 @@ namespace OneSchedule.Domain.StateMachine.AskState
     [StateName("AskEventMenu")]
     public class AskEventMenuState : BaseAskState
     {
-        private readonly IRepository<EventEntity> _eventRepository;
-        public AskEventMenuState(ITelegramBotClient bot, IRepository<EventEntity> eventRepository) : base(bot)
+        public AskEventMenuState(ITelegramBotClient bot) : base(bot)
         {
-            NextState = "GetEventMenu";
             BotMessage = "Select option:";
-            _eventRepository = eventRepository;
         }
 
         public override async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-            await base.HandleAsync(stateContext, dtoDomain);
-            var keys = new List<KeyboardButton>();
 
-            var events = await _eventRepository.FindAsync(e =>
-                e.StartDate >= stateContext.ContextEntity.MinStartDate &&
-                e.StartDate <= stateContext.ContextEntity.MaxStartDate);
-
-            foreach (var eventEntity in events)
+            var inlineButtons1 = new List<KeyboardButton>
             {
-                keys.Add(new KeyboardButton { Text = $"{eventEntity.Title} {eventEntity.Id}" });
+                new KeyboardButton(){Text = $"[event] Title edit" },
+                new KeyboardButton(){Text = $"[event] Description edit" }
+            };
+
+            var inlineButtons2 = new List<KeyboardButton>
+            {
+                new KeyboardButton(){Text = $"[event] Start date edit" },
+                new KeyboardButton(){Text = $"[event] End date edit" }
+            };
+
+            var inlineButtons3 = new List<KeyboardButton>
+            {
+                new KeyboardButton(){Text = $"[event] Notifications edit" }
+            };
+
+            var inlineButtons4 = new List<KeyboardButton>();
+            if (!string.IsNullOrWhiteSpace(stateContext.ContextEntity.Event.Id))
+            {
+                inlineButtons4.Add(new KeyboardButton() {Text = $"[delete] Event"});
             }
 
-            if (string.IsNullOrWhiteSpace(stateContext.ContextEntity.Event.Id))
+            var inlineButtons5 = new List<KeyboardButton>
             {
-                keys.Add(new KeyboardButton { Text = $"/menu" });
-            }
+                new KeyboardButton(){Text = $"[save] Event" }
+            };
 
-            var markup = new ReplyKeyboardMarkup(keys);
+            var inlineButtons6 = new List<KeyboardButton>
+            {
+                new KeyboardButton(){Text = $"[menu]"}
+            };
 
-            await Bot.SendTextMessageAsync(dtoDomain.ChatId, string.Empty, replyMarkup: markup);
+            var buttons = new List<IList<KeyboardButton>>
+            {
+                inlineButtons1,
+                inlineButtons2,
+                inlineButtons3, 
+                inlineButtons4, 
+                inlineButtons5,
+                inlineButtons6
+            };
+
+            var keyboard = new ReplyKeyboardMarkup(buttons);
+
+            await Bot.SendTextMessageAsync(dtoDomain.ChatId, BotMessage, replyMarkup: keyboard);
         }
     }
 }

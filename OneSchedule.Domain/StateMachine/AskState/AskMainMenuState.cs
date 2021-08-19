@@ -13,17 +13,15 @@ namespace OneSchedule.Domain.StateMachine.AskState
     {
         public AskMainMenuState(ITelegramBotClient bot) : base(bot)
         {
-            NextState = "GetMainMenu";
             BotMessage = "Select option:";
         }
 
         public override async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-            //await base.HandleAsync(stateContext, dtoDomain);
             var keys = new List<KeyboardButton>
             {
-                new KeyboardButton {Text = "/create"},
-                new KeyboardButton {Text = "/get"},
+                new KeyboardButton {Text = "[create] event"},
+                new KeyboardButton {Text = "[get] events"},
             };
 
             var markup = new ReplyKeyboardMarkup(keys);

@@ -37,8 +37,8 @@ namespace OneSchedule
             services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));
             services.ConfigureExceptionHandlingMiddleware(Configuration);
             services.ConfigureRepository(Configuration);
-            services.ConfigureStateMachine();
             services.ConfigureStrategy();
+            services.ConfigureStateMachine();
             services.ConfigureService();
             
         }

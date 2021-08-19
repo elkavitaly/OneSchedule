@@ -1,8 +1,8 @@
 ﻿using OneSchedule.Attributes;
 using OneSchedule.Domain.Abstractions.StateMachine;
 using OneSchedule.Domain.Models;
+using OneSchedule.Exceptions.CustomExceptions;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.StateMachine.GetState
@@ -10,18 +10,25 @@ namespace OneSchedule.Domain.StateMachine.GetState
     [StateName("GetEventList")]
     public class GetEventListState : IState
     {
-        private const string NextState = "AskShowEventList";
+        private const string State = "GetEventList";
 
         public Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-            if (stateContext is FindStateContext findState)
+            (DateTime, DateTime) dateTuple;
+            var dates = dtoDomain.MessageText.Split("|");
+
+            if (dates.Length == 2 && DateTime.TryParse(dates[0], out dateTuple.Item1) 
+                                  && DateTime.TryParse(dates[1], out dateTuple.Item2))
             {
-                var dates = dtoDomain.MessageText.Split("-").Select(DateTime.Parse).ToList();
-                findState.MinStartDate = dates[0];
-                findState.MaxStartDate = dates[1];
+                stateContext.MinStartDate = dateTuple.Item1;
+                stateContext.MaxStartDate = dateTuple.Item2;
+                stateContext.ContextEntity.LastState = State;
+            }
+            else
+            {
+                throw new BotAppInternalException("Invalid date format");
             }
 
-            stateContext.SetState(NextState);
             return Task.CompletedTask;
         }
     }

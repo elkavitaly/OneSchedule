@@ -7,7 +7,6 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Telegram.Bot;
-using System.Text.Json.Serialization;
 
 namespace OneSchedule.Updater
 {
@@ -35,7 +34,7 @@ namespace OneSchedule.Updater
 
             while (true)
             {
-                await Task.Delay(1000);
+                await Task.Delay(100);
 
                 try
                 {
