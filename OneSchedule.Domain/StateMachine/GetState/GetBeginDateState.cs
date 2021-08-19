@@ -1,7 +1,6 @@
 ﻿using OneSchedule.Attributes;
 using OneSchedule.Domain.Abstractions.StateMachine;
 using OneSchedule.Domain.Models;
-using OneSchedule.Exceptions.CustomExceptions;
 using System;
 using System.Threading.Tasks;
 

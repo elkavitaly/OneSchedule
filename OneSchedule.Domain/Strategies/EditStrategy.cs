@@ -4,7 +4,6 @@ using OneSchedule.Domain.Abstractions.StateMachine;
 using OneSchedule.Domain.Abstractions.Strategies;
 using OneSchedule.Domain.Models;
 using OneSchedule.Entities;
-using System;
 using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Strategies

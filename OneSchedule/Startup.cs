@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using OneSchedule.Data;
+using OneSchedule.Domain.Abstractions;
 using OneSchedule.Domain.StateMachine;
 using OneSchedule.Domain.Strategies;
 using OneSchedule.Exceptions.ExceptionHandlingMiddleware;
@@ -40,7 +41,7 @@ namespace OneSchedule
             services.ConfigureStrategy();
             services.ConfigureStateMachine();
             services.ConfigureService();
-            
+            services.AddSingleton<INotificationSender, NotificationSender>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

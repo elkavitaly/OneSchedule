@@ -1,9 +1,7 @@
 ﻿using OneSchedule.Attributes;
-using OneSchedule.Data.Abstractions;
 using OneSchedule.Domain.Abstractions.StateMachine;
 using OneSchedule.Domain.Abstractions.Strategies;
 using OneSchedule.Domain.Models;
-using OneSchedule.Entities;
 using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Strategies
