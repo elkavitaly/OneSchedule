@@ -10,6 +10,10 @@ using OneSchedule.Settings;
 using System;
 using OneSchedule.Domain.StateMachine;
 using OneSchedule.Exceptions.ExceptionHandlingMiddleware;
+using Microsoft.Extensions.Logging;
+using Serilog;
+using DnsClient.Internal;
+using Serilog.Extensions.Logging;
 
 namespace OneSchedule
 {
@@ -51,6 +55,8 @@ namespace OneSchedule
             }
 
             app.UseExceptionHandlingMiddleware();
+
+            app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
 
