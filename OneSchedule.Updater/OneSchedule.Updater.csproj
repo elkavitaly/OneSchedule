@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OneSchedule.Domain\OneSchedule.Domain.csproj" />
     <ProjectReference Include="..\OneSchedule.Settings\OneSchedule.Settings.csproj" />
   </ItemGroup>
 
