@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using OneSchedule.Settings;
 using Serilog;
+using Serilog.Formatting.Compact;
 using System;
 
 namespace OneSchedule
@@ -10,8 +12,9 @@ namespace OneSchedule
         public static void Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.Console()
-                .CreateBootstrapLogger();
+                .ReadFrom.AppSettings()
+                .WriteTo.Console(new RenderedCompactJsonFormatter())
+                .CreateLogger();
 
             Log.Information("Starting up!");
 
@@ -33,11 +36,7 @@ namespace OneSchedule
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                 .UseSerilog((context, services, configuration) => configuration
-                    .ReadFrom.Configuration(context.Configuration)
-                    .ReadFrom.Services(services)
-                    .Enrich.FromLogContext()
-                    .WriteTo.Console())
+                .UseConfiguredSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
