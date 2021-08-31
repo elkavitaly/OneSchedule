@@ -4,7 +4,6 @@ using OneSchedule.Domain.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Telegram.Bot;
-using Telegram.Bot.Types.ReplyMarkups;
 
 namespace OneSchedule.Domain.StateMachine.AskState
 {
