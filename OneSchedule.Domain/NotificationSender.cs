@@ -1,7 +1,6 @@
 ﻿using OneSchedule.Data.Abstractions;
 using OneSchedule.Domain.Abstractions;
 using OneSchedule.Entities;
-using Quartz;
 using System.Threading.Tasks;
 using Telegram.Bot;
 

@@ -34,7 +34,7 @@ namespace OneSchedule.Updater
 
             while (true)
             {
-                await Task.Delay(100);
+                await Task.Delay(1000);
 
                 try
                 {
@@ -48,7 +48,7 @@ namespace OneSchedule.Updater
                     foreach (var update in updates)
                     {
                         offset = update.Id + 1;
-                        Console.WriteLine($"send:  {update.Message?.Text}");
+                        Console.WriteLine("send");
                     }
 
                     try
@@ -66,12 +66,14 @@ namespace OneSchedule.Updater
                     Console.WriteLine(e);
                 }
             }
+
+            Environment.Exit(0);
         }
 
         private static Task<HttpResponseMessage> RedirectUpdatesToApi(IEnumerable updates, HttpClient client, ProgramSettings programSettings)
         {
-            var jsonUpdates = JsonSerializer.Serialize(updates);
-            var content = new StringContent(jsonUpdates, Encoding.UTF8, "application/json");
+            var serializedUpdates = JsonSerializer.Serialize(updates);
+            var content = new StringContent(serializedUpdates, Encoding.UTF8, "application/json");
             var response = client.PostAsync(programSettings.Uri, content);
             return response;
         }
