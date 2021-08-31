@@ -7,7 +7,6 @@ using Microsoft.OpenApi.Models;
 using OneSchedule.Data;
 using OneSchedule.Domain;
 using OneSchedule.Domain.Abstractions;
-using OneSchedule.Domain.HealthCheck;
 using OneSchedule.Domain.StateMachine;
 using OneSchedule.Domain.Strategies;
 using OneSchedule.Exceptions.ExceptionHandlingMiddleware;
@@ -89,10 +88,6 @@ namespace OneSchedule
                 // when shutting down we want jobs to complete gracefully
                 options.WaitForJobsToComplete = true;
             });
-
-            services.AddHealthChecks()
-                .AddMongoDb(Configuration.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>().ConnectionString)
-                .AddUrlGroup(new Uri(Configuration.GetSection(nameof(TelegramSettings)).Get<TelegramSettings>().TestUri));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -113,7 +108,6 @@ namespace OneSchedule
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHealthChecks("/health");
             });
         }
     }
