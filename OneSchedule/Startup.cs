@@ -39,28 +39,18 @@ namespace OneSchedule
 
             services.Configure<QuartzOptions>(Configuration.GetSection("Quartz"));
 
-            // if you are using persistent job store, you might want to alter some options
             services.Configure<QuartzOptions>(options =>
             {
-                options.Scheduling.IgnoreDuplicates = true; // default: false
-                options.Scheduling.OverWriteExistingData = true; // default: true
+                options.Scheduling.IgnoreDuplicates = true; 
+                options.Scheduling.OverWriteExistingData = true; 
             });
 
             services.AddQuartz(q =>
             {
-                // handy when part of cluster or you want to otherwise identify multiple schedulers
                 q.SchedulerId = "Scheduler-Core";
 
-                // we take this from appsettings.json, just show it's possible
-                // q.SchedulerName = "Quartz ASP.NET Core Sample Scheduler";
-
-                // as of 3.3.2 this also injects scoped services (like EF DbContext) without problems
                 q.UseMicrosoftDependencyInjectionJobFactory();
 
-                // or for scoped service support like EF Core DbContext
-                // q.UseMicrosoftDependencyInjectionScopedJobFactory();
-
-                // these are the defaults
                 q.UseSimpleTypeLoader();
                 q.UseInMemoryStore();
                 q.UseDefaultThreadPool(tp =>
@@ -85,7 +75,6 @@ namespace OneSchedule
             services.AddTransient<NotificationSenderJob>();
             services.AddQuartzHostedService(options =>
             {
-                // when shutting down we want jobs to complete gracefully
                 options.WaitForJobsToComplete = true;
             });
         }
