@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OneSchedule.Settings
+﻿namespace OneSchedule.Settings
 {
     public class TelegramSettings
     {

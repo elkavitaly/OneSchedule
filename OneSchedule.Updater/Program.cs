@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using OneSchedule.Domain;
 using System;
 using System.Collections;
 using System.Linq;
@@ -71,8 +70,8 @@ namespace OneSchedule.Updater
 
         private static Task<HttpResponseMessage> RedirectUpdatesToApi(IEnumerable updates, HttpClient client, ProgramSettings programSettings)
         {
-            var serializedUpdates = JsonSerializer.Serialize(updates);
-            var content = new StringContent(serializedUpdates, Encoding.UTF8, "application/json");
+            var jsonUpdates = JsonSerializer.Serialize(updates);
+            var content = new StringContent(jsonUpdates, Encoding.UTF8, "application/json");
             var response = client.PostAsync(programSettings.Uri, content);
             return response;
         }
