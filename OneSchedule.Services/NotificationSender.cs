@@ -6,8 +6,7 @@ namespace OneSchedule.Services
 {
     public class NotificationSender : INotificationSender
     {
-
-        Task INotificationSender.SendNotification()
+        public Task SendNotification()
         {
             throw new NotImplementedException();
         }
