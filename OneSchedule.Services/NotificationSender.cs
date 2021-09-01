@@ -1,11 +1,13 @@
 ﻿using OneSchedule.Domain.Abstractions;
 using System;
+using System.Threading.Tasks;
 
 namespace OneSchedule.Services
 {
     public class NotificationSender : INotificationSender
     {
-        public void SendNotification()
+
+        Task INotificationSender.SendNotification()
         {
             throw new NotImplementedException();
         }
