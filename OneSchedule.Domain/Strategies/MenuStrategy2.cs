@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Strategies
 {
-    [StrategyName("[menu]")]
-    public class MenuStrategy : IStrategy
+    [StrategyName("/menu")]
+    public class MenuStrategy2 : IStrategy
     {
         private const string State = "AskMainMenu";
         private readonly IRepository<ContextEntity> _contextRepository;
 
-        public MenuStrategy(IRepository<ContextEntity> contextRepository)
+        public MenuStrategy2(IRepository<ContextEntity> contextRepository)
         {
             _contextRepository = contextRepository;
         }

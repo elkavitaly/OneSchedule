@@ -1,7 +1,9 @@
-﻿namespace OneSchedule.Domain.Abstractions
+﻿using System.Threading.Tasks;
+
+namespace OneSchedule.Domain.Abstractions
 {
     public interface INotificationSender
     {
-        public void SendNotification();
+        public Task SendNotification();
     }
 }

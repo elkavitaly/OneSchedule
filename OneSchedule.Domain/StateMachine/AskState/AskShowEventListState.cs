@@ -1,28 +1,59 @@
 ﻿using OneSchedule.Attributes;
+using OneSchedule.Data.Abstractions;
 using OneSchedule.Domain.Abstractions.StateMachine;
 using OneSchedule.Domain.Models;
-using System;
+using OneSchedule.Entities;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Bot;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace OneSchedule.Domain.StateMachine.AskState
 {
     [StateName("AskShowEventList")]
-    public class GetShowEventListState : BaseAskState
+    public class AskShowEventListState : BaseAskState
     {
-        public GetShowEventListState(ITelegramBotClient bot) : base(bot)
+        private readonly IRepository<EventEntity> _eventRepository;
+        public AskShowEventListState(ITelegramBotClient bot, IRepository<EventEntity> eventRepository) : base(bot)
         {
-            NextState = "GetShowEventList";
             BotMessage = "Select option:";
+            _eventRepository = eventRepository;
         }
 
         public override async Task HandleAsync(IStateContext stateContext, DtoDomain dtoDomain)
         {
-            await base.HandleAsync(stateContext, dtoDomain);
-            //show events buttons  (20 max)
+            var events = await _eventRepository.FindAsync(e =>
+               e.StartDate >= stateContext.MinStartDate && e.StartDate <= stateContext.MaxStartDate);
 
-            //show menu button
-            throw new NotImplementedException();
+            var keys = events
+                .Where((_, index) => index < 20)
+                .Select(eventEntity => $"[edit] {eventEntity.Title}")
+                .ToList();
+
+            var buttons = new List<IList<KeyboardButton>>();
+            var counter = 0;
+            for (var i = 0; i < 5; i++)
+            {
+                if (counter < keys.Count)
+                {
+                    buttons.Add(new List<KeyboardButton>());
+                    for (var j = 0; j < 4; j++)
+                    {
+                        if (counter < keys.Count)
+                        {
+                            buttons[i].Add(new KeyboardButton() {Text = keys[counter]});
+                            counter++;
+                        }
+                    }
+                }
+            }
+
+            buttons.Add(new List<KeyboardButton>() { new KeyboardButton() { Text = "[menu]" } });
+
+            var markup = new ReplyKeyboardMarkup(buttons);
+
+            await Bot.SendTextMessageAsync(dtoDomain.ChatId, "Select option:", replyMarkup: markup);
         }
     }
 }

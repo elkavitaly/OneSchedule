@@ -7,11 +7,13 @@ namespace OneSchedule.Domain.Strategies
     {
         public static IServiceCollection ConfigureStrategy(this IServiceCollection services)
         {
-            services.AddSingleton<IStrategy, CreateStrategy>();
-            services.AddSingleton<IStrategy, EditStrategy>();
-            services.AddSingleton<IStrategy, FindStrategy>();
-            services.AddSingleton<IStrategy, RemoveStrategy>();
-            services.AddSingleton<IStrategyContext, StrategyContext>();
+            services.AddSingleton<IStrategy, DataStrategy>();
+            services.AddSingleton<IStrategy, DeleteStrategy>();
+            services.AddSingleton<IStrategy, EventStrategy>();
+            services.AddSingleton<IStrategy, GetStrategy>();
+            services.AddSingleton<IStrategy, MenuStrategy>();
+            services.AddSingleton<IStrategy, MenuStrategy2>();
+            services.AddSingleton<IStrategy, SaveStrategy>();
             return services;
         }
     }

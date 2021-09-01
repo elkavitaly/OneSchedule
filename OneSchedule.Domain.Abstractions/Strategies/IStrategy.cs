@@ -1,10 +1,11 @@
-﻿using OneSchedule.Domain.Models;
+﻿using OneSchedule.Domain.Abstractions.StateMachine;
+using OneSchedule.Domain.Models;
 using System.Threading.Tasks;
 
 namespace OneSchedule.Domain.Abstractions.Strategies
 {
     public interface IStrategy
     {
-        Task ExecuteAsync(DtoDomain dto);
+        Task ExecuteAsync(IStateContext context, DtoDomain dto);
     }
 }

@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Telegram.Bot;
 
@@ -34,7 +34,7 @@ namespace OneSchedule.Updater
 
             while (true)
             {
-                await Task.Delay(1000);
+                await Task.Delay(100);
 
                 try
                 {
@@ -48,7 +48,7 @@ namespace OneSchedule.Updater
                     foreach (var update in updates)
                     {
                         offset = update.Id + 1;
-                        Console.WriteLine("send");
+                        Console.WriteLine($"send:  {update.Message?.Text}");
                     }
 
                     try
@@ -66,14 +66,12 @@ namespace OneSchedule.Updater
                     Console.WriteLine(e);
                 }
             }
-
-            Environment.Exit(0);
         }
 
         private static Task<HttpResponseMessage> RedirectUpdatesToApi(IEnumerable updates, HttpClient client, ProgramSettings programSettings)
         {
-            var serializedUpdates = JsonConvert.SerializeObject(updates);
-            var content = new StringContent(serializedUpdates, Encoding.UTF8, "application/json");
+            var jsonUpdates = JsonSerializer.Serialize(updates);
+            var content = new StringContent(jsonUpdates, Encoding.UTF8, "application/json");
             var response = client.PostAsync(programSettings.Uri, content);
             return response;
         }
