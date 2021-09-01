@@ -12,6 +12,7 @@ using OneSchedule.Exceptions.ExceptionHandlingMiddleware;
 using OneSchedule.Services;
 using OneSchedule.Settings;
 using System;
+using Serilog;
 
 namespace OneSchedule
 {
@@ -54,6 +55,8 @@ namespace OneSchedule
             }
 
             app.UseExceptionHandlingMiddleware();
+
+            app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
 

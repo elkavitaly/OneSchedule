@@ -5,6 +5,8 @@ using OneSchedule.Exceptions.CustomExceptions;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -57,14 +59,17 @@ namespace OneSchedule.Exceptions.ExceptionHandlingMiddleware
 
         private async void SendExceptionToChat(string jsonString, string message)
         {
-            var updates = JsonConvert.DeserializeObject<List<Update>>(jsonString,
-                new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Ignore });
-
-            if (updates != null)
+            if (!string.IsNullOrWhiteSpace(jsonString))
             {
-                var chatId = updates.FindLast(u => true)?.Message.Chat.Id;
+                var updates = JsonSerializer.Deserialize<Update[]>(jsonString);
 
-                await _bot.SendTextMessageAsync(chatId, message);
+                if (updates is { Length: > 0 })
+                {
+                    var update = updates.First();
+                    var chatId = update.Message.Chat.Id;
+
+                    await _bot.SendTextMessageAsync(chatId, message);
+                }
             }
         }
     }

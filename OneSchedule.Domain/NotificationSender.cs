@@ -9,14 +9,16 @@ namespace OneSchedule.Domain
     public class NotificationSender:INotificationSender
     {
         private const int TenSeconds = 10;
+        private readonly ITelegramBotClient _bot;
+        private readonly IRepository<EventEntity> _repository;
 
         public NotificationSender(ITelegramBotClient bot, IRepository<EventEntity> eventRepository)
         {
 
         }
-        public Task SendNotification()
+        public async Task SendNotification()
         {
-            return Task.CompletedTask;
+
         }
     }
 }

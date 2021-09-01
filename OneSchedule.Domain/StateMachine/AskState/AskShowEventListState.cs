@@ -27,7 +27,7 @@ namespace OneSchedule.Domain.StateMachine.AskState
                e.StartDate >= stateContext.MinStartDate && e.StartDate <= stateContext.MaxStartDate);
 
             var keys = events
-                .Where((_, index) => index < 20)
+                .Where((eventEntity, index) => index < 20)
                 .Select(eventEntity => $"[edit] {eventEntity.Title}")
                 .ToList();
 
