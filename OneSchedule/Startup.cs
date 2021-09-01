@@ -7,7 +7,6 @@ using Microsoft.OpenApi.Models;
 using OneSchedule.Data;
 using OneSchedule.Domain;
 using OneSchedule.Domain.Abstractions;
-using OneSchedule.Domain.HealthCheck;
 using OneSchedule.Domain.StateMachine;
 using OneSchedule.Domain.Strategies;
 using OneSchedule.Exceptions.ExceptionHandlingMiddleware;
