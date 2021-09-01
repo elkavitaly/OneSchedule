@@ -61,7 +61,7 @@ namespace OneSchedule.Exceptions.ExceptionHandlingMiddleware
             {
                 var updates = JsonSerializer.Deserialize<Update[]>(jsonString);
 
-                if (updates is { Length: > 0 })
+                if (updates != null && updates.Any())
                 {
                     var update = updates.First();
                     var chatId = update.Message.Chat.Id;
