@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-	  <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
-    <UserSecretsId>d98d5b34-9d2b-4d80-bbc5-71c059e6535b</UserSecretsId>
+	  <UserSecretsId>d98d5b34-9d2b-4d80-bbc5-71c059e6535b</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
