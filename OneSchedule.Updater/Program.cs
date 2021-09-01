@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using OneSchedule.Domain;
 using System;
 using System.Collections;
 using System.Linq;
