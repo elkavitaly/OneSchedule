@@ -12,8 +12,6 @@ namespace OneSchedule
         public static void Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-                .ReadFrom.AppSettings()
-                .WriteTo.Console(new RenderedCompactJsonFormatter())
                 .CreateLogger();
 
             Log.Information("Starting up!");
