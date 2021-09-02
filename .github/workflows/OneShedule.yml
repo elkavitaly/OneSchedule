@@ -2,8 +2,7 @@ name: Build and deploy .NET Core app to Linux WebApp OneShedule
 on:
   push:
     branches:
-    - feature/deployed-fixed
-    - develop
+     - develop
 env:
   AZURE_WEBAPP_NAME: OneShedule
   AZURE_WEBAPP_PACKAGE_PATH: OneSchedule/publish
