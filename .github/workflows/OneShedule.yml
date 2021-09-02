@@ -3,6 +3,7 @@ on:
   push:
     branches:
     - feature/deployed-fixed
+    - develop
 env:
   AZURE_WEBAPP_NAME: OneShedule
   AZURE_WEBAPP_PACKAGE_PATH: OneSchedule/publish
