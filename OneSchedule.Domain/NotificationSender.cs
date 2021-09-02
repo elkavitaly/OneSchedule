@@ -4,7 +4,6 @@ using OneSchedule.Entities;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace OneSchedule.Domain
