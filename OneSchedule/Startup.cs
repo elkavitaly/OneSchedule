@@ -64,7 +64,6 @@ namespace OneSchedule
                     .WithIdentity("Combined Configuration Trigger")
                     .StartAt(DateBuilder.EvenSecondDate(DateTimeOffset.UtcNow.AddSeconds(1)))
                     .WithDailyTimeIntervalSchedule(x => x.WithInterval(10, IntervalUnit.Second)));
-
             });
 
             services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));
