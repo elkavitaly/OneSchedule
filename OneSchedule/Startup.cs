@@ -30,6 +30,8 @@ namespace OneSchedule
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHostedService<SetWebHookService>();
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddControllers();
