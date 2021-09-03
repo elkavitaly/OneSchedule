@@ -9,7 +9,7 @@ using Telegram.Bot;
 
 namespace OneSchedule.Domain
 {
-    public class SetWebHookService: IHostedService
+    public class SetWebHookService : IHostedService
     {
         public async Task StartAsync(CancellationToken cancellationToken)
         {
@@ -32,15 +32,19 @@ namespace OneSchedule.Domain
                 Uri = configuration.GetSection("WebHook").GetSection("Uri").Value
             };
 
-            var bot = new TelegramBotClient(telegramSettings.ApiKey);
+            if (!string.IsNullOrEmpty(webHookSettings.Uri)
+                && !string.IsNullOrEmpty(telegramSettings.ApiKey))
+            {
+                var bot = new TelegramBotClient(telegramSettings.ApiKey);
 
-            if (webHookSettings.IsUsed)
-            {
-                await bot.SetWebhookAsync(webHookSettings.Uri);
-            }
-            else
-            {
-                await bot.SetWebhookAsync(string.Empty);
+                if (webHookSettings.IsUsed)
+                {
+                    await bot.SetWebhookAsync(webHookSettings.Uri);
+                }
+                else
+                {
+                    await bot.SetWebhookAsync(string.Empty);
+                }
             }
         }
 
