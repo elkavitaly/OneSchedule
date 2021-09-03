@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using OneSchedule.Settings;
 using Serilog;
-using Serilog.Formatting.Compact;
 using System;
 
 namespace OneSchedule

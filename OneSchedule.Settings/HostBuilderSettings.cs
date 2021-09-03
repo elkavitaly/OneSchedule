@@ -14,7 +14,7 @@ namespace OneSchedule.Settings
                 .ReadFrom.Services(services)
                 .Enrich.FromLogContext()
                 .WriteTo.Console(new RenderedCompactJsonFormatter())
-                .WriteTo.AzureBlobStorage(context.Configuration.GetSection("Logger").Get<LoggerSettings>().ConnectionString));
+                .WriteTo.AzureBlobStorage(connectionString: context.Configuration.GetSection("Logger").Get<LoggerSettings>().ConnectionString, formatter: new RenderedCompactJsonFormatter()));
             return hostBuilder;
         }
     }
