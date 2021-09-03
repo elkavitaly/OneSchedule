@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Formatting.Compact;
 
@@ -12,7 +13,8 @@ namespace OneSchedule.Settings
                 .ReadFrom.Configuration(context.Configuration)
                 .ReadFrom.Services(services)
                 .Enrich.FromLogContext()
-                .WriteTo.Console(new RenderedCompactJsonFormatter()));
+                .WriteTo.Console(new RenderedCompactJsonFormatter())
+                .WriteTo.AzureBlobStorage(connectionString: context.Configuration.GetSection("Logger").Get<LoggerSettings>().ConnectionString, formatter: new RenderedCompactJsonFormatter()));
             return hostBuilder;
         }
     }
