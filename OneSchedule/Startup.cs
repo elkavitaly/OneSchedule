@@ -73,6 +73,7 @@ namespace OneSchedule
             services.ConfigureStateMachine();
             services.ConfigureService();
             services.AddSingleton<INotificationSender, NotificationSender>();
+            services.AddSingleton<INotificationScheduler, NotificationScheduler>();
 
             services.AddQuartzHostedService(options =>
             {
