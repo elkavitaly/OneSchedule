@@ -26,7 +26,7 @@ namespace OneSchedule.Domain
             {
                 var bot = new TelegramBotClient(_telegramOptions.Value.ApiKey);
 
-                if (_webHookOptions.Value.IsUsed)
+                if (_webHookOptions.Value.IsEnable)
                 {
                     await bot.SetWebhookAsync(_webHookOptions.Value.Uri);
                 }

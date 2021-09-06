@@ -4,6 +4,6 @@
     {
         public string Uri { get; set; }
 
-        public bool IsUsed { get; set; }
+        public bool IsEnable { get; set; }
     }
 }
