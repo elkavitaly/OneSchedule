@@ -21,7 +21,7 @@ namespace OneSchedule.Domain
             _bot = bot;
         }
 
-        public async void ScheduleNotifications(EventEntity eventEntity)
+        public async Task ScheduleNotifications(EventEntity eventEntity)
         {
             IScheduler scheduler = SchedulerRepository.Instance.Lookup("Quartz ASP.NET�Core Sample Scheduler").Result;
 
