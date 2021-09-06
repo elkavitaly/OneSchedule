@@ -49,16 +49,16 @@ namespace OneSchedule.Updater
                     {
                         offset = update.Id + 1;
                         Console.WriteLine($"send:  {update.Message?.Text}");
-                    }
-
-                    try
-                    {
-                        await RedirectUpdatesToApi(updates, client, programSettings);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                        break;
+                        try
+                        {
+                            var jsonUpdate = JsonSerializer.Serialize(update);
+                            var content = new StringContent(jsonUpdate, Encoding.UTF8, "application/json");
+                            await client.PostAsync(programSettings.Uri, content);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                 }
                 catch (Exception e)
@@ -68,15 +68,5 @@ namespace OneSchedule.Updater
             }
         }
 
-        private static Task RedirectUpdatesToApi(IEnumerable updates, HttpClient client, ProgramSettings programSettings)
-        {
-            foreach (var update in updates)
-            {
-                var jsonUpdate = JsonSerializer.Serialize(update);
-                var content = new StringContent(jsonUpdate, Encoding.UTF8, "application/json");
-                client.PostAsync(programSettings.Uri, content);
-            }
-            return Task.CompletedTask;
-        }
     }
 }
