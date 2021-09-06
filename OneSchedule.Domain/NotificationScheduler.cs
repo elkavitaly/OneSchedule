@@ -19,18 +19,20 @@ namespace OneSchedule.Domain
         public NotificationScheduler(ITelegramBotClient bot)
         {
             _bot = bot;
-
         }
 
         public async void ScheduleNotifications(EventEntity eventEntity)
         {
             IScheduler scheduler = SchedulerRepository.Instance.Lookup("Quartz ASP.NET�Core Sample Scheduler").Result;
 
+            List<Task> tasks = new List<Task>();
+
             foreach (var item in eventEntity.Notifications)
             {
-                await scheduler.ScheduleJob(() => _bot.SendTextMessageAsync(eventEntity.ChatId, $"Event {eventEntity.Title} will begin at {eventEntity.StartDate}"),
-                            builder => builder.StartAt(item.Date));
+                tasks.Add( scheduler.ScheduleJob(() => _bot.SendTextMessageAsync(eventEntity.ChatId, $"Event {eventEntity.Title} will begin at {eventEntity.StartDate}"),
+                            builder => builder.StartAt(item.Date)));
             }
+            await Task.WhenAll(tasks.ToArray());
         }
     }
 }
