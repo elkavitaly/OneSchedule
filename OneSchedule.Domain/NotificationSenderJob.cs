@@ -6,7 +6,7 @@ namespace OneSchedule.Domain
 {
     public class NotificationSenderJob : IJob
     {
-        private INotificationSender _notificationSender;
+        private readonly INotificationSender _notificationSender;
 
         public NotificationSenderJob(INotificationSender notificationSender)
         {

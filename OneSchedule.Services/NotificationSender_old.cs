@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace OneSchedule.Services
 {
-    public class NotificationSender : INotificationSender
+    public class NotificationSender_old : INotificationSender
     {
         public Task SendNotification()
         {

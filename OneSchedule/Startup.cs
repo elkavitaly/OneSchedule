@@ -15,7 +15,7 @@ using OneSchedule.Settings;
 using Quartz;
 using System;
 using Serilog;
-using NotificationSender = OneSchedule.Services.NotificationSender;
+using NotificationSender_old = OneSchedule.Services.NotificationSender_old;
 
 namespace OneSchedule
 {
@@ -59,11 +59,6 @@ namespace OneSchedule
                 {
                     tp.MaxConcurrency = 10;
                 });
-
-                q.ScheduleJob<NotificationSenderJob>(trigger => trigger
-                    .WithIdentity("Combined Configuration Trigger")
-                    .StartAt(DateBuilder.EvenSecondDate(DateTimeOffset.UtcNow.AddSeconds(1)))
-                    .WithDailyTimeIntervalSchedule(x => x.WithInterval(10, IntervalUnit.Second)));
             });
 
             services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));

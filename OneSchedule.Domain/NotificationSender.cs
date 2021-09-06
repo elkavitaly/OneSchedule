@@ -4,14 +4,12 @@ using OneSchedule.Entities;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using System;
-using System.Collections.Generic;
 
 namespace OneSchedule.Domain
 {
     public class NotificationSender : INotificationSender
     {
-
-        private const int TwentySeconds = 20;
+        private const int DeltaTime = 30;
         private readonly ITelegramBotClient _bot;
         private readonly IRepository<EventEntity> _repository;
 
@@ -23,17 +21,17 @@ namespace OneSchedule.Domain
 
         public async Task SendNotification()
         {
-            var actualTimeMinus30seconds = DateTime.Now.AddSeconds(-30);
-            var actualTimePlus30seconds = DateTime.Now.AddSeconds(30);
+            var actualTimeMinusDeltaTime = DateTime.Now.AddSeconds(-DeltaTime);
+            var actualTimePlusDeltaTime = DateTime.Now.AddSeconds(DeltaTime);
 
-            List<EventEntity> events = await _repository.FindAsync(e => true);
+            var events = await _repository.FindAsync(e => true);
 
             foreach (var item in events)
             {
                 foreach (var n in item.Notifications)
                 {
-                    if (n.Date <= actualTimePlus30seconds && n.Date >= actualTimeMinus30seconds)
-                    {
+                    if (n.Date <= actualTimePlusDeltaTime && n.Date >= actualTimeMinusDeltaTime)
+                    {
                         await _bot.SendTextMessageAsync(item.ChatId, $"Event {item.Title} will begin at {item.StartDate}");
                     }
                 }
