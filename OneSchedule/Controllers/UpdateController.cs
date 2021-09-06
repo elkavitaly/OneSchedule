@@ -15,7 +15,7 @@ namespace OneSchedule.Controllers
         private readonly IStateContext _context;
         private readonly IMapper _mapper;
 
-        public UpdateController(IService<UserDomain> service, IMapper mapper, IStateContext context)
+        public UpdateController(IMapper mapper, IStateContext context)
         {
             _context = context;
             _mapper = mapper;
