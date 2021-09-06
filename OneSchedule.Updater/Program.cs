@@ -52,7 +52,7 @@ namespace OneSchedule.Updater
                         {
                             var jsonUpdate = JsonSerializer.Serialize(update);
                             var content = new StringContent(jsonUpdate, Encoding.UTF8, "application/json");
-                            client.PostAsync(programSettings.Uri, content);
+                            await client.PostAsync(programSettings.Uri, content);
                         }
                         catch (Exception e)
                         {
