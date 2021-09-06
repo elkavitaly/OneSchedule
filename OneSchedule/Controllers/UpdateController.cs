@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using OneSchedule.Domain.Abstractions;
 using OneSchedule.Domain.Abstractions.StateMachine;
 using OneSchedule.Domain.Models;
 using System.Threading.Tasks;
