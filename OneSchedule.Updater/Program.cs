@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -29,7 +30,7 @@ namespace OneSchedule.Updater
 
             var client = new HttpClient();
 
-            await bot.DeleteWebhookAsync();
+            await bot.SetWebhookAsync(string.Empty);
 
             while (true)
             {
@@ -48,16 +49,16 @@ namespace OneSchedule.Updater
                     {
                         offset = update.Id + 1;
                         Console.WriteLine($"send:  {update.Message?.Text}");
-                        try
-                        {
-                            var jsonUpdate = JsonSerializer.Serialize(update);
-                            var content = new StringContent(jsonUpdate, Encoding.UTF8, "application/json");
-                            await client.PostAsync(programSettings.Uri, content);
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
+                    }
+
+                    try
+                    {
+                        await RedirectUpdatesToApi(updates, client, programSettings);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        break;
                     }
                 }
                 catch (Exception e)
@@ -65,6 +66,17 @@ namespace OneSchedule.Updater
                     Console.WriteLine(e);
                 }
             }
+        }
+
+        private static Task RedirectUpdatesToApi(IEnumerable updates, HttpClient client, ProgramSettings programSettings)
+        {
+            foreach (var update in updates)
+            {
+                var jsonUpdate = JsonSerializer.Serialize(update);
+                var content = new StringContent(jsonUpdate, Encoding.UTF8, "application/json");
+                client.PostAsync(programSettings.Uri, content);
+            }
+            return Task.CompletedTask;
         }
     }
 }

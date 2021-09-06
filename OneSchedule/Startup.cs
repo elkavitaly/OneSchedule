@@ -29,9 +29,10 @@ namespace OneSchedule
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(); 
 
             services.AddSwaggerGen(c =>
             {
