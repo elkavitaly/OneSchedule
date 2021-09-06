@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -30,7 +29,7 @@ namespace OneSchedule.Updater
 
             var client = new HttpClient();
 
-            await bot.SetWebhookAsync(string.Empty);
+            await bot.DeleteWebhookAsync();
 
             while (true)
             {
@@ -53,7 +52,7 @@ namespace OneSchedule.Updater
                         {
                             var jsonUpdate = JsonSerializer.Serialize(update);
                             var content = new StringContent(jsonUpdate, Encoding.UTF8, "application/json");
-                            await client.PostAsync(programSettings.Uri, content);
+                            client.PostAsync(programSettings.Uri, content);
                         }
                         catch (Exception e)
                         {
@@ -67,6 +66,5 @@ namespace OneSchedule.Updater
                 }
             }
         }
-
     }
 }
