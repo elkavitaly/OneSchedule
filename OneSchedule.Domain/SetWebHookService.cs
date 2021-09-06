@@ -1,8 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using OneSchedule.Settings;
-using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -11,39 +9,30 @@ namespace OneSchedule.Domain
 {
     public class SetWebHookService : IHostedService
     {
+        private readonly IOptions<TelegramSettings> _telegramOptions;
+        private readonly IOptions<WebHookSettings> _webHookOptions;
+
+        public SetWebHookService(IOptions<TelegramSettings> telegramOptions,
+            IOptions<WebHookSettings> webHookOptions)
+        {
+            _telegramOptions = telegramOptions;
+            _webHookOptions = webHookOptions;
+        }
+
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            var assembly = AppDomain.CurrentDomain.GetAssemblies()
-                .Single(o => o.EntryPoint != null);
-
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddUserSecrets(assembly)
-                .Build();
-
-            var telegramSettings = new TelegramSettings()
+            if (!string.IsNullOrEmpty(_webHookOptions.Value.Uri)
+                && !string.IsNullOrEmpty(_telegramOptions.Value.ApiKey))
             {
-                ApiKey = configuration.GetSection("TelegramSettings").GetSection("ApiKey").Value
-            };
+                var bot = new TelegramBotClient(_telegramOptions.Value.ApiKey);
 
-            var webHookSettings = new WebHookSettings()
-            {
-                IsUsed = configuration.GetSection("WebHook").GetSection("IsUsed").Get<bool>(),
-                Uri = configuration.GetSection("WebHook").GetSection("Uri").Value
-            };
-
-            if (!string.IsNullOrEmpty(webHookSettings.Uri)
-                && !string.IsNullOrEmpty(telegramSettings.ApiKey))
-            {
-                var bot = new TelegramBotClient(telegramSettings.ApiKey);
-
-                if (webHookSettings.IsUsed)
+                if (_webHookOptions.Value.IsUsed)
                 {
-                    await bot.SetWebhookAsync(webHookSettings.Uri);
+                    await bot.SetWebhookAsync(_webHookOptions.Value.Uri);
                 }
                 else
                 {
-                    await bot.SetWebhookAsync(string.Empty);
+                    await bot.DeleteWebhookAsync();
                 }
             }
         }
