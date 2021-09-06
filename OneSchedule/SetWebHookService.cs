@@ -12,7 +12,7 @@ namespace OneSchedule
         private readonly IOptions<WebHookSettings> _webHookOptions;
         private readonly ITelegramBotClient _bot;
 
-        public SetWebHookService(IOptions<WebHookSettings> webHookOptions, ITelegramBotClient bot )
+        public SetWebHookService(IOptions<WebHookSettings> webHookOptions, ITelegramBotClient bot)
         {
             _webHookOptions = webHookOptions;
             _bot = bot;
@@ -20,9 +20,9 @@ namespace OneSchedule
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            if (!string.IsNullOrEmpty(_webHookOptions.Value.Uri) && _bot!=null)
+            if (!string.IsNullOrEmpty(_webHookOptions.Value.Uri) && _bot != null)
             {
-                if (_webHookOptions.Value.IsEnable)
+                if (_webHookOptions.Value.IsEnabled)
                 {
                     await _bot.SetWebhookAsync(_webHookOptions.Value.Uri);
                 }
