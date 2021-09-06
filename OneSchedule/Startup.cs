@@ -13,9 +13,8 @@ using OneSchedule.Exceptions.ExceptionHandlingMiddleware;
 using OneSchedule.Services;
 using OneSchedule.Settings;
 using Quartz;
-using System;
 using Serilog;
-using NotificationSender_old = OneSchedule.Services.NotificationSender_old;
+using System;
 
 namespace OneSchedule
 {
