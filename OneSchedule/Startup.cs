@@ -83,6 +83,7 @@ namespace OneSchedule
                 .AddMongoDb(Configuration.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>().ConnectionString)
                 .AddUrlGroup(new Uri(Configuration.GetSection(nameof(TelegramSettings)).Get<TelegramSettings>().TestUri));
 
+            services.Configure<WebHookSettings>(Configuration.GetSection(nameof(WebHookSettings)));
             services.AddHostedService<SetWebHookService>();
         }
 
