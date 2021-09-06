@@ -15,7 +15,7 @@ using OneSchedule.Settings;
 using Quartz;
 using System;
 using Serilog;
-using NotificationSender = OneSchedule.Services.NotificationSender;
+
 
 namespace OneSchedule
 {
@@ -30,6 +30,7 @@ namespace OneSchedule
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddControllers();
@@ -67,6 +68,7 @@ namespace OneSchedule
             });
 
             services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));
+            services.Configure<WebHookSettings>(Configuration.GetSection(nameof(WebHookSettings)));
             services.ConfigureExceptionHandlingMiddleware(Configuration);
             services.ConfigureRepository(Configuration);
             services.ConfigureStrategy();
@@ -81,6 +83,8 @@ namespace OneSchedule
             services.AddHealthChecks()
                 .AddMongoDb(Configuration.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>().ConnectionString)
                 .AddUrlGroup(new Uri(Configuration.GetSection(nameof(TelegramSettings)).Get<TelegramSettings>().TestUri));
+
+            services.AddHostedService<SetWebHookService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
