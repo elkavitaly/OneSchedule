@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using OneSchedule.Domain.Abstractions;
 using OneSchedule.Domain.Abstractions.StateMachine;
 using OneSchedule.Domain.Models;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Telegram.Bot.Types;
 
@@ -23,13 +22,10 @@ namespace OneSchedule.Controllers
         }
 
         [HttpPost]
-        public async Task Post([FromBody] IEnumerable<Update> updates)
+        public async Task Post([FromBody] Update update)
         {
-            foreach (var update in updates)
-            {
-                var dto = _mapper.Map<DtoDomain>(update);
-                await _context.HandleAsync(dto);
-            }
+            var dto = _mapper.Map<DtoDomain>(update);
+            await _context.HandleAsync(dto);
         }
     }
 }

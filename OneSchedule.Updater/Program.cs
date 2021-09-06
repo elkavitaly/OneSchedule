@@ -68,12 +68,15 @@ namespace OneSchedule.Updater
             }
         }
 
-        private static Task<HttpResponseMessage> RedirectUpdatesToApi(IEnumerable updates, HttpClient client, ProgramSettings programSettings)
+        private static Task RedirectUpdatesToApi(IEnumerable updates, HttpClient client, ProgramSettings programSettings)
         {
-            var jsonUpdates = JsonSerializer.Serialize(updates);
-            var content = new StringContent(jsonUpdates, Encoding.UTF8, "application/json");
-            var response = client.PostAsync(programSettings.Uri, content);
-            return response;
+            foreach (var update in updates)
+            {
+                var jsonUpdate = JsonSerializer.Serialize(update);
+                var content = new StringContent(jsonUpdate, Encoding.UTF8, "application/json");
+                client.PostAsync(programSettings.Uri, content);
+            }
+            return Task.CompletedTask;
         }
     }
 }
