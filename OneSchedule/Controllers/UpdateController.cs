@@ -19,7 +19,7 @@ namespace OneSchedule.Controllers
         {
             _context = context;
             _mapper = mapper;
-        }
+        } 
 
         [HttpPost]
         public async Task Post([FromBody] Update update)
