@@ -78,9 +78,12 @@ namespace OneSchedule
             {
                 options.WaitForJobsToComplete = true;
             });
+
             services.AddHealthChecks()
                 .AddMongoDb(Configuration.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>().ConnectionString)
                 .AddUrlGroup(new Uri(Configuration.GetSection(nameof(TelegramSettings)).Get<TelegramSettings>().TestUri));
+
+            services.AddHostedService<SetWebHookService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
