@@ -5,34 +5,30 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
 
-namespace OneSchedule.Domain
+namespace OneSchedule
 {
     public class SetWebHookService : IHostedService
     {
-        private readonly IOptions<TelegramSettings> _telegramOptions;
         private readonly IOptions<WebHookSettings> _webHookOptions;
+        private readonly ITelegramBotClient _bot;
 
-        public SetWebHookService(IOptions<TelegramSettings> telegramOptions,
-            IOptions<WebHookSettings> webHookOptions)
+        public SetWebHookService(IOptions<WebHookSettings> webHookOptions, ITelegramBotClient bot )
         {
-            _telegramOptions = telegramOptions;
             _webHookOptions = webHookOptions;
+            _bot = bot;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            if (!string.IsNullOrEmpty(_webHookOptions.Value.Uri)
-                && !string.IsNullOrEmpty(_telegramOptions.Value.ApiKey))
+            if (!string.IsNullOrEmpty(_webHookOptions.Value.Uri) && _bot!=null)
             {
-                var bot = new TelegramBotClient(_telegramOptions.Value.ApiKey);
-
                 if (_webHookOptions.Value.IsEnable)
                 {
-                    await bot.SetWebhookAsync(_webHookOptions.Value.Uri);
+                    await _bot.SetWebhookAsync(_webHookOptions.Value.Uri);
                 }
                 else
                 {
-                    await bot.DeleteWebhookAsync();
+                    await _bot.DeleteWebhookAsync();
                 }
             }
         }
