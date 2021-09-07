@@ -31,7 +31,7 @@ namespace OneSchedule.Updater
 
             var client = new HttpClient();
 
-            await bot.SetWebhookAsync(string.Empty);
+            await bot.DeleteWebhookAsync();
 
             while (true)
             {
