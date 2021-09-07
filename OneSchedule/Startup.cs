@@ -13,8 +13,9 @@ using OneSchedule.Exceptions.ExceptionHandlingMiddleware;
 using OneSchedule.Services;
 using OneSchedule.Settings;
 using Quartz;
-using System;
 using Serilog;
+using System;
+
 
 namespace OneSchedule
 {
@@ -59,11 +60,6 @@ namespace OneSchedule
                 {
                     tp.MaxConcurrency = 10;
                 });
-
-                q.ScheduleJob<NotificationSenderJob>(trigger => trigger
-                    .WithIdentity("Combined Configuration Trigger")
-                    .StartAt(DateBuilder.EvenSecondDate(DateTimeOffset.UtcNow.AddSeconds(1)))
-                    .WithDailyTimeIntervalSchedule(x => x.WithInterval(10, IntervalUnit.Second)));
             });
 
             services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));
@@ -72,7 +68,7 @@ namespace OneSchedule
             services.ConfigureStrategy();
             services.ConfigureStateMachine();
             services.ConfigureService();
-            services.AddSingleton<INotificationSender, NotificationSender>();
+            services.AddSingleton<INotificationScheduler, NotificationScheduler>();
 
             services.AddQuartzHostedService(options =>
             {
