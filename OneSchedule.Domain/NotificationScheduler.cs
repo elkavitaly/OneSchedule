@@ -29,7 +29,7 @@ namespace OneSchedule.Domain
         {
             IScheduler scheduler = await SchedulerRepository.Instance.Lookup(_configuration.GetSection("Quartz").GetSection("quartz.scheduler.instanceName").Value);
 
-            List<Task> tasks = new List<Task>(new Task[eventEntity.Notifications.Count]);
+            List<Task> tasks = new List<Task>(eventEntity.Notifications.Count);
 
             foreach (var item in eventEntity.Notifications)
             {
