@@ -10,7 +10,6 @@ namespace OneSchedule.Services
         {
             services.AddSingleton<IService<UserDomain>, UserService>();
             services.AddSingleton<IService<EventDomain>, EventService>();
-            services.AddSingleton<IService<NotificationDomain>, NotificationService>();
             return services;
         }
     }
