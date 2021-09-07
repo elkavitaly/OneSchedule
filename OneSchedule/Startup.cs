@@ -32,7 +32,7 @@ namespace OneSchedule
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
 
             services.AddSwaggerGen(c =>
             {
@@ -62,7 +62,6 @@ namespace OneSchedule
             });
 
             services.Configure<TelegramSettings>(Configuration.GetSection(nameof(TelegramSettings)));
-            services.Configure<WebHookSettings>(Configuration.GetSection(nameof(WebHookSettings)));
             services.ConfigureExceptionHandlingMiddleware(Configuration);
             services.ConfigureRepository(Configuration);
             services.ConfigureStrategy();
@@ -74,10 +73,12 @@ namespace OneSchedule
             {
                 options.WaitForJobsToComplete = true;
             });
+
             services.AddHealthChecks()
                 .AddMongoDb(Configuration.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>().ConnectionString)
                 .AddUrlGroup(new Uri(Configuration.GetSection(nameof(TelegramSettings)).Get<TelegramSettings>().TestUri));
 
+            services.Configure<WebHookSettings>(Configuration.GetSection(nameof(WebHookSettings)));
             services.AddHostedService<SetWebHookService>();
         }
 

@@ -1,7 +1,7 @@
 name: Build and deploy .NET Core app to Linux WebApp OneShedule
 on:
   pull_request:
-    branches: 
+    branches:
      - develop
   push:
     branches:

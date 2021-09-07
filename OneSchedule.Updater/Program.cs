@@ -1,12 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Telegram.Bot;
+using Telegram.Bot.Types;
 
 namespace OneSchedule.Updater
 {
@@ -68,12 +69,14 @@ namespace OneSchedule.Updater
             }
         }
 
-        private static Task<HttpResponseMessage> RedirectUpdatesToApi(IEnumerable updates, HttpClient client, ProgramSettings programSettings)
+        private static async Task RedirectUpdatesToApi(IEnumerable<Update> updates, HttpClient client, ProgramSettings programSettings)
         {
-            var jsonUpdates = JsonSerializer.Serialize(updates);
-            var content = new StringContent(jsonUpdates, Encoding.UTF8, "application/json");
-            var response = client.PostAsync(programSettings.Uri, content);
-            return response;
+            foreach (var update in updates)
+            {
+                var jsonUpdate = JsonSerializer.Serialize(update);
+                var content = new StringContent(jsonUpdate, Encoding.UTF8, "application/json");
+                await client.PostAsync(programSettings.Uri, content);
+            }
         }
     }
 }

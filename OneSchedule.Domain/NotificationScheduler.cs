@@ -1,14 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using OneSchedule.Domain.Abstractions;
 using OneSchedule.Entities;
-using Quartz;
 using Quartz.Impl;
 using Quartz.Lambda;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Telegram.Bot;
 
@@ -27,15 +22,15 @@ namespace OneSchedule.Domain
 
         public async Task ScheduleNotifications(EventEntity eventEntity)
         {
-            IScheduler scheduler = await SchedulerRepository.Instance.Lookup(_configuration.GetValue<string>("Quartz:quartz.scheduler.instanceName"));
+            var scheduler = await SchedulerRepository.Instance.Lookup(_configuration.GetValue<string>("Quartz:quartz.scheduler.instanceName"));
 
-            List<Task> tasks = new List<Task>(eventEntity.Notifications.Count);
+            var tasks = new List<Task>(eventEntity.Notifications.Count);
 
             foreach (var item in eventEntity.Notifications)
             {
-                tasks.Add(scheduler.ScheduleJob(() => 
+                tasks.Add(scheduler.ScheduleJob(() =>
                     _bot.SendTextMessageAsync(
-                        eventEntity.ChatId, 
+                        eventEntity.ChatId,
                         $"Event {eventEntity.Title} will begin at  {eventEntity.StartDate}"),
                         builder => builder.StartAt(
                             item.Date)));
