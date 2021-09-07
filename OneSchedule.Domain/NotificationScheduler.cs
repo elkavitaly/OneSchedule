@@ -27,14 +27,20 @@ namespace OneSchedule.Domain
 
         public async Task ScheduleNotifications(EventEntity eventEntity)
         {
-            IScheduler scheduler = await SchedulerRepository.Instance.Lookup(_configuration.GetSection("Quartz").GetSection("quartz.scheduler.instanceName").Value);
+            IScheduler scheduler = await SchedulerRepository.Instance.Lookup(_configuration.GetValue<string>("Quartz:quartz.scheduler.instanceName"));
 
             List<Task> tasks = new List<Task>(eventEntity.Notifications.Count);
 
             foreach (var item in eventEntity.Notifications)
             {
-                tasks.Add( scheduler.ScheduleJob(() => _bot.SendTextMessageAsync(eventEntity.ChatId, $"Event {eventEntity.Title} will begin at {eventEntity.StartDate}"),
-                            builder => builder.StartAt(item.Date)));
+                tasks.Add( scheduler.ScheduleJob(() => 
+                    _bot.SendTextMessageAsync(
+                        eventEntity.ChatId, 
+                        $"Event " +
+                        $"{eventEntity.Title} will begin at " +
+                        $"{eventEntity.StartDate}"),
+                        builder => builder.StartAt(
+                            item.Date)));
             }
             await Task.WhenAll(tasks.ToArray());
         }
