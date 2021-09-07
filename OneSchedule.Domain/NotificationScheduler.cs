@@ -33,7 +33,7 @@ namespace OneSchedule.Domain
 
             foreach (var item in eventEntity.Notifications)
             {
-                tasks.Add( scheduler.ScheduleJob(() => 
+                tasks.Add(scheduler.ScheduleJob(() => 
                     _bot.SendTextMessageAsync(
                         eventEntity.ChatId, 
                         $"Event " +
