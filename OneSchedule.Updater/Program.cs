@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -54,8 +54,7 @@ namespace OneSchedule.Updater
 
                     try
                     {
-                        var response = await RedirectUpdatesToApi(updates, client, programSettings);
-                        Console.WriteLine($"\n{response}\n_________");
+                        await RedirectUpdatesToApi(updates, client, programSettings);
                     }
                     catch (Exception e)
                     {
@@ -70,16 +69,14 @@ namespace OneSchedule.Updater
             }
         }
 
-        private static async Task<HttpResponseMessage> RedirectUpdatesToApi(IEnumerable<Update> updates, HttpClient client, ProgramSettings programSettings)
+        private static async Task RedirectUpdatesToApi(IEnumerable<Update> updates, HttpClient client, ProgramSettings programSettings)
         {
             foreach (var update in updates)
             {
-                var jsonUpdate = JsonConvert.SerializeObject(update);
+                var jsonUpdate = JsonSerializer.Serialize(update);
                 var content = new StringContent(jsonUpdate, Encoding.UTF8, "application/json");
-                return await client.PostAsync(programSettings.Uri, content);
+                await client.PostAsync(programSettings.Uri, content);
             }
-
-            return null;
         }
     }
 }
