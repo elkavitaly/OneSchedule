@@ -9,6 +9,6 @@ namespace OneSchedule.Domain.Abstractions
 {
     public interface INotificationScheduler
     {
-        public Task ScheduleNotifications(EventEntity eventEntity);
+        Task ScheduleNotifications(EventEntity eventEntity);
     }
 }

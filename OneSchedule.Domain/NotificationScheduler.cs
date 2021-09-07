@@ -1,10 +1,12 @@
-﻿using OneSchedule.Domain.Abstractions;
+﻿using Microsoft.Extensions.Configuration;
+using OneSchedule.Domain.Abstractions;
 using OneSchedule.Entities;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Lambda;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,17 +17,19 @@ namespace OneSchedule.Domain
     public class NotificationScheduler : INotificationScheduler
     {
         private readonly ITelegramBotClient _bot;
+        private readonly IConfiguration _configuration;
 
-        public NotificationScheduler(ITelegramBotClient bot)
+        public NotificationScheduler(ITelegramBotClient bot, IConfiguration configuration)
         {
             _bot = bot;
+            _configuration = configuration;
         }
 
         public async Task ScheduleNotifications(EventEntity eventEntity)
         {
-            IScheduler scheduler = SchedulerRepository.Instance.Lookup("Quartz ASP.NET�Core Sample Scheduler").Result;
+            IScheduler scheduler = await SchedulerRepository.Instance.Lookup(_configuration.GetSection("Quartz").GetSection("quartz.scheduler.instanceName").Value);
 
-            List<Task> tasks = new List<Task>();
+            List<Task> tasks = new List<Task>(new Task[eventEntity.Notifications.Count]);
 
             foreach (var item in eventEntity.Notifications)
             {

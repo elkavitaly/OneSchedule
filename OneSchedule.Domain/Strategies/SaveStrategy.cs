@@ -38,7 +38,7 @@ namespace OneSchedule.Domain.Strategies
                     await _eventRepository.UpdateAsync(context.ContextEntity.Event);
                 }
 
-                _notificationScheduler.ScheduleNotifications(context.ContextEntity.Event);
+                await _notificationScheduler.ScheduleNotifications(context.ContextEntity.Event);
 
                 await _contextRepository.DeleteAsync(context.ContextEntity.Id);
 
