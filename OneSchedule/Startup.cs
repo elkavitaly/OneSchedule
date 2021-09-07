@@ -10,7 +10,6 @@ using OneSchedule.Domain.Abstractions;
 using OneSchedule.Domain.StateMachine;
 using OneSchedule.Domain.Strategies;
 using OneSchedule.Exceptions.ExceptionHandlingMiddleware;
-using OneSchedule.Services;
 using OneSchedule.Settings;
 using Quartz;
 using Serilog;
@@ -66,7 +65,6 @@ namespace OneSchedule
             services.ConfigureRepository(Configuration);
             services.ConfigureStrategy();
             services.ConfigureStateMachine();
-            services.ConfigureService();
             services.AddSingleton<INotificationScheduler, NotificationScheduler>();
 
             services.AddQuartzHostedService(options =>
