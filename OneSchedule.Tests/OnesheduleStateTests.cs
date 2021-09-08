@@ -6,6 +6,7 @@ using OneSchedule.Domain.Models;
 using OneSchedule.Domain.StateMachine.AskState;
 using OneSchedule.Domain.StateMachine.GetState;
 using OneSchedule.Entities;
+using OneSchedule.Exceptions.CustomExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -197,21 +198,15 @@ namespace OneSchedule.Tests
         }
         
         [Test]
-        public async Task GetBeginDateState_WrongDateFormat()
+        public void GetBeginDateState_WrongDateFormat()
         {
             var chatId = "123";
             var dto = new DtoDomain() { ChatId = chatId,MessageText = "tnn"};
             var state = new GetBeginDateState();
 
             _stateContextMoq.Setup(o => o.ContextEntity).Returns(new ContextEntity(){Event = new EventEntity()});
-            try
-            {
-                await state.HandleAsync(_stateContextMoq.Object, dto);
-            }
-            catch (Exception e)
-            {
-                Assert.AreEqual("Invalid date format", e.Message);
-            }
+
+            Assert.Catch<BotAppInternalException>(() => state.HandleAsync(_stateContextMoq.Object, dto));
         }
 
         [Test]
