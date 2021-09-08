@@ -24,11 +24,11 @@ namespace OneSchedule
             {
                 if (_webHookOptions.Value.IsEnabled)
                 {
-                    await _bot.SetWebhookAsync(_webHookOptions.Value.Uri);
+                    await _bot.SetWebhookAsync(_webHookOptions.Value.Uri, cancellationToken: cancellationToken);
                 }
                 else
                 {
-                    await _bot.DeleteWebhookAsync();
+                    await _bot.DeleteWebhookAsync(cancellationToken: cancellationToken);
                 }
             }
         }

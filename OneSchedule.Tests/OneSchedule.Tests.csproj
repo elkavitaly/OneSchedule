@@ -11,9 +11,26 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OneSchedule.Attributes\OneSchedule.Attributes.csproj" />
+    <ProjectReference Include="..\OneSchedule.Data.Abstractions\OneSchedule.Data.Abstractions.csproj" />
+    <ProjectReference Include="..\OneSchedule.Data\OneSchedule.Data.csproj" />
+    <ProjectReference Include="..\OneSchedule.Domain.Abstractions\OneSchedule.Domain.Abstractions.csproj" />
+    <ProjectReference Include="..\OneSchedule.Domain.Models\OneSchedule.Domain.Models.csproj" />
+    <ProjectReference Include="..\OneSchedule.Domain\OneSchedule.Domain.csproj" />
+    <ProjectReference Include="..\OneSchedule.Entities\OneSchedule.Entities.csproj" />
+    <ProjectReference Include="..\OneSchedule.Exceptions\OneSchedule.Exceptions.csproj" />
+    <ProjectReference Include="..\OneSchedule.Helpers\OneSchedule.Helpers.csproj" />
+    <ProjectReference Include="..\OneSchedule.Settings\OneSchedule.Settings.csproj" />
+    <ProjectReference Include="..\OneSchedule.Updater\OneSchedule.Updater.csproj" />
+    <ProjectReference Include="..\OneSchedule\OneSchedule.csproj" />
   </ItemGroup>
 
 </Project>
